@@ -1,0 +1,51 @@
+
+# Xcode
+build/
+DerivedData/
+*.xcworkspace
+xcuserdata/
+
+# macOS
+.DS_Store
+
+# SwiftPM
+/.build/
+/Packages/
+/.swiftpm/xcode/package.xcworkspace
+
+# Logs
+*.log
+
+# User settings
+*.xcuserstate
+*.xccheckout
+*.moved-aside
+
+# Temporary
+*.swp
+*.lock
+*~
+*#
+
+# App signing
+*.entitlements
+
+# Archives
+*.xcarchive
+
+# Xcode Preview support files
+__Previews/
+
+# Carthage
+Carthage/Build/
+
+# Cocoapods
+Pods/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+
+# Git
+*.orig
