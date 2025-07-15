@@ -151,8 +151,8 @@ class PomodoroTimer: ObservableObject {
     
     private func sendNotification(for newState: State) {
         let content = UNMutableNotificationContent()
-        content.title = "🍅 Pomodoro 计时结束"
-        content.body = newState == .work ? "休息结束，继续专注工作！" : "工作完成，休息一下吧。"
+        content.title = "🍅 Pomodoro Session Ended"
+        content.body = newState == .work ? "Rest is over. Time to focus!" : "Work completed. Take a break!"
         content.sound = UNNotificationSound.default
         
         playSound(repeat: 3)

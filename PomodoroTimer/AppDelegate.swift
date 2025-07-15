@@ -6,6 +6,7 @@
 //
 
 import UserNotifications
+import ServiceManagement
 import SwiftUI
 
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -51,6 +52,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 window.maxSize = NSSize(width: 280, height: 320)
                 window.styleMask.remove(.resizable) // 可选：防止用户调整窗口大小
             }
+        }
+        
+        do {
+            try SMAppService.mainApp.register()
+            print("✅ App successfully registered to launch at login.")
+        } catch {
+            print("❌ Failed to register app for login launch: \(error)")
         }
     }
 
