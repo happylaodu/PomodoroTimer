@@ -29,9 +29,22 @@
 		D0D1F13E2E21B81C0046C94F /* PomodoroTimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PomodoroTimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D00709A92E2819320000104D /* Exceptions for "PomodoroTimer" folder in "PomodoroTimer" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = D0D1F1252E21B81A0046C94F /* PomodoroTimer */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		D0D1F1282E21B81A0046C94F /* PomodoroTimer */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D00709A92E2819320000104D /* Exceptions for "PomodoroTimer" folder in "PomodoroTimer" target */,
+			);
 			path = PomodoroTimer;
 			sourceTree = "<group>";
 		};
