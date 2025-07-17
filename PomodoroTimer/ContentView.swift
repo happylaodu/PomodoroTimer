@@ -36,7 +36,7 @@ struct ContentView: View {
 
             ZStack {
                 Circle()
-                    .stroke(lineWidth: 8)
+                    .stroke(lineWidth: 6)
                     .foregroundColor(.gray.opacity(0.2))
                     .frame(width: 160, height: 160)
 
@@ -50,12 +50,16 @@ struct ContentView: View {
                     .frame(width: 160, height: 160)
                     .animation(.linear(duration: 0.2), value: progress)
 
-                VStack(spacing: 6) {
-                    Text(showTotal ? "Total: \(timer.totalWorkSessions) 🍅" : "Today: \(timer.dailyWorkSessions) 🍅")
-                        .font(.body.weight(.semibold))
-                        .onTapGesture {
-                            showTotal.toggle()
-                        }
+                VStack(spacing: 6)
+                {
+                    Button(action: {
+                        showTotal.toggle()
+                    }) {
+                        Text(showTotal ? "Total: \(timer.totalWorkSessions) 🍅" : "Today: \(timer.dailyWorkSessions) 🍅")
+                            .font(.body.weight(.semibold))
+                            .padding(.top, 4)
+                    }
+                    .buttonStyle(.plain)
 
                     Text(timeString(from: timer.timeRemaining))
                         .font(.system(size: 48, weight: .bold, design: .monospaced))
@@ -68,11 +72,15 @@ struct ContentView: View {
                         }
                     }) {
                         Image(systemName: timer.isRunning ? "pause.fill" : "play.fill")
-                            .controlSize(.large)
-                    }
-                    .buttonStyle(.borderedProminent)
+                            .font(.title2)
+                                    .foregroundColor(.white)
+                                    .frame(width: 36, height: 36)
+                                    .background(Circle().fill(Color.accentColor))
+                            }
+                            .buttonStyle(.plain)
                     
                 }
+                .offset(y: 0)
             }
 
 
@@ -80,7 +88,7 @@ struct ContentView: View {
                 Button("Reset") {
                     timer.reset()
                 }
-                .buttonStyle(.borderedProminent)
+                .buttonStyle(.bordered)
 
                 Divider()
                        .frame(height: 20)
@@ -91,12 +99,12 @@ struct ContentView: View {
                     Label("Quit", systemImage: "door.left.hand.open")
                 }
                 .buttonStyle(.bordered)
-                .foregroundColor(.red)
+                .tint(.red)
                 .help("Quit Pomodoro Timer Lite")
             }
         }
         .padding()
-        .frame(width: 280, height: 350)
+        .frame(width: 280, height: 320)
     }
 
     func timeString(from seconds: Int) -> String {

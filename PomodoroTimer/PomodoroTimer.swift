@@ -36,13 +36,15 @@ class PomodoroTimer: ObservableObject {
         restoreState()
         let today = formattedDate(Date())
         let lastDate = UserDefaults.standard.string(forKey: lastWorkDateKey)
+        dailyWorkSessions = UserDefaults.standard.integer(forKey: dailyWorkKey)
+        totalWorkSessions = UserDefaults.standard.integer(forKey: totalWorkKey)
 
         if lastDate != today {
             dailyWorkSessions = 0
             UserDefaults.standard.set(today, forKey: lastWorkDateKey)
             UserDefaults.standard.set(dailyWorkSessions, forKey: dailyWorkKey)
         }
-        totalWorkSessions = UserDefaults.standard.integer(forKey: totalWorkKey)
+        
     }
     
     var isRunning: Bool {
