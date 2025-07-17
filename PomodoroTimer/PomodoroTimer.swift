@@ -20,15 +20,22 @@ class PomodoroTimer: ObservableObject {
     @Published var timeRemaining: Int = 25 * 60
     @Published var state: State = .stopped
     @Published var isPaused: Bool = false
+    @Published var dailyWorkSessions: Int = 0
+    @Published var totalWorkSessions: Int = 0
     
     var onUpdateUI: (() -> Void)?
 
     private var timer: Timer?
     
     private let userDefaultsKey = "PomodoroState"
+    private let dailyWorkKey = "dailyWorkSessions"
+    private let totalWorkKey = "totalWorkSessions"
+    private let lastWorkDateKey = "lastWorkDate"
 
     init() {
         restoreState()
+        dailyWorkSessions = UserDefaults.standard.integer(forKey: dailyWorkKey)
+        totalWorkSessions = UserDefaults.standard.integer(forKey: totalWorkKey)
     }
     
     var isRunning: Bool {
@@ -79,6 +86,9 @@ class PomodoroTimer: ObservableObject {
 
     private func tick() {
         guard timeRemaining > 0 else {
+            if state == .work {
+                incrementWorkCounters()
+            }
             timer?.invalidate()
             timer = nil
             state = state == .work ? .rest : .work
@@ -164,5 +174,20 @@ class PomodoroTimer: ObservableObject {
                 print("❌ Failed to send notification: \(error.localizedDescription)")
             }
         }
+    }
+    
+    private func incrementWorkCounters() {
+        let today = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .none)
+        let lastDate = UserDefaults.standard.string(forKey: lastWorkDateKey)
+        if lastDate != today {
+            dailyWorkSessions = 0
+        }
+
+        dailyWorkSessions += 1
+        totalWorkSessions += 1
+
+        UserDefaults.standard.set(today, forKey: lastWorkDateKey)
+        UserDefaults.standard.set(dailyWorkSessions, forKey: dailyWorkKey)
+        UserDefaults.standard.set(totalWorkSessions, forKey: totalWorkKey)
     }
 }

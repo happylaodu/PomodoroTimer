@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     //@StateObject var timer = PomodoroTimer()
     @ObservedObject var timer: PomodoroTimer
+    @State private var showTotal = false
     
     var body: some View {
         let totalTime = timer.state == .work ? 25 * 60 : 5 * 60
@@ -34,27 +35,33 @@ struct ContentView: View {
             }
 
             ZStack {
-                // 背景圆环（灰色或浅色）
                 Circle()
                     .stroke(lineWidth: 8)
                     .foregroundColor(.gray.opacity(0.2))
                     .frame(width: 160, height: 160)
 
-                // 前景圆环（进度）
                 Circle()
                     .trim(from: 0, to: 1 - progress)
                     .stroke(
                         timer.state == .work ? Color.red : Color.green,
                         style: StrokeStyle(lineWidth: 8, lineCap: .round)
                     )
-                    .rotationEffect(.degrees(-90)) // 使其从顶部开始
+                    .rotationEffect(.degrees(-90))
                     .frame(width: 160, height: 160)
                     .animation(.linear(duration: 0.2), value: progress)
 
-                // 中间倒计时数字
-                Text(timeString(from: timer.timeRemaining))
-                    .font(.system(size: 48, weight: .bold, design: .monospaced))
+                VStack(spacing: 4) {
+                    Text(showTotal ? "Total: \(timer.totalWorkSessions) 🍅" : "Today: \(timer.dailyWorkSessions) 🍅")
+                        .font(.body.weight(.semibold))
+                        .onTapGesture {
+                            showTotal.toggle()
+                        }
+
+                    Text(timeString(from: timer.timeRemaining))
+                        .font(.system(size: 48, weight: .bold, design: .monospaced))
+                }
             }
+
 
             HStack(spacing: 20) {
                 Button(action: {
@@ -85,7 +92,7 @@ struct ContentView: View {
             .help("Quit Pomodoro Timer Lite")
         }
         .padding()
-        .frame(width: 280, height: 320)
+        .frame(width: 280, height: 350)
     }
 
     func timeString(from seconds: Int) -> String {
