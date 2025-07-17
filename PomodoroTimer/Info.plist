@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>LSApplicationCategoryType</key>
-	<string>public.app-category.productivity</string>
-	<key>LSUIElement</key>
-	<true/>
 	<key>BuildMachineOSBuild</key>
 	<string>24F74</string>
 	<key>CFBundleDevelopmentRegion</key>
@@ -31,7 +27,7 @@
 		<string>MacOSX</string>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>4</string>
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
@@ -48,7 +44,11 @@
 	<string>1640</string>
 	<key>DTXcodeBuild</key>
 	<string>16F6</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>15.5</string>
+	<key>LSUIElement</key>
+	<true/>
 </dict>
 </plist>

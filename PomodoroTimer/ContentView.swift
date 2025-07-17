@@ -74,6 +74,15 @@ struct ContentView: View {
                 }
             }
             .buttonStyle(.borderedProminent)
+
+            Button {
+                NSApp.terminate(nil)
+            } label: {
+                Label("Quit", systemImage: "door.left.hand.open")
+            }
+            .buttonStyle(.bordered)
+            .foregroundColor(.red)
+            .help("Quit Pomodoro Timer Lite")
         }
         .padding()
         .frame(width: 280, height: 320)
