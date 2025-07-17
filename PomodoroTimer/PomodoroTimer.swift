@@ -34,7 +34,14 @@ class PomodoroTimer: ObservableObject {
 
     init() {
         restoreState()
-        dailyWorkSessions = UserDefaults.standard.integer(forKey: dailyWorkKey)
+        let today = formattedDate(Date())
+        let lastDate = UserDefaults.standard.string(forKey: lastWorkDateKey)
+
+        if lastDate != today {
+            dailyWorkSessions = 0
+            UserDefaults.standard.set(today, forKey: lastWorkDateKey)
+            UserDefaults.standard.set(dailyWorkSessions, forKey: dailyWorkKey)
+        }
         totalWorkSessions = UserDefaults.standard.integer(forKey: totalWorkKey)
     }
     
@@ -177,8 +184,9 @@ class PomodoroTimer: ObservableObject {
     }
     
     private func incrementWorkCounters() {
-        let today = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .none)
+        let today = formattedDate(Date())
         let lastDate = UserDefaults.standard.string(forKey: lastWorkDateKey)
+
         if lastDate != today {
             dailyWorkSessions = 0
         }
@@ -189,5 +197,12 @@ class PomodoroTimer: ObservableObject {
         UserDefaults.standard.set(today, forKey: lastWorkDateKey)
         UserDefaults.standard.set(dailyWorkSessions, forKey: dailyWorkKey)
         UserDefaults.standard.set(totalWorkSessions, forKey: totalWorkKey)
+    }
+    
+    private func formattedDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.timeZone = TimeZone.current
+        return formatter.string(from: date)
     }
 }

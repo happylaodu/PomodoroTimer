@@ -50,7 +50,7 @@ struct ContentView: View {
                     .frame(width: 160, height: 160)
                     .animation(.linear(duration: 0.2), value: progress)
 
-                VStack(spacing: 4) {
+                VStack(spacing: 6) {
                     Text(showTotal ? "Total: \(timer.totalWorkSessions) 🍅" : "Today: \(timer.dailyWorkSessions) 🍅")
                         .font(.body.weight(.semibold))
                         .onTapGesture {
@@ -59,37 +59,41 @@ struct ContentView: View {
 
                     Text(timeString(from: timer.timeRemaining))
                         .font(.system(size: 48, weight: .bold, design: .monospaced))
+                    
+                    Button(action: {
+                        if timer.isRunning {
+                            timer.pause()
+                        } else {
+                            timer.start()
+                        }
+                    }) {
+                        Image(systemName: timer.isRunning ? "pause.fill" : "play.fill")
+                            .controlSize(.large)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    
                 }
             }
 
 
             HStack(spacing: 20) {
-                Button(action: {
-                    if timer.isRunning {
-                        timer.pause()
-                    } else {
-                        timer.start()
-                    }
-                }) {
-                    Label(timer.isRunning ? "Pause" : (timer.isPaused ? "Resume" : "Start"),
-                          systemImage: timer.isRunning ? "pause.fill" : "play.fill")
-                }
-                .buttonStyle(.borderedProminent)
-                
                 Button("Reset") {
                     timer.reset()
                 }
-            }
-            .buttonStyle(.borderedProminent)
+                .buttonStyle(.borderedProminent)
 
-            Button {
-                NSApp.terminate(nil)
-            } label: {
-                Label("Quit", systemImage: "door.left.hand.open")
+                Divider()
+                       .frame(height: 20)
+                
+                Button {
+                    NSApp.terminate(nil)
+                } label: {
+                    Label("Quit", systemImage: "door.left.hand.open")
+                }
+                .buttonStyle(.bordered)
+                .foregroundColor(.red)
+                .help("Quit Pomodoro Timer Lite")
             }
-            .buttonStyle(.bordered)
-            .foregroundColor(.red)
-            .help("Quit Pomodoro Timer Lite")
         }
         .padding()
         .frame(width: 280, height: 350)
