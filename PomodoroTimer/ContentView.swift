@@ -85,8 +85,10 @@ struct ContentView: View {
 
 
             HStack(spacing: 20) {
-                Button("Reset") {
+                Button(action: {
                     timer.reset()
+                }) {
+                    Label("Reset", systemImage: "arrow.counterclockwise")
                 }
                 .buttonStyle(.bordered)
 
