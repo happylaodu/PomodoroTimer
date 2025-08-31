@@ -6,11 +6,44 @@
 //
 
 import SwiftUI
+import Charts
+
+struct StatsView: View {
+    var stats: [Date: Int]
+
+    var body: some View {
+        Chart {
+            ForEach(stats.sorted(by: { $0.key < $1.key }), id: \.key) { date, count in
+                BarMark(
+                    x: .value("Date", date, unit: .day),
+                    y: .value("Count", count)
+                )
+            }
+        }
+        .chartXAxisLabel("Date", position: .bottom, alignment: .center)
+        .chartXAxis {
+            AxisMarks(values: .stride(by: .day)) { value in
+                AxisGridLine()
+                AxisValueLabel {
+                    if let date = value.as(Date.self) {
+                        Text(date.formatted(.dateTime.month().day().locale(Locale(identifier: "en_US"))))
+                            .font(.caption2)
+                            .rotationEffect(.degrees(-40))
+                            .frame(width: 30, alignment: .trailing)
+                    }
+                }
+            }
+        }
+        .chartYAxisLabel("Work Round Count", position: .leading, alignment: .center)
+        .padding()
+    }
+}
 
 struct ContentView: View {
     //@StateObject var timer = PomodoroTimer()
     @ObservedObject var timer: PomodoroTimer
-    @State private var showTotal = false
+    @State private var displayMode: Int = 0 // 0: Today, 1: This Week, 2: Total
+    @State private var showStatsPopover = false
     
     var body: some View {
         let totalTime = timer.state == .work ? 25 * 60 : 5 * 60
@@ -53,11 +86,20 @@ struct ContentView: View {
                 VStack(spacing: 6)
                 {
                     Button(action: {
-                        showTotal.toggle()
+                        displayMode = (displayMode + 1) % 3
                     }) {
-                        Text(showTotal ? "Total: \(timer.totalWorkSessions) 🍅" : "Today: \(timer.dailyWorkSessions) 🍅")
-                            .font(.body.weight(.semibold))
-                            .padding(.top, 4)
+                        Text({
+                            switch displayMode {
+                            case 1:
+                                return "This Week: \(timer.weeklyWorkSessions) 🍅"
+                            case 2:
+                                return "Total: \(timer.totalWorkSessions) 🍅"
+                            default:
+                                return "Today: \(timer.dailyWorkSessions) 🍅"
+                            }
+                        }())
+                        .font(.body.weight(.semibold))
+                        .padding(.top, 4)
                     }
                     .buttonStyle(.plain)
 
@@ -82,6 +124,20 @@ struct ContentView: View {
                 }
                 .offset(y: 0)
             }
+            
+            Button(action: {
+                showStatsPopover.toggle()
+            }) {
+                Label("Show Chart", systemImage: "chart.bar")
+                    .labelStyle(.iconOnly)
+                    .padding(.bottom, 4)
+            }
+            .popover(isPresented: $showStatsPopover) {
+                StatsView(stats: Dictionary(uniqueKeysWithValues: timer.lastNDaysHistory(7).map { (PomodoroTimer.dateFormatter.date(from: $0.0) ?? Date(), $0.1) }))
+                .frame(width: 240, height: 180)
+            }
+            .buttonStyle(.plain)
+            .help("Show weekly progress chart")
 
 
             HStack(spacing: 20) {

@@ -21,7 +21,10 @@ class PomodoroTimer: ObservableObject {
     @Published var state: State = .stopped
     @Published var isPaused: Bool = false
     @Published var dailyWorkSessions: Int = 0
+    @Published var weeklyWorkSessions: Int = 0
     @Published var totalWorkSessions: Int = 0
+    @Published var dailyHistory: [String: Int] = [:]
+    private let historyKey = "dailyHistory"
     
     var onUpdateUI: (() -> Void)?
 
@@ -29,20 +32,36 @@ class PomodoroTimer: ObservableObject {
     
     private let userDefaultsKey = "PomodoroState"
     private let dailyWorkKey = "dailyWorkSessions"
+    private let weeklyWorkKey = "weeklyWorkSessions"
     private let totalWorkKey = "totalWorkSessions"
     private let lastWorkDateKey = "lastWorkDate"
+    private let lastWeeklyWorkDateKey = "lastWeeklyWorkDate"
 
     init() {
         restoreState()
         let today = formattedDate(Date())
         let lastDate = UserDefaults.standard.string(forKey: lastWorkDateKey)
+        let lastWeeklyDate = UserDefaults.standard.string(forKey: lastWeeklyWorkDateKey)
         dailyWorkSessions = UserDefaults.standard.integer(forKey: dailyWorkKey)
+        weeklyWorkSessions = UserDefaults.standard.integer(forKey: weeklyWorkKey)
         totalWorkSessions = UserDefaults.standard.integer(forKey: totalWorkKey)
+        
+        if let data = UserDefaults.standard.data(forKey: historyKey),
+           let history = try? JSONDecoder().decode([String: Int].self, from: data) {
+            dailyHistory = history
+        }
 
         if lastDate != today {
             dailyWorkSessions = 0
             UserDefaults.standard.set(today, forKey: lastWorkDateKey)
             UserDefaults.standard.set(dailyWorkSessions, forKey: dailyWorkKey)
+        }
+        
+        if let lastDateStr = UserDefaults.standard.string(forKey: lastWorkDateKey),
+           let lastDate = dateFromFormattedString(lastDateStr),
+           !Calendar.current.isDate(Date(), equalTo: lastDate, toGranularity: .weekOfYear) {
+            weeklyWorkSessions = 0
+            UserDefaults.standard.set(weeklyWorkSessions, forKey: weeklyWorkKey)
         }
         
     }
@@ -185,7 +204,7 @@ class PomodoroTimer: ObservableObject {
         }
     }
     
-    private func incrementWorkCounters() {
+    func incrementWorkCounters() {
         let today = formattedDate(Date())
         let lastDate = UserDefaults.standard.string(forKey: lastWorkDateKey)
 
@@ -193,18 +212,70 @@ class PomodoroTimer: ObservableObject {
             dailyWorkSessions = 0
         }
 
+        let lastWeeklyDate = UserDefaults.standard.string(forKey: lastWeeklyWorkDateKey)
+        if let lastWeekDateStr = lastWeeklyDate,
+           let lastWeekDate = dateFromFormattedString(lastWeekDateStr),
+           !Calendar.current.isDate(Date(), equalTo: lastWeekDate, toGranularity: .weekOfYear) {
+            weeklyWorkSessions = 0
+        }
+
         dailyWorkSessions += 1
+        weeklyWorkSessions += 1
         totalWorkSessions += 1
+
+        dailyHistory[today, default: 0] += 1
+        if let data = try? JSONEncoder().encode(dailyHistory) {
+            UserDefaults.standard.set(data, forKey: historyKey)
+        }
 
         UserDefaults.standard.set(today, forKey: lastWorkDateKey)
         UserDefaults.standard.set(dailyWorkSessions, forKey: dailyWorkKey)
+        UserDefaults.standard.set(formattedDate(Date()), forKey: lastWeeklyWorkDateKey)
+        UserDefaults.standard.set(weeklyWorkSessions, forKey: weeklyWorkKey)
         UserDefaults.standard.set(totalWorkSessions, forKey: totalWorkKey)
     }
     
-    private func formattedDate(_ date: Date) -> String {
+    func lastNDaysHistory(_ n: Int) -> [(String, Int)] {
+        let calendar = Calendar.current
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.timeZone = TimeZone.current
+        
+        var result: [(String, Int)] = []
+        for offset in (0..<n).reversed() {
+            if let date = calendar.date(byAdding: .day, value: -offset, to: Date()) {
+                let dateString = formatter.string(from: date)
+                let count = dailyHistory[dateString, default: 0]
+                result.append((dateString, count))
+            }
+        }
+        return result
+    }
+    
+    func formattedDate(_ date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         formatter.timeZone = TimeZone.current
         return formatter.string(from: date)
     }
+    
+    private func dateFromFormattedString(_ string: String) -> Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.timeZone = TimeZone.current
+        return formatter.date(from: string)
+    }
+    
+    static let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+    }()
+
+    static let shortDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd"
+        formatter.timeZone = TimeZone.current
+        return formatter
+    }()
 }
