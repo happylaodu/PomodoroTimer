@@ -137,7 +137,7 @@ struct ContentView: View {
                 .frame(width: 240, height: 180)
             }
             .buttonStyle(.plain)
-            .help("Show weekly progress chart")
+            .help("Show past 7 days progress chart")
 
 
             HStack(spacing: 20) {
