@@ -52,7 +52,6 @@ class PomodoroTimer: ObservableObject {
     init() {
         let today = formattedDate(Date())
         let lastDate = UserDefaults.standard.string(forKey: lastWorkDateKey)
-        let lastWeeklyDate = UserDefaults.standard.string(forKey: lastWeeklyWorkDateKey)
         let isNewDay = (lastDate != today)
 
         dailyWorkSessions = UserDefaults.standard.integer(forKey: dailyWorkKey)
@@ -90,33 +89,19 @@ class PomodoroTimer: ObservableObject {
             UserDefaults.standard.set(weeklyWorkSessions, forKey: weeklyWorkKey)
         }
         
+        // Monitor settings changes separately from state saves
         defaultsCancellable = NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                // Apply latest durations depending on current phase and paused/stopped state
-                if (self.state == .work && self.timer == nil) || self.state == .stopped {
-                    // For work: update to latest workDuration when paused or stopped
+                // Only update timeRemaining if we're in stopped state (not paused with remaining time)
+                // This prevents the bug where pausing resets the timer
+                if self.state == .stopped {
                     self.timeRemaining = self.workDuration * 60
                     self.onUpdateUI?()
-                } else if self.state == .rest && self.timer == nil {
-                    // For rest: when paused, immediately reflect the latest rest duration (short or long)
-                    let roundsBeforeLong = UserDefaults.standard.integer(forKey: "roundsBeforeLongRest")
-                    let isLongRest = roundsBeforeLong > 0 && (self.completedRounds % roundsBeforeLong == 0)
-                    let shortRest = UserDefaults.standard.integer(forKey: "shortRestDuration")
-                    let longRest = UserDefaults.standard.integer(forKey: "longRestDuration")
-                    let newRestMinutes = isLongRest ? longRest : shortRest
-                    self.timeRemaining = newRestMinutes * 60
-                    self.onUpdateUI?()
                 }
+                // Note: For paused state, we intentionally don't update timeRemaining here
+                // to preserve the current countdown position
             }
-        
-        // Initialize remaining time on cold start when no session is running
-        if state == .stopped {
-            timeRemaining = workDuration * 60
-        }
-        if state == .rest && timer == nil {
-            timeRemaining = isLongRest ? longRestDuration * 60 : shortRestDuration * 60
-        }
 
         // Auto-start work on new day if enabled
         if isNewDay && autoStartWork {
@@ -240,9 +225,15 @@ class PomodoroTimer: ObservableObject {
         }
     }
 
-    private func restoreState() {
+    @discardableResult
+    private func restoreState() -> Bool {
         guard let data = UserDefaults.standard.data(forKey: userDefaultsKey),
-              let saved = try? JSONDecoder().decode(SavedState.self, from: data) else { return }
+              let saved = try? JSONDecoder().decode(SavedState.self, from: data) else {
+            // No saved state found - initialize to default
+            state = .stopped
+            timeRemaining = workDuration * 60
+            return false
+        }
 
         if saved.wasRunning {
             let elapsed = Int(Date().timeIntervalSince(saved.timestamp))
@@ -267,17 +258,11 @@ class PomodoroTimer: ObservableObject {
                 }
             }
         } else {
+            // Restore paused state: use saved timeRemaining to preserve countdown position
             state = saved.state
-            if saved.state == .rest {
-                let isLong = roundsBeforeLongRest > 0 && (completedRounds % roundsBeforeLongRest == 0)
-                timeRemaining = isLong ? longRestDuration * 60 : shortRestDuration * 60
-            } else if saved.state == .work {
-                // Use current workDuration setting instead of saved value
-                timeRemaining = workDuration * 60
-            } else {
-                timeRemaining = saved.timeRemaining
-            }
+            timeRemaining = saved.timeRemaining
         }
+        return true
     }
 
     private func clearSavedState() {
