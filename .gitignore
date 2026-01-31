@@ -49,3 +49,9 @@ fastlane/screenshots
 
 # Git
 *.orig
+
+# Package installers
+*.pkg
+
+# Backup directories
+PomodoroTimer 2025-*/

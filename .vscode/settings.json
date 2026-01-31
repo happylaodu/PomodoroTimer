@@ -1,0 +1,10 @@
+{
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/build": true,
+    "**/*.xcworkspace": true
+  },
+  "swift.path": "/usr/bin/swift",
+  "lldb.library": "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
+  "lldb.launch.expressions": "native"
+}

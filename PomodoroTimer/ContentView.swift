@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Charts
+import AppKit
 
 struct StatsView: View {
     var stats: [Date: Int]
@@ -50,23 +51,29 @@ struct ContentView: View {
         let progress = Double(timer.timeRemaining) / Double(totalTime)
 
         VStack(spacing: 20) {
-            
-            
-            HStack {
-                Text(timer.state == .rest ? "Rest Time" : "Work Time")
+            ZStack {
+                Text(timer.state == .rest ? (timer.isLongRest ? "Long Rest Time" : "Rest Time") : "Work Time")
                     .font(.largeTitle)
-
-                if !timer.isRunning {
-                    Button(action: {
-                        timer.toggleCurrentPhase()
-                    }) {
-                        Image(systemName: "arrow.triangle.2.circlepath") // 或 "repeat"
+                    .frame(maxWidth: .infinity, alignment: .center)
+                HStack {
+                    if !timer.isRunning {
+                        Button(action: { timer.toggleCurrentPhase() }) {
+                            Image(systemName: "arrow.triangle.2.circlepath")
+                        }
+                        .buttonStyle(.plain)
+                        .help("Switch Current Phase")
+                        .padding(.trailing, 6)
+                    }
+                    Spacer()
+                    Button(action: { SettingsWindowController.shared.show() }) {
+                        Image(systemName: "gearshape")
                     }
                     .buttonStyle(.plain)
-                    .help("切换当前阶段")
+                    .help("Open Settings")
                 }
             }
-
+            .padding(.bottom, 4)
+            
             ZStack {
                 Circle()
                     .stroke(lineWidth: 6)
@@ -115,11 +122,11 @@ struct ContentView: View {
                     }) {
                         Image(systemName: timer.isRunning ? "pause.fill" : "play.fill")
                             .font(.title2)
-                                    .foregroundColor(.white)
-                                    .frame(width: 36, height: 36)
-                                    .background(Circle().fill(Color.accentColor))
-                            }
-                            .buttonStyle(.plain)
+                            .foregroundColor(.white)
+                            .frame(width: 36, height: 36)
+                            .background(Circle().fill(Color.accentColor))
+                    }
+                    .buttonStyle(.plain)
                     
                 }
                 .offset(y: 0)
@@ -171,3 +178,4 @@ struct ContentView: View {
         return String(format: "%02d:%02d", minutes, secs)
     }
 }
+

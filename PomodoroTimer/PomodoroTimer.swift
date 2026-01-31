@@ -10,23 +10,33 @@ import Foundation
 import Combine
 
 import AppKit
+import SwiftUI
 
 class PomodoroTimer: ObservableObject {
     enum State: String, Codable {
             case work, rest, stopped
     }
 
+    @AppStorage("workDuration") var workDuration: Int = 25
+    @AppStorage("shortRestDuration") private var shortRestDuration: Int = 5
+    @AppStorage("longRestDuration") private var longRestDuration: Int = 15
+    @AppStorage("roundsBeforeLongRest") private var roundsBeforeLongRest: Int = 4
+    @AppStorage("autoStartWork") private var autoStartWork: Bool = false
+    @AppStorage("autoStartRest") private var autoStartRest: Bool = false
+    @AppStorage("autoStartNextCycle") private var autoStartNextCycle: Bool = false
 
-    @Published var timeRemaining: Int = 25 * 60
+    @Published var timeRemaining: Int = 0
     @Published var state: State = .stopped
     @Published var isPaused: Bool = false
     @Published var dailyWorkSessions: Int = 0
     @Published var weeklyWorkSessions: Int = 0
     @Published var totalWorkSessions: Int = 0
     @Published var dailyHistory: [String: Int] = [:]
-    private let historyKey = "dailyHistory"
+    @Published var completedRounds: Int = 0
     
     var onUpdateUI: (() -> Void)?
+    
+    private var defaultsCancellable: AnyCancellable? = nil
 
     private var timer: Timer?
     
@@ -36,25 +46,41 @@ class PomodoroTimer: ObservableObject {
     private let totalWorkKey = "totalWorkSessions"
     private let lastWorkDateKey = "lastWorkDate"
     private let lastWeeklyWorkDateKey = "lastWeeklyWorkDate"
+    private let historyKey = "dailyHistory"
+    private let completedRoundsKey = "completedRounds"
 
     init() {
-        restoreState()
         let today = formattedDate(Date())
         let lastDate = UserDefaults.standard.string(forKey: lastWorkDateKey)
         let lastWeeklyDate = UserDefaults.standard.string(forKey: lastWeeklyWorkDateKey)
+        let isNewDay = (lastDate != today)
+
         dailyWorkSessions = UserDefaults.standard.integer(forKey: dailyWorkKey)
         weeklyWorkSessions = UserDefaults.standard.integer(forKey: weeklyWorkKey)
         totalWorkSessions = UserDefaults.standard.integer(forKey: totalWorkKey)
-        
+        completedRounds = UserDefaults.standard.integer(forKey: completedRoundsKey)
+
         if let data = UserDefaults.standard.data(forKey: historyKey),
            let history = try? JSONDecoder().decode([String: Int].self, from: data) {
             dailyHistory = history
         }
 
-        if lastDate != today {
+        if isNewDay {
             dailyWorkSessions = 0
+            completedRounds = 0
             UserDefaults.standard.set(today, forKey: lastWorkDateKey)
             UserDefaults.standard.set(dailyWorkSessions, forKey: dailyWorkKey)
+            UserDefaults.standard.set(completedRounds, forKey: completedRoundsKey)
+        }
+
+        // Restore state only if not a new day or autoStartWork is disabled
+        if !isNewDay || !autoStartWork {
+            restoreState()
+        } else {
+            // New day with autoStartWork enabled: reset to work state
+            state = .work
+            timeRemaining = workDuration * 60
+            clearSavedState()
         }
         
         if let lastDateStr = UserDefaults.standard.string(forKey: lastWorkDateKey),
@@ -64,6 +90,38 @@ class PomodoroTimer: ObservableObject {
             UserDefaults.standard.set(weeklyWorkSessions, forKey: weeklyWorkKey)
         }
         
+        defaultsCancellable = NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                // Apply latest durations depending on current phase and paused/stopped state
+                if (self.state == .work && self.timer == nil) || self.state == .stopped {
+                    // For work: update to latest workDuration when paused or stopped
+                    self.timeRemaining = self.workDuration * 60
+                    self.onUpdateUI?()
+                } else if self.state == .rest && self.timer == nil {
+                    // For rest: when paused, immediately reflect the latest rest duration (short or long)
+                    let roundsBeforeLong = UserDefaults.standard.integer(forKey: "roundsBeforeLongRest")
+                    let isLongRest = roundsBeforeLong > 0 && (self.completedRounds % roundsBeforeLong == 0)
+                    let shortRest = UserDefaults.standard.integer(forKey: "shortRestDuration")
+                    let longRest = UserDefaults.standard.integer(forKey: "longRestDuration")
+                    let newRestMinutes = isLongRest ? longRest : shortRest
+                    self.timeRemaining = newRestMinutes * 60
+                    self.onUpdateUI?()
+                }
+            }
+        
+        // Initialize remaining time on cold start when no session is running
+        if state == .stopped {
+            timeRemaining = workDuration * 60
+        }
+        if state == .rest && timer == nil {
+            timeRemaining = isLongRest ? longRestDuration * 60 : shortRestDuration * 60
+        }
+
+        // Auto-start work on new day if enabled
+        if isNewDay && autoStartWork {
+            start()
+        }
     }
     
     var isRunning: Bool {
@@ -73,7 +131,7 @@ class PomodoroTimer: ObservableObject {
     func start() {
         guard timer == nil else { return }
         if state == .stopped {
-            timeRemaining = 25 * 60
+            timeRemaining = workDuration * 60
             state = .work
         }
 
@@ -96,7 +154,7 @@ class PomodoroTimer: ObservableObject {
     func reset() {
         timer?.invalidate()
         timer = nil
-        timeRemaining = 25 * 60
+        timeRemaining = workDuration * 60
         state = .stopped
         clearSavedState()
         
@@ -107,24 +165,55 @@ class PomodoroTimer: ObservableObject {
         timer?.invalidate()
 
         // 切换状态
-        state = (state == .rest) ? .work : .rest
-        timeRemaining = state == .work ? 25 * 60 : 5 * 60
+        if state == .rest {
+            state = .work
+            timeRemaining = workDuration * 60
+        } else {
+            // Determine if this rest should be long or short
+            completedRounds += 1
+            UserDefaults.standard.set(completedRounds, forKey: completedRoundsKey)
+            if completedRounds % roundsBeforeLongRest == 0 {
+                timeRemaining = longRestDuration * 60
+            } else {
+                timeRemaining = shortRestDuration * 60
+            }
+            state = .rest
+        }
         onUpdateUI?()
     }
 
     private func tick() {
         guard timeRemaining > 0 else {
+            let previousState = state
             if state == .work {
                 incrementWorkCounters()
             }
             timer?.invalidate()
             timer = nil
-            state = state == .work ? .rest : .work
-            timeRemaining = state == .work ? 25 * 60 : 5 * 60
+            if state == .work {
+                completedRounds += 1
+                UserDefaults.standard.set(completedRounds, forKey: completedRoundsKey)
+                state = .rest
+                if completedRounds % roundsBeforeLongRest == 0 {
+                    timeRemaining = longRestDuration * 60
+                } else {
+                    timeRemaining = shortRestDuration * 60
+                }
+            } else {
+                state = .work
+                timeRemaining = workDuration * 60
+            }
             sendNotification(for: state)
-                    
+
             saveState()
             onUpdateUI?()
+
+            // Auto-start next phase if enabled
+            if previousState == .work && autoStartRest {
+                start()
+            } else if previousState == .rest && autoStartNextCycle {
+                start()
+            }
             return
         }
         timeRemaining -= 1
@@ -163,12 +252,31 @@ class PomodoroTimer: ObservableObject {
                 timeRemaining = newRemaining
                 // Optionally allow auto-resume
             } else {
-                state = saved.state == .work ? .rest : .work
-                timeRemaining = state == .work ? 25 * 60 : 5 * 60
+                if saved.state == .work {
+                    completedRounds += 1
+                    UserDefaults.standard.set(completedRounds, forKey: completedRoundsKey)
+                    state = .rest
+                    if completedRounds % roundsBeforeLongRest == 0 {
+                        timeRemaining = longRestDuration * 60
+                    } else {
+                        timeRemaining = shortRestDuration * 60
+                    }
+                } else {
+                    state = .work
+                    timeRemaining = workDuration * 60
+                }
             }
         } else {
             state = saved.state
-            timeRemaining = saved.timeRemaining
+            if saved.state == .rest {
+                let isLong = roundsBeforeLongRest > 0 && (completedRounds % roundsBeforeLongRest == 0)
+                timeRemaining = isLong ? longRestDuration * 60 : shortRestDuration * 60
+            } else if saved.state == .work {
+                // Use current workDuration setting instead of saved value
+                timeRemaining = workDuration * 60
+            } else {
+                timeRemaining = saved.timeRemaining
+            }
         }
     }
 
@@ -192,7 +300,7 @@ class PomodoroTimer: ObservableObject {
         content.title = "🍅 Pomodoro Session Ended"
         content.body = newState == .work ? "Rest is over. Time to focus!" : "Work completed. Take a break!"
         content.sound = UNNotificationSound.default
-        
+
         playSound(repeat: 3)
 
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
@@ -278,4 +386,9 @@ class PomodoroTimer: ObservableObject {
         formatter.timeZone = TimeZone.current
         return formatter
     }()
+    
+    var isLongRest: Bool {
+        roundsBeforeLongRest > 0 && (completedRounds % roundsBeforeLongRest == 0)
+    }
 }
+
