@@ -9,15 +9,15 @@
 ### 代码准备
 - [x] Info.plist 版本号更新 (1.2 → 1.3)
 - [x] Build 号更新 (6 → 7)
-- [ ] 代码编译无错误
-- [ ] 在本地测试所有新功能
-- [ ] 检查 Settings 面板功能正常
-- [ ] 验证暗色模式显示正常
+- [x] 代码编译无错误
+- [x] 在本地测试所有新功能
+- [x] 检查 Settings 面板功能正常
+- [x] 验证暗色模式显示正常
 
 ### 文档准备
-- [ ] 更新 README.md（如需要）
-- [ ] 准备 What's New 文案
-- [ ] 准备截图（可选：Settings 界面）
+- [x] 更新 README.md（如需要）
+- [x] 准备 What's New 文案
+- [x] 准备截图（可选：Settings 界面）
 
 ---
 
@@ -163,10 +163,10 @@ Product > Clean Build Folder (Cmd+Shift+K)
 ### 5. 更新其他内容（可选）
 
 同时更新以下内容（参考 `01-AppStore-Content.md`）：
-- [ ] Description（描述）
-- [ ] Promotional Text（推广文字）
-- [ ] Keywords（关键词）
-- [ ] Marketing URL
+- [x] Description（描述）
+- [x] Promotional Text（推广文字）
+- [x] Keywords（关键词）
+- [x] Marketing URL
 
 ### 6. 提交审核
 
@@ -272,4 +272,4 @@ Product > Clean Build Folder (Cmd+Shift+K)
 
 **创建时间**: 2026-01-31
 **版本**: 1.3
-**状态**: ✅ Info.plist 已更新，待构建上传
+**状态**: ✅ 已提交审核（Waiting for Review）- 2026-01-31 20:08 提交
