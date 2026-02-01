@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings Screenshot - App Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+            background: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 1280px;
+            height: 800px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .text-section {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 60px 80px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 100%);
+            z-index: 10;
+        }
+
+        .main-title {
+            font-size: 64px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 16px;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 28px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .screenshot-wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin-top: 110px;
+        }
+
+        .screenshot {
+            max-width: 100%;
+            max-height: 560px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* 说明文字 */
+        .instructions {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            max-width: 300px;
+            z-index: 1000;
+        }
+
+        .instructions h3 {
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+            line-height: 1.6;
+        }
+
+        .instructions button {
+            margin-top: 10px;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .instructions button:hover {
+            background: #5568d3;
+        }
+
+        .instructions.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-section">
+            <h1 class="main-title">Customize Your Focus Time</h1>
+            <p class="subtitle">15-90 min work • 3-60 min rest • Auto-start options</p>
+        </div>
+
+        <div class="screenshot-wrapper">
+            <!--
+                IMPORTANT: 将你的截图保存到同目录，命名为 settings.png
+                或者将下面的 src 路径改为你的截图路径
+            -->
+            <img src="settings.png" alt="Settings Window" class="screenshot" id="screenshot">
+        </div>
+    </div>
+
+    <div class="instructions" id="instructions">
+        <h3>📸 截图步骤：</h3>
+        <ol>
+            <li>将你的截图保存到此目录，命名为 <code>settings.png</code></li>
+            <li>刷新此页面</li>
+            <li>点击下方按钮隐藏此提示</li>
+            <li>按 <kbd>Cmd+Shift+4</kbd></li>
+            <li>按空格键，点击浏览器窗口</li>
+        </ol>
+        <button onclick="hideInstructions()">隐藏提示，准备截图</button>
+    </div>
+
+    <script>
+        function hideInstructions() {
+            document.getElementById('instructions').classList.add('hidden');
+        }
+
+        // 检测图片是否加载失败
+        const screenshot = document.getElementById('screenshot');
+        screenshot.onerror = function() {
+            alert('找不到 settings.png，请将截图保存到当前目录并命名为 settings.png');
+        };
+    </script>
+</body>
+</html>
