@@ -42,8 +42,33 @@
 - 有机会登上首页
 
 **发布时间：**
-- 美国太平洋时间 00:01 AM（北京时间下午 4-5 点）
+- 美国太平洋时间 00:01 AM = **渥太华时间 03:01 AM**（凌晨3点）
 - 周二-周四效果最好
+- 建议：前一晚准备好所有内容，设置闹钟凌晨3点起来发布，或者在凌晨3点前提前安排好定时发布
+
+**如何发布：**
+
+1. **选择发布类型**
+   - 点击 **"Launch a Product"**（不是 "Start a Thread"）
+   - "Launch a Product" 会出现在主页列表，可以获得投票和评论
+   - "Start a Thread" 只是讨论帖，不会进入产品列表
+
+2. **准备内容**
+   - **Product Name**: Pomodoro Timer Lite
+   - **Tagline**（副标题，60 字符）: "Ultra-lightweight Pomodoro timer for Mac (1.5MB)"
+   - **Description**: 产品详细介绍（见下方模板）
+   - **Screenshots**: 你刚做好的 4 张统一风格截图
+   - **Website**: App Store 链接（审核通过后的下载链接）
+   - **Topics/Tags**: productivity, mac, focus, time-management, pomodoro
+   - **Social Links**: GitHub 仓库链接
+
+3. **发布当天行动**
+   - 积极回复所有评论（前 4-6 小时很关键）
+   - 准备回答常见问题（Why Mac only? Pricing? Features?)
+   - 分享到 Twitter/X 等社交媒体
+   - 邀请朋友投票（但不要 spam）
+
+**重要提醒**：等 App Store 审核通过后再发布，确保用户点击链接可以立即下载。
 
 **发布内容模板：**
 
