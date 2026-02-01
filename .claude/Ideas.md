@@ -1,147 +1,147 @@
-# 番茄计时器 - 功能想法
+# Pomodoro Timer - Feature Ideas
 
-## 准备执行的想法
+## Pending Ideas
 
-### Idea-12: [Research] Focus Mode 集成
-**提出时间**: 2026-01-31
+### Idea-12: [Research] Focus Mode Integration
+**Created**: 2026-01-31
 
-研究与 macOS Focus Mode 联动的可行性：
-- 工作时自动启用勿扰模式
-- 之前尝试的方案（私有 API、AppleScript、快捷指令）都不够稳定或实用
-- 继续探索其他可能的实现方式
-- 可能的新方向：系统扩展、Shortcuts.app 自动化
-- 优先级：低（研究性质，可能无法实现）
+Research the feasibility of integrating with macOS Focus Mode:
+- Automatically enable Do Not Disturb during work sessions
+- Previous attempts (private APIs, AppleScript, Shortcuts) were unstable or impractical
+- Continue exploring alternative implementation approaches
+- Possible new directions: System Extensions, Shortcuts.app automation
+- Priority: Low (research-oriented, may not be feasible)
 
-### Idea-11: [Feature] 音效自定义
-**提出时间**: 2026-01-31
+### Idea-11: [Feature] Sound Customization
+**Created**: 2026-01-31
 
-添加音效自定义功能：
-- 3-5 种提示音选择
-- 可关闭音效选项
-- 音量调节（可选）
-- 参考 TimeMate 的音效设计
-- 优先级：中（v1.4 功能）
+Add sound customization features:
+- 3-5 notification sound options
+- Option to disable sound
+- Volume control (optional)
+- Reference TimeMate's sound design
+- Priority: Medium (v1.4 feature)
 
-### Idea-10: [Feature] 全局快捷键
-**提出时间**: 2026-01-31
+### Idea-10: [Feature] Global Keyboard Shortcuts
+**Created**: 2026-01-31
 
-添加全局快捷键支持，允许用户在任何应用下控制番茄钟：
-- 启动/暂停: `Cmd+Shift+P`
-- 重置: `Cmd+Shift+R`
-- 切换模式: `Cmd+Shift+M`
-- 参考 Pommie 的快捷键实现
-- 优先级：高（v1.4 功能）
+Add global keyboard shortcut support, allowing users to control the Pomodoro timer from any application:
+- Start/Pause: `Cmd+Shift+P`
+- Reset: `Cmd+Shift+R`
+- Switch mode: `Cmd+Shift+M`
+- Reference Pommie's keyboard shortcut implementation
+- Priority: High (v1.4 feature)
 
-### Idea-9: [Feature] 简体中文本地化
-**提出时间**: 2026-01-31
+### Idea-9: [Feature] Simplified Chinese Localization
+**Created**: 2026-01-31
 
-将应用完整本地化为简体中文，包括：
-- 应用内所有界面文字翻译（SwiftUI 字符串）
-- App Store 页面中文版（已有部分内容在 `Docs/Growth/01-AppStore-Content.md`）
-- 利用已准备好的中文 What's New 内容
-- 预计时间：1-2周
-- 优先级：高（v1.4 第一优先功能）
+Fully localize the app to Simplified Chinese, including:
+- All in-app UI text translation (SwiftUI strings)
+- Chinese version of App Store page (partial content already in `Docs/Growth/01-AppStore-Content.md`)
+- Utilize prepared Chinese What's New content
+- Estimated time: 1-2 weeks
+- Priority: High (top priority for v1.4)
 
-<!-- 新的想法会添加到这里 -->
+<!-- New ideas will be added here -->
 
-## 已完成的想法
+## Completed Ideas
 
-### Idea-8: [Research] 如何提升月下载量
-**提出时间**: 2026-01-31
-**完成时间**: 2026-01-31
+### Idea-8: [Research] How to Increase Monthly Downloads
+**Created**: 2026-01-31
+**Completed**: 2026-01-31
 
-完成了完整的增长策略分析和执行计划，创建了以下文档（位于 `Docs/Growth/`）：
+Completed comprehensive growth strategy analysis and execution plan, created the following documents (located in `Docs/Growth/`):
 
-1. **00-README.md** - 总览和导航
-2. **01-AppStore-Content.md** - App Store 优化内容（英文+中文描述、关键词、Promotional Text）
-3. **02-Version-1.3-Release.md** - v1.3 发布清单和操作步骤
-4. **03-Marketing-Plan.md** - 营销推广详细计划（Product Hunt、V2EX、Reddit、知乎、小红书等）
-5. **04-Long-Term-Strategy.md** - 6个月长期增长策略和功能路线图
-6. **05-Quick-Actions.md** - 今天/本周立即执行清单
-7. **Analytics.md** - 数据追踪模板
+1. **00-README.md** - Overview and navigation
+2. **01-AppStore-Content.md** - App Store optimization content (English + Chinese description, keywords, Promotional Text)
+3. **02-Version-1.3-Release.md** - v1.3 release checklist and steps
+4. **03-Marketing-Plan.md** - Detailed marketing plan (Product Hunt, V2EX, Reddit, Zhihu, Xiaohongshu, etc.)
+5. **04-Long-Term-Strategy.md** - 6-month long-term growth strategy and feature roadmap
+6. **05-Quick-Actions.md** - Today/this week immediate action checklist
+7. **Analytics.md** - Data tracking template
 
-**核心发现：**
-- 当前 30 天仅 4 次下载，曝光严重不足
-- 零评分/评论，缺乏社交证明
-- 主要优势：1.5MB 超轻量、完全免费、开源
-- 立即行动：发布 v1.3 + App Store 优化 + 营销推广
+**Key Findings:**
+- Current 30-day period only 4 downloads, severely insufficient exposure
+- Zero ratings/reviews, lack of social proof
+- Main advantages: 1.5MB ultra-lightweight, completely free, open source
+- Immediate action: Release v1.3 + App Store optimization + marketing campaign
 
-**预期目标：**
-- 1个月：50+ 下载，10+ 评分
-- 3个月：200-500 下载/月
-- 6个月：进入自然增长轨道
-
----
-
-### Idea-7: [Config] 在 VS Code 中编译、运行 app
-**提出时间**: 2026-01-31
-**完成时间**: 2026-01-31
-
-已配置 VS Code 支持编译和运行 PomodoroTimer 应用。创建了以下配置文件：
-- `.vscode/tasks.json`: 配置了编译任务（使用 xcodebuild）和清理任务
-- `.vscode/launch.json`: 配置了调试运行和普通运行两种启动方式
-- `.vscode/settings.json`: 配置了 Swift 和 LLDB 路径
-
-使用方式：
-- 编译：Cmd+Shift+B 或运行 "Build PomodoroTimer" 任务
-- 运行：F5 启动调试，或选择 "Run PomodoroTimer (No Debug)" 配置
-
-建议安装 VS Code 扩展：
-- Swift Language（sswg.swift-lang）
-- CodeLLDB（vadimcn.vscode-lldb）
+**Expected Goals:**
+- 1 month: 50+ downloads, 10+ ratings
+- 3 months: 200-500 downloads/month
+- 6 months: Enter organic growth trajectory
 
 ---
 
-### Idea-6: [Config] 增加 GitHub MCP server
-**提出时间**: 2026-01-31
-**完成时间**: 2026-01-31
+### Idea-7: [Config] Build and Run App in VS Code
+**Created**: 2026-01-31
+**Completed**: 2026-01-31
 
-GitHub MCP server 应配置在项目根目录的 `.mcp.json` 文件中（而非 `.claude/settings.local.json`）。用户选择自行配置。
+Configured VS Code to support building and running the PomodoroTimer app. Created the following configuration files:
+- `.vscode/tasks.json`: Configured build tasks (using xcodebuild) and clean tasks
+- `.vscode/launch.json`: Configured debug and regular run launch modes
+- `.vscode/settings.json`: Configured Swift and LLDB paths
+
+Usage:
+- Build: Cmd+Shift+B or run "Build PomodoroTimer" task
+- Run: F5 to start debugging, or select "Run PomodoroTimer (No Debug)" configuration
+
+Recommended VS Code extensions:
+- Swift Language (sswg.swift-lang)
+- CodeLLDB (vadimcn.vscode-lldb)
 
 ---
 
-### Idea-2: [Testing] 验证 skills 是否可以作为 command 使用
-**提出时间**: 2026-01-29
-**完成时间**: 2026-01-31
+### Idea-6: [Config] Add GitHub MCP Server
+**Created**: 2026-01-31
+**Completed**: 2026-01-31
 
-验证完成：skills 和 commands 是同一个概念。`.claude/commands/` 目录下的 `.md` 文件既是 command 也是 skill，可以通过 `/command-name` 或 Skill tool 调用。项目本地和全局的 commands 都能正常工作。
+GitHub MCP server should be configured in the project root `.mcp.json` file (not `.claude/settings.local.json`). User chose to configure manually.
+
+---
+
+### Idea-2: [Testing] Verify if Skills Can Be Used as Commands
+**Created**: 2026-01-29
+**Completed**: 2026-01-31
+
+Verification complete: skills and commands are the same concept. `.md` files in the `.claude/commands/` directory are both commands and skills, callable via `/command-name` or Skill tool. Both project-local and global commands work properly.
 
 ---
 
 ### Idea-4: [Bug Fix] Fix Settings Window Toggle Graying Out Issue
-**提出时间**: 2026-01-30
-**完成时间**: 2026-01-31
+**Created**: 2026-01-30
+**Completed**: 2026-01-31
 
-解决 Settings 窗口里的 toggle 偶尔全部变灰的问题。修改 SettingsWindowController 每次都创建新窗口实例，而不是重用旧窗口，确保 SwiftUI 视图状态正确刷新。
-
----
-
-### Idea-3: [Feature] new-idea 支持 global 参数
-**提出时间**: 2026-01-29
-**完成时间**: 2026-01-29
-
-new-idea 默认不带参数，但是用户可以选择带 global 参数。如果带 global，就意味新加的 idea 是要放到 `~/.claude` 的 Ideas.md 文件中，而不是当前 project 的 Ideas.md 文件中。
+Fixed the issue where toggles in the Settings window occasionally all turn gray. Modified SettingsWindowController to create a new window instance each time instead of reusing the old one, ensuring SwiftUI view state refreshes correctly.
 
 ---
 
-<!-- 已完成的想法会移到这里 -->
+### Idea-3: [Feature] Support Global Parameter for new-idea
+**Created**: 2026-01-29
+**Completed**: 2026-01-29
 
-## 已拒绝的想法
-
-### Idea-5: [Testing] 验证工作时禁用通知功能是否有效
-**提出时间**: 2026-01-31
-**拒绝原因**: macOS 不提供公开 API 或可靠的编程方式控制勿扰模式。尝试的方案包括：(1) 快捷指令 - 需要用户手动配置；(2) AppleScript 模拟键盘 - 默认没有勿扰模式快捷键且会与其他应用冲突；(3) 私有 API - 违反 App Store 政策。所有方案都不够稳定或实用。
+The new-idea command defaults to no parameters, but users can optionally add a global parameter. If global is specified, the new idea will be added to the `~/.claude/Ideas.md` file instead of the current project's Ideas.md file.
 
 ---
 
-### Idea-1: [UX] 在 Xcode 中通过符号链接访问 .claude 目录
-**提出时间**: 2026-01-29
-**拒绝原因**: Xcode 不支持将符号链接作为可展开的目录显示，会将其显示为文件。尝试的其他方法（Add Files with folder references）在实际操作中也无法找到对应选项。
+<!-- Completed ideas will be moved here -->
+
+## Rejected Ideas
+
+### Idea-5: [Testing] Verify Disable Notifications During Work Feature
+**Created**: 2026-01-31
+**Rejection Reason**: macOS does not provide a public API or reliable programmatic way to control Do Not Disturb mode. Attempted solutions include: (1) Shortcuts - requires manual user configuration; (2) AppleScript keyboard simulation - no default Do Not Disturb keyboard shortcut and conflicts with other apps; (3) Private API - violates App Store policies. All solutions are insufficiently stable or practical.
 
 ---
 
-<!-- 已决定不实现的想法会移到这里，包含拒绝原因 -->
+### Idea-1: [UX] Access .claude Directory via Symlink in Xcode
+**Created**: 2026-01-29
+**Rejection Reason**: Xcode does not support displaying symlinks as expandable directories; they appear as files. Other attempted methods (Add Files with folder references) could not find the corresponding option in actual operation.
 
 ---
 
-**创建时间**: 2026-01-29
+<!-- Rejected ideas will be moved here, including rejection reasons -->
+
+---
+
+**Created**: 2026-01-29
