@@ -50,10 +50,6 @@ class PomodoroTimer: ObservableObject {
     private let completedRoundsKey = "completedRounds"
 
     init() {
-        let today = formattedDate(Date())
-        let lastDate = UserDefaults.standard.string(forKey: lastWorkDateKey)
-        let isNewDay = (lastDate != today)
-
         dailyWorkSessions = UserDefaults.standard.integer(forKey: dailyWorkKey)
         weeklyWorkSessions = UserDefaults.standard.integer(forKey: weeklyWorkKey)
         totalWorkSessions = UserDefaults.standard.integer(forKey: totalWorkKey)
@@ -64,13 +60,8 @@ class PomodoroTimer: ObservableObject {
             dailyHistory = history
         }
 
-        if isNewDay {
-            dailyWorkSessions = 0
-            completedRounds = 0
-            UserDefaults.standard.set(today, forKey: lastWorkDateKey)
-            UserDefaults.standard.set(dailyWorkSessions, forKey: dailyWorkKey)
-            UserDefaults.standard.set(completedRounds, forKey: completedRoundsKey)
-        }
+        // Check date change on initialization
+        let isNewDay = checkDateChange()
 
         // Restore state only if not a new day or autoStartWork is disabled
         if !isNewDay || !autoStartWork {
@@ -81,14 +72,7 @@ class PomodoroTimer: ObservableObject {
             timeRemaining = workDuration * 60
             clearSavedState()
         }
-        
-        if let lastDateStr = UserDefaults.standard.string(forKey: lastWorkDateKey),
-           let lastDate = dateFromFormattedString(lastDateStr),
-           !Calendar.current.isDate(Date(), equalTo: lastDate, toGranularity: .weekOfYear) {
-            weeklyWorkSessions = 0
-            UserDefaults.standard.set(weeklyWorkSessions, forKey: weeklyWorkKey)
-        }
-        
+
         // Monitor settings changes separately from state saves
         defaultsCancellable = NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)
             .sink { [weak self] _ in
@@ -103,6 +87,14 @@ class PomodoroTimer: ObservableObject {
                 // to preserve the current countdown position
             }
 
+        // Listen for app activation to check date changes
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleAppActivation),
+            name: NSApplication.didBecomeActiveNotification,
+            object: nil
+        )
+
         // Auto-start work on new day if enabled
         if isNewDay && autoStartWork {
             start()
@@ -111,6 +103,39 @@ class PomodoroTimer: ObservableObject {
     
     var isRunning: Bool {
         return timer != nil
+    }
+
+    // Check if date has changed and reset daily counters if needed
+    @discardableResult
+    func checkDateChange() -> Bool {
+        let today = formattedDate(Date())
+        let lastDate = UserDefaults.standard.string(forKey: lastWorkDateKey)
+        let isNewDay = (lastDate != today)
+
+        if isNewDay {
+            dailyWorkSessions = 0
+            completedRounds = 0
+            UserDefaults.standard.set(today, forKey: lastWorkDateKey)
+            UserDefaults.standard.set(dailyWorkSessions, forKey: dailyWorkKey)
+            UserDefaults.standard.set(completedRounds, forKey: completedRoundsKey)
+        }
+
+        // Check week change
+        if let lastDateStr = UserDefaults.standard.string(forKey: lastWorkDateKey),
+           let lastDate = dateFromFormattedString(lastDateStr),
+           !Calendar.current.isDate(Date(), equalTo: lastDate, toGranularity: .weekOfYear) {
+            weeklyWorkSessions = 0
+            UserDefaults.standard.set(weeklyWorkSessions, forKey: weeklyWorkKey)
+        }
+
+        return isNewDay
+    }
+
+    @objc private func handleAppActivation() {
+        let isNewDay = checkDateChange()
+        if isNewDay {
+            onUpdateUI?()
+        }
     }
     
     func start() {
@@ -303,6 +328,8 @@ class PomodoroTimer: ObservableObject {
 
         if lastDate != today {
             dailyWorkSessions = 0
+            completedRounds = 0
+            UserDefaults.standard.set(completedRounds, forKey: completedRoundsKey)
         }
 
         let lastWeeklyDate = UserDefaults.standard.string(forKey: lastWeeklyWorkDateKey)
