@@ -8,6 +8,7 @@
 
 import SwiftUI
 import ServiceManagement
+import AppKit
 
 struct SettingsView: View {
     @AppStorage("launchAtLogin") private var launchAtLogin = false
@@ -21,6 +22,9 @@ struct SettingsView: View {
     @AppStorage("roundsBeforeLongRest") private var roundsBeforeLongRest = 4
 
     @AppStorage("enableLongRest") private var enableLongRest = true
+
+    @AppStorage("notificationSound") private var notificationSound = "Ping"
+    @AppStorage("soundEnabled") private var soundEnabled = true
 
     var body: some View {
         ScrollView {
@@ -39,6 +43,33 @@ struct SettingsView: View {
                 }
 
                 VStack(alignment: .leading, spacing: 10) {
+                    Text(NSLocalizedString("🔔 Sound", comment: ""))
+                        .font(.title3).bold().foregroundColor(.accentColor)
+                        .padding(.bottom, 4)
+                    Toggle(NSLocalizedString("Enable Sound", comment: ""), isOn: $soundEnabled)
+
+                    Picker(NSLocalizedString("Notification Sound", comment: ""), selection: $notificationSound) {
+                        Text(NSLocalizedString("Ping", comment: "")).tag("Ping")
+                        Text(NSLocalizedString("Glass", comment: "")).tag("Glass")
+                        Text(NSLocalizedString("Hero", comment: "")).tag("Hero")
+                        Text(NSLocalizedString("Tink", comment: "")).tag("Tink")
+                        Text(NSLocalizedString("Purr", comment: "")).tag("Purr")
+                        Text(NSLocalizedString("Basso", comment: "")).tag("Basso")
+                        Text(NSLocalizedString("Blow", comment: "")).tag("Blow")
+                        Text(NSLocalizedString("Bottle", comment: "")).tag("Bottle")
+                        Text(NSLocalizedString("Frog", comment: "")).tag("Frog")
+                        Text(NSLocalizedString("Funk", comment: "")).tag("Funk")
+                        Text(NSLocalizedString("Pop", comment: "")).tag("Pop")
+                        Text(NSLocalizedString("Sosumi", comment: "")).tag("Sosumi")
+                    }
+                    .disabled(!soundEnabled)
+                    .foregroundStyle(soundEnabled ? .primary : .secondary)
+                    .onChange(of: notificationSound) { _, newValue in
+                        previewSound(newValue)
+                    }
+                }
+
+                VStack(alignment: .leading, spacing: 10) {
                     Text(NSLocalizedString("⏲ Duration (Minutes)", comment: ""))
                         .font(.title3).bold().foregroundColor(.accentColor)
                         .padding(.bottom, 4)
@@ -53,13 +84,60 @@ struct SettingsView: View {
                         .foregroundStyle(enableLongRest ? .primary : .secondary)
                 }
 
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(NSLocalizedString("⌨️ Keyboard Shortcuts", comment: ""))
+                        .font(.title3).bold().foregroundColor(.accentColor)
+                        .padding(.bottom, 4)
+                    VStack(alignment: .leading, spacing: 8) {
+                        HStack {
+                            Text(NSLocalizedString("Show Window", comment: ""))
+                                .frame(width: 100, alignment: .leading)
+                            Spacer()
+                            Text("⌘⇧T")
+                                .font(.system(.body, design: .monospaced))
+                                .foregroundColor(.secondary)
+                        }
+                        HStack {
+                            Text(NSLocalizedString("Start/Pause", comment: ""))
+                                .frame(width: 100, alignment: .leading)
+                            Spacer()
+                            Text("⌘⇧P")
+                                .font(.system(.body, design: .monospaced))
+                                .foregroundColor(.secondary)
+                        }
+                        HStack {
+                            Text(NSLocalizedString("Reset", comment: ""))
+                                .frame(width: 100, alignment: .leading)
+                            Spacer()
+                            Text("⌘⇧R")
+                                .font(.system(.body, design: .monospaced))
+                                .foregroundColor(.secondary)
+                        }
+                        HStack {
+                            Text(NSLocalizedString("Switch Mode", comment: ""))
+                                .frame(width: 100, alignment: .leading)
+                            Spacer()
+                            Text("⌘⇧M")
+                                .font(.system(.body, design: .monospaced))
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                    .font(.system(size: 13))
+
+                    Text(NSLocalizedString("💡 Tip: If you don't see the tomato icon in the menu bar, use ⌘⇧T to show the window and locate the icon. To reposition: hold ⌘ and drag less-used icons to the left (hidden area) to make room for frequently-used apps.", comment: ""))
+                        .font(.system(size: 12))
+                        .foregroundColor(.secondary)
+                        .padding(.top, 8)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+
             }
-            .padding(.vertical, 16)
-            .padding(.horizontal, 12)
+            .padding(.vertical, 20)
+            .padding(.horizontal, 24)
             .controlSize(.small)
         }
         .toggleStyle(.switch)
-        .frame(minWidth: 420, idealWidth: 420, minHeight: 420, idealHeight: 420)
+        .frame(minWidth: 420, idealWidth: 420, minHeight: 720, idealHeight: 720)
     }
 
     private func updateLaunchAtLogin(enabled: Bool) {
@@ -73,6 +151,19 @@ struct SettingsView: View {
             }
         } catch {
             print("❌ Failed to update launch at login: \(error)")
+        }
+    }
+
+    private func previewSound(_ soundName: String) {
+        guard soundEnabled else { return }
+        guard let sound = NSSound(named: NSSound.Name(soundName)) else { return }
+
+        // Play 3 times with 0.5s interval, same as actual notification
+        for i in 0..<3 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(i) * 0.5) {
+                sound.stop()
+                sound.play()
+            }
         }
     }
 }
