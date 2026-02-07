@@ -1,0 +1,39 @@
+/* ContentView.swift */
+"Work Time" = "工作时间";
+"Rest Time" = "休息时间";
+"Long Rest Time" = "长休息时间";
+"Today: %d 🍅" = "今天：%d 🍅";
+"This Week: %d 🍅" = "本周：%d 🍅";
+"Total: %d 🍅" = "总计：%d 🍅";
+"Date" = "日期";
+"Count" = "数量";
+"Work Round Count" = "工作轮数";
+"Show Chart" = "显示图表";
+"Reset" = "重置";
+"Quit" = "退出";
+"Switch Current Phase" = "切换当前阶段";
+"Open Settings" = "打开设置";
+"Show past 7 days progress chart" = "显示过去 7 天的进度图表";
+"Quit Pomodoro Timer Lite" = "退出番茄计时器 Lite";
+
+/* SettingsView.swift */
+"Start automatically when computer starts" = "开机时自动启动";
+"⏱ Auto Start Control" = "⏱ 自动启动控制";
+"⏲ Duration (Minutes)" = "⏲ 时长（分钟）";
+"Auto Start Work on First Launch Each Day" = "每天首次启动时自动开始工作";
+"Auto Start Rest After Work" = "工作后自动开始休息";
+"Auto Start Work After Rest" = "休息后自动开始工作";
+"Enable Long Rest" = "启用长休息";
+"Work Duration: %d" = "工作时长：%d";
+"Short Rest Duration: %d" = "短休息时长：%d";
+"Long Rest Duration: %d" = "长休息时长：%d";
+"Long Rest After %d Rounds" = "%d 轮后长休息";
+"Settings" = "设置";
+
+/* StatusBarController.swift */
+"Quit Pomodoro Timer" = "退出番茄计时器";
+
+/* PomodoroTimer.swift - Notifications */
+"🍅 Pomodoro Session Ended" = "🍅 番茄钟结束";
+"Rest is over. Time to focus!" = "休息结束，开始专注！";
+"Work completed. Take a break!" = "工作完成，休息一下吧！";

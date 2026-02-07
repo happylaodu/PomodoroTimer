@@ -2,6 +2,16 @@
 
 ## Pending Ideas
 
+### Idea-14: [Feature] iPadOS and iOS Support
+**Created**: 2026-02-07
+
+Add support for iPadOS and iOS platforms:
+- Adapt UI for iPad and iPhone screens
+- Handle platform-specific differences (no menu bar on iOS)
+- Consider touch interface adaptations
+- Test on different device sizes
+- Potentially separate apps or universal binary
+
 ### Idea-12: [Research] Focus Mode Integration
 **Created**: 2026-01-31
 
@@ -32,19 +42,94 @@ Add global keyboard shortcut support, allowing users to control the Pomodoro tim
 - Reference Pommie's keyboard shortcut implementation
 - Priority: High (v1.4 feature)
 
-### Idea-9: [Feature] Simplified Chinese Localization
-**Created**: 2026-01-31
+### Idea-13: [Improvement] Translate All Chinese Content in Repo to English
+**Created**: 2026-02-01
 
-Fully localize the app to Simplified Chinese, including:
-- All in-app UI text translation (SwiftUI strings)
-- Chinese version of App Store page (partial content already in `Docs/Growth/01-AppStore-Content.md`)
-- Utilize prepared Chinese What's New content
-- Estimated time: 1-2 weeks
-- Priority: High (top priority for v1.4)
+Update all files in the repository that contain Chinese text to use only English:
+- Scan through all documentation files in `Docs/` directory
+- Translate Chinese content to English while maintaining technical accuracy
+- Ensure consistency in terminology and style
+- Keep code comments in English (already enforced by global preferences)
+- Priority: Medium (important for open source release)
+
 
 <!-- New ideas will be added here -->
 
 ## Completed Ideas
+
+### Idea-15: [Feature] Launch at Login
+**Created**: 2026-02-07
+**Completed**: 2026-02-07
+
+Successfully implemented "Launch at Login" feature:
+
+**What was done:**
+1. Added new Settings section "🚀 Launch" with toggle control
+2. Implemented ServiceManagement integration:
+   - Added @AppStorage("launchAtLogin") to save user preference
+   - Created updateLaunchAtLogin() method to register/unregister
+   - Modified AppDelegate to respect saved preference on startup
+3. Added localization strings:
+   - English: "🚀 Launch", "Launch at Login"
+   - Chinese: "🚀 启动", "登录时启动"
+
+**Implementation details:**
+- When toggle is ON: calls SMAppService.mainApp.register()
+- When toggle is OFF: calls SMAppService.mainApp.unregister()
+- AppDelegate checks UserDefaults on startup and applies setting
+- Removed unconditional auto-registration
+
+**Files modified:**
+- SettingsView.swift - Added Launch section and toggle
+- AppDelegate.swift - Changed to conditional registration
+- en.lproj/Localizable.strings - Added English strings
+- zh-Hans.lproj/Localizable.strings - Added Chinese strings
+
+---
+
+### Idea-9: [Feature] Simplified Chinese Localization
+**Created**: 2026-01-31
+**Completed**: 2026-02-07
+
+Successfully implemented full Simplified Chinese localization for the app:
+
+**What was done:**
+1. Created localization infrastructure:
+   - `en.lproj/Localizable.strings` - English base strings (33 strings)
+   - `zh-Hans.lproj/Localizable.strings` - Chinese translations
+
+2. Updated all Swift files to use `NSLocalizedString()`:
+   - ContentView.swift - Main UI, chart labels, buttons
+   - SettingsView.swift - Settings panel text
+   - StatusBarController.swift - Menu bar items
+   - PomodoroTimer.swift - Notification messages
+   - SettingsWindowController.swift - Window titles
+
+3. Configured Xcode project:
+   - Added both .lproj folders to project
+   - Configured PBXVariantGroup for localization
+   - Added zh-Hans to knownRegions
+   - Verified build copies both language files to app bundle
+
+**Testing:**
+- Build succeeded ✓
+- Both en.lproj and zh-Hans.lproj in app bundle ✓
+- Created comprehensive testing guide in `Docs/Localization-Testing-Guide.md`
+
+**Next steps (for v1.4 release):**
+- Test on all macOS versions (12-15)
+- Update App Store with Chinese metadata (description, screenshots, keywords)
+- Submit bilingual app to App Store
+- Update marketing materials for Chinese market
+
+**Files created/modified:**
+- New: `PomodoroTimer/en.lproj/Localizable.strings`
+- New: `PomodoroTimer/zh-Hans.lproj/Localizable.strings`
+- New: `Docs/Localization-Testing-Guide.md`
+- Modified: ContentView.swift, SettingsView.swift, StatusBarController.swift, PomodoroTimer.swift, SettingsWindowController.swift
+- Modified: PomodoroTimer.xcodeproj/project.pbxproj
+
+---
 
 ### Idea-8: [Research] How to Increase Monthly Downloads
 **Created**: 2026-01-31

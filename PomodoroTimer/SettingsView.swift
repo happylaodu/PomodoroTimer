@@ -7,8 +7,10 @@
 
 
 import SwiftUI
+import ServiceManagement
 
 struct SettingsView: View {
+    @AppStorage("launchAtLogin") private var launchAtLogin = false
     @AppStorage("autoStartWork") private var autoStartWork = false
     @AppStorage("autoStartRest") private var autoStartRest = false
     @AppStorage("autoStartNextCycle") private var autoStartNextCycle = false
@@ -24,25 +26,29 @@ struct SettingsView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("⏱ Auto Start Control")
+                    Text(NSLocalizedString("⏱ Auto Start Control", comment: ""))
                         .font(.title3).bold().foregroundColor(.accentColor)
                         .padding(.bottom, 4)
-                    Toggle("Auto Start Work on First Launch Each Day", isOn: $autoStartWork)
-                    Toggle("Auto Start Rest After Work", isOn: $autoStartRest)
-                    Toggle("Auto Start Work After Rest", isOn: $autoStartNextCycle)
+                    Toggle(NSLocalizedString("Start automatically when computer starts", comment: ""), isOn: $launchAtLogin)
+                        .onChange(of: launchAtLogin) { _, newValue in
+                            updateLaunchAtLogin(enabled: newValue)
+                        }
+                    Toggle(NSLocalizedString("Auto Start Work on First Launch Each Day", comment: ""), isOn: $autoStartWork)
+                    Toggle(NSLocalizedString("Auto Start Rest After Work", comment: ""), isOn: $autoStartRest)
+                    Toggle(NSLocalizedString("Auto Start Work After Rest", comment: ""), isOn: $autoStartNextCycle)
                 }
 
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("⏲ Duration (Minutes)")
+                    Text(NSLocalizedString("⏲ Duration (Minutes)", comment: ""))
                         .font(.title3).bold().foregroundColor(.accentColor)
                         .padding(.bottom, 4)
-                    Stepper("Work Duration: \(workDuration)", value: $workDuration, in: 15...90)
-                    Stepper("Short Rest Duration: \(shortRestDuration)", value: $shortRestDuration, in: 3...30)
-                    Toggle("Enable Long Rest", isOn: $enableLongRest)
-                    Stepper("Long Rest After \(roundsBeforeLongRest) Rounds", value: $roundsBeforeLongRest, in: 2...10)
+                    Stepper(String(format: NSLocalizedString("Work Duration: %d", comment: ""), workDuration), value: $workDuration, in: 15...90)
+                    Stepper(String(format: NSLocalizedString("Short Rest Duration: %d", comment: ""), shortRestDuration), value: $shortRestDuration, in: 3...30)
+                    Toggle(NSLocalizedString("Enable Long Rest", comment: ""), isOn: $enableLongRest)
+                    Stepper(String(format: NSLocalizedString("Long Rest After %d Rounds", comment: ""), roundsBeforeLongRest), value: $roundsBeforeLongRest, in: 2...10)
                         .disabled(!enableLongRest)
                         .foregroundStyle(enableLongRest ? .primary : .secondary)
-                    Stepper("Long Rest Duration: \(longRestDuration)", value: $longRestDuration, in: 10...60)
+                    Stepper(String(format: NSLocalizedString("Long Rest Duration: %d", comment: ""), longRestDuration), value: $longRestDuration, in: 10...60)
                         .disabled(!enableLongRest)
                         .foregroundStyle(enableLongRest ? .primary : .secondary)
                 }
@@ -53,7 +59,21 @@ struct SettingsView: View {
             .controlSize(.small)
         }
         .toggleStyle(.switch)
-        .frame(minWidth: 420, idealWidth: 420, minHeight: 380, idealHeight: 380)
+        .frame(minWidth: 420, idealWidth: 420, minHeight: 420, idealHeight: 420)
+    }
+
+    private func updateLaunchAtLogin(enabled: Bool) {
+        do {
+            if enabled {
+                try SMAppService.mainApp.register()
+                print("✅ App registered to launch at login")
+            } else {
+                try SMAppService.mainApp.unregister()
+                print("✅ App unregistered from launch at login")
+            }
+        } catch {
+            print("❌ Failed to update launch at login: \(error)")
+        }
     }
 }
 

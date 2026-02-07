@@ -16,27 +16,32 @@ struct StatsView: View {
         Chart {
             ForEach(stats.sorted(by: { $0.key < $1.key }), id: \.key) { date, count in
                 BarMark(
-                    x: .value("Date", date, unit: .day),
-                    y: .value("Count", count)
+                    x: .value(NSLocalizedString("Date", comment: ""), date, unit: .day),
+                    y: .value(NSLocalizedString("Count", comment: ""), count)
                 )
             }
         }
-        .chartXAxisLabel("Date", position: .bottom, alignment: .center)
+        .chartXAxisLabel(position: .bottom, alignment: .center) {
+            Text(NSLocalizedString("Date", comment: "Chart X-axis label"))
+                .padding(.top, 8)
+        }
         .chartXAxis {
             AxisMarks(values: .stride(by: .day)) { value in
                 AxisGridLine()
                 AxisValueLabel {
                     if let date = value.as(Date.self) {
-                        Text(date.formatted(.dateTime.month().day().locale(Locale(identifier: "en_US"))))
+                        Text(date.formatted(.dateTime.month().day()))
                             .font(.caption2)
                             .rotationEffect(.degrees(-40))
-                            .frame(width: 30, alignment: .trailing)
+                            .offset(x: -8, y: 8)
                     }
                 }
             }
         }
-        .chartYAxisLabel("Work Round Count", position: .leading, alignment: .center)
-        .padding()
+        .chartYAxisLabel(NSLocalizedString("Work Round Count", comment: "Chart Y-axis label"), position: .leading, alignment: .center)
+        .padding(.leading, 16)
+        .padding(.trailing, 24)
+        .padding(.vertical, 16)
     }
 }
 
@@ -52,7 +57,7 @@ struct ContentView: View {
 
         VStack(spacing: 20) {
             ZStack {
-                Text(timer.state == .rest ? (timer.isLongRest ? "Long Rest Time" : "Rest Time") : "Work Time")
+                Text(timer.state == .rest ? (timer.isLongRest ? NSLocalizedString("Long Rest Time", comment: "") : NSLocalizedString("Rest Time", comment: "")) : NSLocalizedString("Work Time", comment: ""))
                     .font(.largeTitle)
                     .frame(maxWidth: .infinity, alignment: .center)
                 HStack {
@@ -61,7 +66,7 @@ struct ContentView: View {
                             Image(systemName: "arrow.triangle.2.circlepath")
                         }
                         .buttonStyle(.plain)
-                        .help("Switch Current Phase")
+                        .help(NSLocalizedString("Switch Current Phase", comment: ""))
                         .padding(.trailing, 6)
                     }
                     Spacer()
@@ -69,7 +74,7 @@ struct ContentView: View {
                         Image(systemName: "gearshape")
                     }
                     .buttonStyle(.plain)
-                    .help("Open Settings")
+                    .help(NSLocalizedString("Open Settings", comment: ""))
                 }
             }
             .padding(.bottom, 4)
@@ -88,7 +93,6 @@ struct ContentView: View {
                     )
                     .rotationEffect(.degrees(-90))
                     .frame(width: 160, height: 160)
-                    .animation(.linear(duration: 0.2), value: progress)
 
                 VStack(spacing: 6)
                 {
@@ -98,11 +102,11 @@ struct ContentView: View {
                         Text({
                             switch displayMode {
                             case 1:
-                                return "This Week: \(timer.weeklyWorkSessions) 🍅"
+                                return String(format: NSLocalizedString("This Week: %d 🍅", comment: ""), timer.weeklyWorkSessions)
                             case 2:
-                                return "Total: \(timer.totalWorkSessions) 🍅"
+                                return String(format: NSLocalizedString("Total: %d 🍅", comment: ""), timer.totalWorkSessions)
                             default:
-                                return "Today: \(timer.dailyWorkSessions) 🍅"
+                                return String(format: NSLocalizedString("Today: %d 🍅", comment: ""), timer.dailyWorkSessions)
                             }
                         }())
                         .font(.body.weight(.semibold))
@@ -135,23 +139,23 @@ struct ContentView: View {
             Button(action: {
                 showStatsPopover.toggle()
             }) {
-                Label("Show Chart", systemImage: "chart.bar")
+                Label(NSLocalizedString("Show Chart", comment: ""), systemImage: "chart.bar")
                     .labelStyle(.iconOnly)
                     .padding(.bottom, 4)
             }
             .popover(isPresented: $showStatsPopover) {
                 StatsView(stats: Dictionary(uniqueKeysWithValues: timer.lastNDaysHistory(7).map { (PomodoroTimer.dateFormatter.date(from: $0.0) ?? Date(), $0.1) }))
-                .frame(width: 240, height: 180)
+                .frame(width: 360, height: 220)
             }
             .buttonStyle(.plain)
-            .help("Show past 7 days progress chart")
+            .help(NSLocalizedString("Show past 7 days progress chart", comment: ""))
 
 
             HStack(spacing: 20) {
                 Button(action: {
                     timer.reset()
                 }) {
-                    Label("Reset", systemImage: "arrow.counterclockwise")
+                    Label(NSLocalizedString("Reset", comment: ""), systemImage: "arrow.counterclockwise")
                 }
                 .buttonStyle(.bordered)
 
@@ -159,13 +163,16 @@ struct ContentView: View {
                        .frame(height: 20)
                 
                 Button {
+                    if timer.isRunning {
+                        timer.pause()
+                    }
                     NSApp.terminate(nil)
                 } label: {
-                    Label("Quit", systemImage: "door.left.hand.open")
+                    Label(NSLocalizedString("Quit", comment: ""), systemImage: "door.left.hand.open")
                 }
                 .buttonStyle(.bordered)
                 .tint(.red)
-                .help("Quit Pomodoro Timer Lite")
+                .help(NSLocalizedString("Quit Pomodoro Timer Lite", comment: ""))
             }
         }
         .padding()

@@ -46,7 +46,7 @@ class StatusBarController {
             let location = button.convert(event.locationInWindow, from: nil)
             if button.bounds.contains(location) {
                 let menu = NSMenu()
-                menu.addItem(NSMenuItem(title: "Quit Pomodoro Timer", action: #selector(self.quitApp), keyEquivalent: "q"))
+                menu.addItem(NSMenuItem(title: NSLocalizedString("Quit Pomodoro Timer", comment: ""), action: #selector(self.quitApp), keyEquivalent: "q"))
                 menu.items.first?.target = self
                 NSMenu.popUpContextMenu(menu, with: event, for: button)
                 return nil // Consume event
@@ -94,7 +94,12 @@ class StatusBarController {
 
     /// 可选：你可以更新菜单栏的文字，比如显示当前倒计时
     func updateTitle(_ text: String) {
-        statusItem.button?.title = text
+        if let button = statusItem.button {
+            let attributes: [NSAttributedString.Key: Any] = [
+                .font: NSFont.monospacedDigitSystemFont(ofSize: NSFont.systemFontSize, weight: .regular)
+            ]
+            button.attributedTitle = NSAttributedString(string: text, attributes: attributes)
+        }
     }
     
     func updateIcon(for state: PomodoroTimer.State, isRunning: Bool) {
