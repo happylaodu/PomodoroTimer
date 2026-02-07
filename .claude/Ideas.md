@@ -22,25 +22,6 @@ Research the feasibility of integrating with macOS Focus Mode:
 - Possible new directions: System Extensions, Shortcuts.app automation
 - Priority: Low (research-oriented, may not be feasible)
 
-### Idea-11: [Feature] Sound Customization
-**Created**: 2026-01-31
-
-Add sound customization features:
-- 3-5 notification sound options
-- Option to disable sound
-- Volume control (optional)
-- Reference TimeMate's sound design
-- Priority: Medium (v1.4 feature)
-
-### Idea-10: [Feature] Global Keyboard Shortcuts
-**Created**: 2026-01-31
-
-Add global keyboard shortcut support, allowing users to control the Pomodoro timer from any application:
-- Start/Pause: `Cmd+Shift+P`
-- Reset: `Cmd+Shift+R`
-- Switch mode: `Cmd+Shift+M`
-- Reference Pommie's keyboard shortcut implementation
-- Priority: High (v1.4 feature)
 
 ### Idea-13: [Improvement] Translate All Chinese Content in Repo to English
 **Created**: 2026-02-01
@@ -56,6 +37,96 @@ Update all files in the repository that contain Chinese text to use only English
 <!-- New ideas will be added here -->
 
 ## Completed Ideas
+
+### Idea-10: [Feature] Global Keyboard Shortcuts
+**Created**: 2026-01-31
+**Completed**: 2026-02-07
+
+Successfully implemented global keyboard shortcuts for controlling the timer from any application:
+
+**What was done:**
+1. Created KeyboardShortcutManager class using Carbon Event Manager API:
+   - Singleton pattern with weak reference to PomodoroTimer
+   - Registered three global hotkeys using Carbon's RegisterEventHotKey
+   - Installed event handler to process keyboard events
+
+2. Keyboard shortcuts implemented:
+   - Show Window: `Cmd+Shift+T` (⌘⇧T) - Shows main popover, useful when menu bar icon is hard to find
+   - Start/Pause: `Cmd+Shift+P` (⌘⇧P)
+   - Reset: `Cmd+Shift+R` (⌘⇧R)
+   - Switch Mode: `Cmd+Shift+M` (⌘⇧M)
+
+3. Added helper methods to PomodoroTimer.swift:
+   - `switchToWork()` - switches to work mode, preserving running state
+   - `switchToRest()` - switches to rest mode with proper duration calculation
+
+4. Updated Settings panel:
+   - Added "⌨️ Keyboard Shortcuts" section
+   - Shows all three shortcuts with symbols (⌘⇧P, ⌘⇧R, ⌘⇧M)
+   - Increased Settings window height to 600px
+
+5. Added localization strings:
+   - English: "Keyboard Shortcuts", "Start/Pause", "Switch Mode"
+   - Chinese: "键盘快捷键", "开始/暂停", "切换模式"
+
+**Implementation details:**
+- Uses Carbon Event Manager API for global hotkey registration
+- Works from any application when PomodoroTimer is running in background
+- Switch Mode preserves timer running state and recalculates duration based on completedRounds
+- Event handlers stored in dictionary keyed by hotkey ID
+- Automatic cleanup in deinit
+
+**Files created/modified:**
+- New: `KeyboardShortcutManager.swift` - Global keyboard shortcut manager
+- Modified: `PomodoroTimer.swift` - Added switchToWork() and switchToRest() methods
+- Modified: `AppDelegate.swift` - Register shortcuts on app launch
+- Modified: `StatusBarController.swift` - Added showPopover() method for keyboard shortcut
+- Modified: `SettingsView.swift` - Added keyboard shortcuts section
+- Modified: `SettingsWindowController.swift` - Increased window height
+- Modified: `en.lproj/Localizable.strings` - Added English strings
+- Modified: `zh-Hans.lproj/Localizable.strings` - Added Chinese strings
+
+---
+
+### Idea-11: [Feature] Sound Customization
+**Created**: 2026-01-31
+**Completed**: 2026-02-07
+
+Successfully implemented sound customization features:
+
+**What was done:**
+1. Added Sound Settings section in Settings panel:
+   - Toggle to enable/disable sound
+   - Dropdown to select notification sound
+   - 5 sound options: Ping, Glass, Hero, Tink, Purr
+
+2. Updated PomodoroTimer.swift:
+   - Modified playSound() to respect sound settings
+   - Added check for soundEnabled preference
+   - Modified sendNotification() to conditionally add sound
+
+3. Added localization strings:
+   - English: "Enable Sound", "Notification Sound", sound names
+   - Chinese: "启用声音", "通知声音", sound names
+
+4. Adjusted Settings window:
+   - Increased height to 480px to accommodate new section
+   - Sound section placed between Auto Start and Duration sections
+
+**Implementation details:**
+- Default sound: Ping
+- Default state: Sound enabled (true)
+- Uses macOS system sounds (NSSound)
+- Preserves existing behavior: plays sound 3 times with 0.5s interval
+
+**Files modified:**
+- SettingsView.swift - Added Sound section with toggle and picker
+- PomodoroTimer.swift - Updated playSound() and sendNotification()
+- SettingsWindowController.swift - Increased window height
+- en.lproj/Localizable.strings - Added English strings
+- zh-Hans.lproj/Localizable.strings - Added Chinese strings
+
+---
 
 ### Idea-15: [Feature] Launch at Login
 **Created**: 2026-02-07

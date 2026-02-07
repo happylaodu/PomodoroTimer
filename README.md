@@ -47,25 +47,19 @@ A minimal and elegant menu bar Pomodoro timer, built with Swift and SwiftUI. Sta
 
 ## 📸 Screenshots
 
-### Menu Bar States
+### Menu Bar & Main Interface
 <p float="left">
-  <img src="docs/screenshots/menubar-rest.png" width="200" alt="Rest Mode" />
-  <img src="docs/screenshots/menubar-work.png" width="200" alt="Work Mode" />
-  <img src="docs/screenshots/menubar-active.png" width="200" alt="Active Timer" />
+  <img src="Docs/Growth/screenshots/work-time.png" width="300" alt="Work Time" />
+  <img src="Docs/Growth/screenshots/rest-time.png" width="300" alt="Rest Time" />
 </p>
 
-*Green 🍅 = Rest | Gray 🍅 = Ready | Red 🍅 = Working*
-
-### Main Interface
-<p float="left">
-  <img src="docs/screenshots/main-interface.png" width="350" alt="Main Interface" />
-  <img src="docs/screenshots/chart.png" width="350" alt="7-Day Chart" />
-</p>
+### 7-Day Productivity Chart
+<img src="Docs/Growth/screenshots/chart.png" width="400" alt="7-Day Chart" />
 
 ### Settings Panel
-<img src="docs/screenshots/settings.png" width="500" alt="Settings Panel" />
+<img src="Docs/Growth/screenshots/settings.png" width="400" alt="Settings Panel" />
 
-*Full dark mode support with customizable durations and auto-start options*
+*Full dark mode support | Customizable durations | Auto-start options*
 
 ## 📥 Installation
 

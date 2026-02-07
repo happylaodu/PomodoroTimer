@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小红书配图4 - 安静待在菜单栏</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'SF Pro SC', 'Helvetica Neue', Arial, sans-serif;
+            background: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 1080px;
+            height: 1440px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .text-section {
+            position: absolute;
+            top: 180px;
+            left: 80px;
+            max-width: 700px;
+            z-index: 10;
+        }
+
+        .main-title {
+            font-size: 88px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 30px;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            letter-spacing: -3px;
+            line-height: 1.15;
+        }
+
+        .subtitle {
+            font-size: 44px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.4;
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .screenshot-wrapper {
+            position: absolute;
+            bottom: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .screenshot {
+            max-width: 900px;
+            max-height: 700px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .instructions {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 20px 25px;
+            border-radius: 12px;
+            font-size: 15px;
+            max-width: 350px;
+            z-index: 1000;
+            line-height: 1.6;
+        }
+
+        .instructions h3 {
+            margin-bottom: 12px;
+            font-size: 18px;
+            color: #4facfe;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .instructions button {
+            margin-top: 10px;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            width: 100%;
+        }
+
+        .instructions button:hover {
+            opacity: 0.9;
+        }
+
+        .instructions.hidden {
+            display: none;
+        }
+
+        .instructions code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, Consolas, monospace;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-section">
+            <h1 class="main-title">安静待在<br>菜单栏</h1>
+            <p class="subtitle">不占 Dock 空间，随时可用</p>
+        </div>
+
+        <div class="screenshot-wrapper">
+            <img src="menubar-screenshot.png" alt="菜单栏展示" class="screenshot" id="screenshot">
+        </div>
+    </div>
+
+    <div class="instructions" id="instructions">
+        <h3>📸 截图步骤：</h3>
+        <ol>
+            <li>需要菜单栏完整截图，显示应用图标</li>
+            <li>建议截取整个屏幕顶部菜单栏区域</li>
+            <li>保存为 <code>menubar-screenshot.png</code></li>
+            <li>点击下方按钮隐藏此提示</li>
+            <li>按 <kbd>Cmd+Shift+4</kbd> 然后按<kbd>空格</kbd></li>
+            <li>点击浏览器窗口截图</li>
+        </ol>
+        <p style="margin: 10px 0; color: #4facfe;">💡 小红书图文第4张</p>
+        <button onclick="hideInstructions()">隐藏提示，开始截图 ✨</button>
+    </div>
+
+    <script>
+        function hideInstructions() {
+            document.getElementById('instructions').classList.add('hidden');
+        }
+
+        const screenshot = document.getElementById('screenshot');
+        screenshot.onerror = function() {
+            console.log('未找到 menubar-screenshot.png');
+        };
+    </script>
+</body>
+</html>

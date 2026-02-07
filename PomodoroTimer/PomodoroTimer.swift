@@ -296,21 +296,32 @@ class PomodoroTimer: ObservableObject {
     }
     
     private func playSound(repeat count: Int = 3) {
-        guard let sound = NSSound(named: NSSound.Name("Ping")) else { return }
+        // Check if sound is enabled (default to true if not set)
+        let soundEnabled = UserDefaults.standard.object(forKey: "soundEnabled") as? Bool ?? true
+        guard soundEnabled else { return }
 
-            for i in 0..<count {
-                DispatchQueue.main.asyncAfter(deadline: .now() + Double(i) * 0.5) {
-                    sound.stop() // 停止上一次播放，确保声音不会重叠太严重
-                    sound.play()
-                }
+        // Get selected sound name
+        let soundName = UserDefaults.standard.string(forKey: "notificationSound") ?? "Ping"
+        guard let sound = NSSound(named: NSSound.Name(soundName)) else { return }
+
+        for i in 0..<count {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(i) * 0.5) {
+                sound.stop() // Stop previous playback to avoid severe overlapping
+                sound.play()
             }
+        }
     }
     
     private func sendNotification(for newState: State) {
         let content = UNMutableNotificationContent()
         content.title = NSLocalizedString("🍅 Pomodoro Session Ended", comment: "Notification title")
         content.body = newState == .work ? NSLocalizedString("Rest is over. Time to focus!", comment: "Notification body") : NSLocalizedString("Work completed. Take a break!", comment: "Notification body")
-        content.sound = UNNotificationSound.default
+
+        // Only add sound to notification if sound is enabled (default to true if not set)
+        let soundEnabled = UserDefaults.standard.object(forKey: "soundEnabled") as? Bool ?? true
+        if soundEnabled {
+            content.sound = UNNotificationSound.default
+        }
 
         playSound(repeat: 3)
 
@@ -402,6 +413,47 @@ class PomodoroTimer: ObservableObject {
     
     var isLongRest: Bool {
         roundsBeforeLongRest > 0 && (completedRounds % roundsBeforeLongRest == 0)
+    }
+
+    // MARK: - Keyboard Shortcut Support
+
+    /// Switch to work mode (used by keyboard shortcuts)
+    func switchToWork() {
+        let wasRunning = isRunning
+        if wasRunning {
+            pause()
+        }
+
+        state = .work
+        timeRemaining = workDuration * 60
+        saveState()
+        onUpdateUI?()
+
+        if wasRunning {
+            start()
+        }
+    }
+
+    /// Switch to rest mode (used by keyboard shortcuts)
+    func switchToRest() {
+        let wasRunning = isRunning
+        if wasRunning {
+            pause()
+        }
+
+        state = .rest
+        // Use same logic as tick() to determine rest duration
+        if completedRounds % roundsBeforeLongRest == 0 {
+            timeRemaining = longRestDuration * 60
+        } else {
+            timeRemaining = shortRestDuration * 60
+        }
+        saveState()
+        onUpdateUI?()
+
+        if wasRunning {
+            start()
+        }
     }
 }
 

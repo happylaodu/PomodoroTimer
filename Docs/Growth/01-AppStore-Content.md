@@ -118,29 +118,49 @@ Mac 上最轻量的番茄钟应用——仅需 1.5MB！
 
 **限制**: 100 字符，用逗号分隔
 
-### 英文版
+### 英文版（优化版）
 
 ```
-pomodoro,timer,focus,productivity,study,work,technique,menubar,free,lightweight,minimal,timemanagement
+pomodoro,timer,focus,productivity,menubar,tomato,break,rest,free,lightweight,minimal,efficient,mac
 ```
 
-**字符数**: 98/100
+**字符数**: 99/100 ✅
 
 **关键词策略：**
-- `pomodoro` - 核心关键词
-- `technique` - 长尾词（pomodoro technique）
+- `pomodoro` - 核心关键词（必须）
+- `timer` - 高频搜索词
+- `focus` - 用户需求词
+- `productivity` - 品类词
+- `menubar` - 场景词（差异化）
+- `tomato` - 替代搜索词
+- `break`, `rest` - 功能词
 - `free` - 高转化词
-- `lightweight` - 差异化卖点
-- `menubar` - 场景词
-- `timemanagement` - 复合词
+- `lightweight` - 核心卖点
+- `minimal` - 设计风格词
+- `efficient` - 效率词
+- `mac` - 平台精准定位
 
-### 简体中文版
+**优化说明：**
+- ✅ 新增 `tomato`, `break`, `rest`, `efficient`, `mac`
+- ❌ 删除 `study`, `work`（太宽泛，竞争激烈）
+- ❌ 删除 `technique`（pomodoro 自动匹配）
+- ❌ 删除 `timemanagement`（释放空间）
+
+### 简体中文版（优化版）
 
 ```
-番茄钟,番茄工作法,计时器,专注,效率,学习,工作,休息,菜单栏,极简,免费,时间管理
+番茄钟,番茄工作法,计时器,专注,效率,学习,工作,休息,菜单栏,极简,免费,时间管理,提醒,轻量,Mac,工具,定时器,专注力
 ```
 
-**字符数**: ~50 字符
+**字符数**: ~85/100 ✅
+
+**新增关键词：**
+- `提醒` - 功能词
+- `轻量` - 核心卖点
+- `Mac` - 平台词
+- `工具` - 品类词
+- `定时器` - 同义词（覆盖不同搜索习惯）
+- `专注力` - 用户需求词
 
 ---
 
@@ -148,13 +168,31 @@ pomodoro,timer,focus,productivity,study,work,technique,menubar,free,lightweight,
 
 ### 英文版
 
-**App Name**: `Pomodoro Timer Lite`
-**Subtitle**: `Focus Timer for Productivity` (30 字符限制)
+**App Name**: `Pomodoro Timer Lite` (保持不变)
+
+**Subtitle（优化版）**: `Menu Bar Focus Timer (1.5MB)`
+
+**字符数**: 29/30 ✅
+
+**优化理由：**
+- ✅ 包含 `Menu Bar` 关键词（搜索词）
+- ✅ 强调 `1.5MB` 核心卖点
+- ✅ 保留 `Focus Timer` 核心功能描述
 
 ### 简体中文版
 
-**App Name**: `番茄计时器 Lite - 专注工作休息`
-**Subtitle**: `极简菜单栏番茄钟` (30 字符限制)
+**App Name（优化版）**: `番茄计时器 Lite`
+
+**优化说明：** 删除 "- 专注工作休息"，Name 保持简洁，详细说明放 Subtitle
+
+**Subtitle（优化版）**: `极简菜单栏番茄钟 仅1.5MB`
+
+**字符数**: 15/30 ✅
+
+**优化理由：**
+- ✅ 包含 `菜单栏` 关键词
+- ✅ 强调 `1.5MB` 卖点
+- ✅ 突出 `极简` 设计风格
 
 ---
 

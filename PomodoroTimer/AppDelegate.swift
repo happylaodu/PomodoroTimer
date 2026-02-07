@@ -16,7 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         let contentView = ContentView(timer: self.timer)
         statusBar = StatusBarController(contentView)
-        
+
         timer.onUpdateUI = { [weak self] in
             guard let self = self else { return }
             let text = self.timeString(from: self.timer.timeRemaining)
@@ -24,6 +24,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.statusBar?.updateIcon(for: self.timer.state, isRunning: self.timer.isRunning)
         }
         self.timer.onUpdateUI?()
+
+        // Set up callback to close popover when Settings window opens
+        SettingsWindowController.shared.onShow = { [weak self] in
+            self?.statusBar?.closePopover()
+        }
+
+        // Register global keyboard shortcuts
+        KeyboardShortcutManager.shared.timer = self.timer
+        KeyboardShortcutManager.shared.statusBar = self.statusBar
+        KeyboardShortcutManager.shared.registerShortcuts()
 
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { granted, error in
             if let error = error {

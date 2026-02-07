@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Hunt - Menu Bar Screenshot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+            background: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 1280px;
+            height: 800px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .text-section {
+            position: absolute;
+            bottom: 80px;
+            left: 80px;
+            max-width: 700px;
+            z-index: 10;
+        }
+
+        .main-title {
+            font-size: 72px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            letter-spacing: -2px;
+        }
+
+        .subtitle {
+            font-size: 32px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.4;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .screenshot-wrapper {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+        }
+
+        .screenshot {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .instructions {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            max-width: 350px;
+            z-index: 1000;
+        }
+
+        .instructions h3 {
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .instructions p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+            font-size: 13px;
+            color: #e0e0e0;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+            line-height: 1.6;
+        }
+
+        .instructions button {
+            margin-top: 10px;
+            background: #4facfe;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .instructions button:hover {
+            background: #3e9bed;
+        }
+
+        .instructions.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="screenshot-wrapper">
+            <img src="menubar-screenshot.png" alt="Menu Bar in Action" class="screenshot" id="screenshot">
+        </div>
+
+        <div class="text-section">
+            <h1 class="main-title">Stays Out of Your Way</h1>
+            <p class="subtitle">Lives quietly in your menu bar</p>
+        </div>
+    </div>
+
+    <div class="instructions" id="instructions">
+        <h3>📸 截图步骤：</h3>
+        <p><strong>建议：</strong>截整个桌面工作环境（Xcode/VS Code + 浏览器），展示菜单栏图标在真实场景中的样子。</p>
+        <ol>
+            <li>打开你常用的工作应用</li>
+            <li>启动番茄钟（菜单栏显示倒计时）</li>
+            <li>按 <kbd>Cmd+Shift+3</kbd> 截全屏</li>
+            <li>将截图重命名为 <code>menubar-screenshot.png</code> 并保存到此目录</li>
+            <li>刷新此页面</li>
+            <li>点击下方按钮隐藏此提示</li>
+            <li>按 <kbd>Cmd+Shift+4</kbd>，按空格，点击浏览器窗口</li>
+        </ol>
+        <button onclick="hideInstructions()">隐藏提示，准备截图</button>
+    </div>
+
+    <script>
+        function hideInstructions() {
+            document.getElementById('instructions').classList.add('hidden');
+        }
+
+        const screenshot = document.getElementById('screenshot');
+        screenshot.onerror = function() {
+            alert('找不到 menubar-screenshot.png，请将截图保存到当前目录并命名为 menubar-screenshot.png');
+        };
+    </script>
+</body>
+</html>

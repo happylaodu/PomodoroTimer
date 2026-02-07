@@ -92,6 +92,37 @@ class StatusBarController {
         NSApp.terminate(nil)
     }
 
+    func closePopover() {
+        if popover.isShown {
+            popover.performClose(nil)
+            if let monitor = eventMonitor {
+                NSEvent.removeMonitor(monitor)
+                eventMonitor = nil
+            }
+        }
+    }
+
+    /// Show popover (for keyboard shortcut)
+    func showPopover() {
+        guard let button = statusItem.button else { return }
+
+        if !popover.isShown {
+            popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
+
+            // Add global event monitor to close popover
+            eventMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.leftMouseDown, .rightMouseDown]) { [weak self] _ in
+                self?.popover.performClose(nil)
+                if let monitor = self?.eventMonitor {
+                    NSEvent.removeMonitor(monitor)
+                    self?.eventMonitor = nil
+                }
+            }
+        }
+
+        // Activate app to bring it to front
+        NSApp.activate(ignoringOtherApps: true)
+    }
+
     /// 可选：你可以更新菜单栏的文字，比如显示当前倒计时
     func updateTitle(_ text: String) {
         if let button = statusItem.button {

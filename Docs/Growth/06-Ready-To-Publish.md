@@ -8,11 +8,11 @@
 
 ## ✅ 发布前检查清单
 
-- [ ] v1.3 已在 App Store 上线
-- [ ] 获取 App Store 下载链接
-- [ ] 准备好 4 张统一风格的截图
-- [ ] 更新 GitHub README（添加 App Store badge）
-- [ ] 创建 v1.3 GitHub Release
+- [x] v1.3 已在 App Store 上线
+- [x] 获取 App Store 下载链接
+- [x] 准备好 4 张统一风格的截图
+- [x] 更新 GitHub README（添加 App Store badge）
+- [x] 创建 v1.3 GitHub Release
 
 ---
 
@@ -30,35 +30,49 @@
 
 **Topics/Tags**: `productivity, mac, focus, time-management, pomodoro, open-source, menubar`
 
-**Website**: [App Store 链接 - 待填入]
+**Website**: https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
 
 **Social Links**: `https://github.com/happylaodu/PomodoroTimer`
 
 ### 描述内容
 
 ```markdown
-🍅 Pomodoro Timer Lite - The lightest menu bar timer for Mac
+🍅 Pomodoro Timer Lite - Ultra-lightweight menu bar timer for Mac (1.5MB)
 
-I built a minimal Pomodoro timer that lives in your macOS menu bar. Just 1.5MB!
+A minimal Pomodoro timer in your macOS menu bar.
 
-🎯 What makes it different:
-• Ultra-lightweight (1.5MB) - 90% smaller than competitors
-• Completely free, no ads, no data collection
-• Customizable work/rest durations
-• 7-day productivity tracking chart
-• Native macOS design with dark mode
+• 90% smaller than competitors
+• Free, no ads, no tracking
+• Customizable durations
+• 7-day productivity chart
+• Native macOS with dark mode
 
-🔧 New in v1.3:
-• Settings panel for full customization
-• Auto-start options for seamless workflow
-• Improved session tracking
+v1.3: Settings panel, auto-start, improved tracking
 
-Perfect for developers, students, and anyone practicing the Pomodoro Technique!
+Perfect for developers & students!
 
-📦 Download: [App Store Link]
-💻 Open Source: https://github.com/happylaodu/PomodoroTimer
+📦 https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
+💻 https://github.com/happylaodu/PomodoroTimer
+```
 
-I'd love to hear your feedback! 🙏
+### First Comment
+
+```markdown
+Hey Product Hunt! 👋
+
+I built Pomodoro Timer Lite because I was frustrated with existing timer apps - they're either bloated (30-50MB for a timer?!), require subscriptions, or collect unnecessary data.
+
+Why this exists:
+• Most Pomodoro apps are 10-30MB. This one is 1.5MB (native Swift/SwiftUI, zero dependencies)
+• Completely free & open source (MIT license)
+• Zero telemetry - all data stays local on your Mac
+• Privacy-first: no accounts, no cloud sync, no tracking
+
+Just shipped v1.3 with customizable durations, so you can adjust work/rest times to fit your flow (not just the standard 25/5).
+
+Built it to solve my own problem, and figured others might find it useful too. Would love to hear your feedback!
+
+Questions about the implementation or feature requests? Happy to chat! 🍅
 ```
 
 ### 常见问题回复模板
@@ -118,7 +132,7 @@ Thanks for the suggestion! I'm keeping a list of feature requests. The goal is t
 • 支持自动开始下一轮工作
 • 界面优化
 
-App Store: [链接]
+App Store: https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
 开源地址: https://github.com/happylaodu/PomodoroTimer
 
 欢迎试用，有任何建议都可以在 GitHub 提 issue！
@@ -158,7 +172,7 @@ I built a minimal Pomodoro timer that lives in your macOS menu bar. Just shipped
 **Why I built it:**
 I wanted a Pomodoro timer that's simple, lightweight, and respects privacy. Most apps are either bloated or subscription-based, so I made this one open source and free.
 
-App Store: [link]
+App Store: https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
 GitHub (open source): https://github.com/happylaodu/PomodoroTimer
 
 Would love to hear your feedback! 🍅
@@ -184,7 +198,7 @@ For anyone looking for a simple Pomodoro timer on Mac, I built one that's:
 
 Perfect for the Pomodoro Technique - 25 min work, 5 min rest cycles.
 
-Download: [App Store link]
+Download: https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
 Source code: https://github.com/happylaodu/PomodoroTimer
 
 Happy to answer any questions!
@@ -221,7 +235,7 @@ After using bloated Pomodoro apps for years, I decided to build my own.
 **Result:**
 Just launched v1.3 on the App Store!
 
-App Store: [link]
+App Store: https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
 GitHub: https://github.com/happylaodu/PomodoroTimer
 
 Would love feedback from fellow makers! 🚀
@@ -257,7 +271,7 @@ Would love feedback from fellow makers! 🚀
 
 5. **开源**：代码在 GitHub 上公开，可以自己编译，没有后门
 
-App Store 链接：[...]
+App Store 链接：https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
 GitHub: https://github.com/happylaodu/PomodoroTimer
 
 作为一个番茄工作法的重度用户（每天 8-10 个番茄钟），试过很多 App，这个是我用下来最简洁的。没有花里胡哨的功能，就是好好做个计时器。
@@ -306,7 +320,7 @@ GitHub: https://github.com/happylaodu/PomodoroTimer
 
 ## 下载
 
-App Store: [链接]
+App Store: https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
 开源地址: https://github.com/happylaodu/PomodoroTimer
 
 欢迎试用和反馈！
@@ -346,7 +360,7 @@ App Store: [链接]
 不用担心突然收费或有广告
 
 App Store搜：Pomodoro Timer Lite
-或者看我主页链接～
+或者访问：https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
 
 #Mac软件 #效率工具 #番茄工作法 #学习方法 #考研 #学生党 #打工人 #专注力 #时间管理 #免费软件
 ```
@@ -434,7 +448,7 @@ Technical details:
 - UserDefaults for persistence
 - Charts framework for visualizations
 
-App Store: [link]
+App Store: https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
 GitHub: https://github.com/happylaodu/PomodoroTimer
 
 Happy to answer any questions about the implementation or design decisions!
@@ -478,7 +492,7 @@ Considered it, but menu bar integration is a core feature. On iOS, it would need
 
 对我来说很重要，因为现在还没有任何评分 😅
 
-App Store 链接：[...]
+App Store 链接：https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
 
 谢谢！🙏
 ```
@@ -492,7 +506,7 @@ I recently launched a free Pomodoro timer app for Mac on the App Store!
 
 Would you mind checking it out and leaving a rating if you find it useful? Honest feedback is much appreciated - it really helps with visibility.
 
-App Store: [link]
+App Store: https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
 
 Thanks! 🙏
 ```
@@ -579,4 +593,4 @@ Thanks! 🙏
 
 **创建时间**: 2026-02-01
 **状态**: ✅ 准备就绪，等待 v1.3 审核通过
-**App Store 链接**: [待填入]
+**App Store 链接**: https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476

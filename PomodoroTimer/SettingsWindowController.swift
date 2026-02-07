@@ -4,8 +4,11 @@ import AppKit
 class SettingsWindowController: NSObject {
     static let shared = SettingsWindowController()
     private var window: NSWindow?
+    var onShow: (() -> Void)?
 
     func show() {
+        // Call the onShow callback to close popover
+        onShow?()
         // Close old window if exists
         if let oldWindow = window {
             oldWindow.close()
@@ -15,7 +18,7 @@ class SettingsWindowController: NSObject {
         let hostingController = NSHostingController(rootView: SettingsView())
         let newWindow = NSWindow(contentViewController: hostingController)
         newWindow.title = NSLocalizedString("Settings", comment: "Settings window title")
-        newWindow.setContentSize(NSSize(width: 440, height: 420))
+        newWindow.setContentSize(NSSize(width: 440, height: 720))
         newWindow.styleMask = [.titled, .closable]
         newWindow.isReleasedWhenClosed = false
         newWindow.level = .floating  // Ensure window appears on top
