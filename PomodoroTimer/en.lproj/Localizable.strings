@@ -1,0 +1,39 @@
+/* ContentView.swift */
+"Work Time" = "Work Time";
+"Rest Time" = "Rest Time";
+"Long Rest Time" = "Long Rest Time";
+"Today: %d 🍅" = "Today: %d 🍅";
+"This Week: %d 🍅" = "This Week: %d 🍅";
+"Total: %d 🍅" = "Total: %d 🍅";
+"Date" = "Date";
+"Count" = "Count";
+"Work Round Count" = "Work Round Count";
+"Show Chart" = "Show Chart";
+"Reset" = "Reset";
+"Quit" = "Quit";
+"Switch Current Phase" = "Switch Current Phase";
+"Open Settings" = "Open Settings";
+"Show past 7 days progress chart" = "Show past 7 days progress chart";
+"Quit Pomodoro Timer Lite" = "Quit Pomodoro Timer Lite";
+
+/* SettingsView.swift */
+"Start automatically when computer starts" = "Start automatically when computer starts";
+"⏱ Auto Start Control" = "⏱ Auto Start Control";
+"⏲ Duration (Minutes)" = "⏲ Duration (Minutes)";
+"Auto Start Work on First Launch Each Day" = "Auto Start Work on First Launch Each Day";
+"Auto Start Rest After Work" = "Auto Start Rest After Work";
+"Auto Start Work After Rest" = "Auto Start Work After Rest";
+"Enable Long Rest" = "Enable Long Rest";
+"Work Duration: %d" = "Work Duration: %d";
+"Short Rest Duration: %d" = "Short Rest Duration: %d";
+"Long Rest Duration: %d" = "Long Rest Duration: %d";
+"Long Rest After %d Rounds" = "Long Rest After %d Rounds";
+"Settings" = "Settings";
+
+/* StatusBarController.swift */
+"Quit Pomodoro Timer" = "Quit Pomodoro Timer";
+
+/* PomodoroTimer.swift - Notifications */
+"🍅 Pomodoro Session Ended" = "🍅 Pomodoro Session Ended";
+"Rest is over. Time to focus!" = "Rest is over. Time to focus!";
+"Work completed. Take a break!" = "Work completed. Take a break!";

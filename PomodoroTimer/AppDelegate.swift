@@ -24,7 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.statusBar?.updateIcon(for: self.timer.state, isRunning: self.timer.isRunning)
         }
         self.timer.onUpdateUI?()
-        
+
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { granted, error in
             if let error = error {
                 print("Notification permission error: \(error.localizedDescription)")
@@ -36,15 +36,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
 
-        // 更新菜单栏显示倒计时
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-            if self.timer.isRunning {
-                let text = self.timeString(from: self.timer.timeRemaining)
-                self.statusBar?.updateTitle(text)
-                self.statusBar?.updateIcon(for: self.timer.state, isRunning: self.timer.isRunning)
-            }
-        }
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             if let window = NSApp.windows.first {
                 window.setContentSize(NSSize(width: 280, height: 320))
@@ -53,12 +44,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 window.styleMask.remove(.resizable) // 可选：防止用户调整窗口大小
             }
         }
-        
+
+        // Register/unregister launch at login based on user preference
+        let launchAtLogin = UserDefaults.standard.bool(forKey: "launchAtLogin")
         do {
-            try SMAppService.mainApp.register()
-            print("✅ App successfully registered to launch at login.")
+            if launchAtLogin {
+                try SMAppService.mainApp.register()
+                print("✅ App registered to launch at login")
+            } else {
+                try SMAppService.mainApp.unregister()
+                print("✅ App unregistered from launch at login")
+            }
         } catch {
-            print("❌ Failed to register app for login launch: \(error)")
+            print("❌ Failed to update launch at login: \(error)")
         }
     }
 

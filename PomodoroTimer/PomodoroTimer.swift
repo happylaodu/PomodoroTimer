@@ -228,6 +228,7 @@ class PomodoroTimer: ObservableObject {
         }
         timeRemaining -= 1
         saveState()
+        onUpdateUI?()
     }
     
     private struct SavedState: Codable {
@@ -307,8 +308,8 @@ class PomodoroTimer: ObservableObject {
     
     private func sendNotification(for newState: State) {
         let content = UNMutableNotificationContent()
-        content.title = "🍅 Pomodoro Session Ended"
-        content.body = newState == .work ? "Rest is over. Time to focus!" : "Work completed. Take a break!"
+        content.title = NSLocalizedString("🍅 Pomodoro Session Ended", comment: "Notification title")
+        content.body = newState == .work ? NSLocalizedString("Rest is over. Time to focus!", comment: "Notification body") : NSLocalizedString("Work completed. Take a break!", comment: "Notification body")
         content.sound = UNNotificationSound.default
 
         playSound(repeat: 3)
