@@ -22,7 +22,6 @@ Research the feasibility of integrating with macOS Focus Mode:
 - Possible new directions: System Extensions, Shortcuts.app automation
 - Priority: Low (research-oriented, may not be feasible)
 
-
 ### Idea-13: [Improvement] Translate All Chinese Content in Repo to English
 **Created**: 2026-02-01
 
