@@ -20,10 +20,18 @@
 
 ### 1. 准备实际截图
 在对应语言环境下运行应用，截图保存为：
-- `work-time.png`
-- `settings.png`
-- `rest-time.png`
-- `chart.png`
+
+**英文版（已完成）：**
+- `work-time.png` ✅
+- `settings.png` ✅
+- `rest-time.png` ✅
+- `chart.png` ✅
+
+**中文版（待截图）：**
+- `work-time-zh.png`
+- `settings-zh.png`
+- `rest-time-zh.png`
+- `chart-zh.png`
 
 ### 2. 生成App Store截图
 1. 用浏览器打开对应的HTML文件
