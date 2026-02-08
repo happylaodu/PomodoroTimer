@@ -15,7 +15,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.brightjune.PomodoroTimer</string>
 	<key>CFBundleInfoDictionaryVersion</key>
-	<string>8.0</string>
+	<string>9.0</string>
 	<key>CFBundleName</key>
 	<string>PomodoroTimer</string>
 	<key>CFBundlePackageType</key>
@@ -27,7 +27,7 @@
 		<string>MacOSX</string>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>8</string>
+	<string>9</string>
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
@@ -47,7 +47,7 @@
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
-	<string>15.5</string>
+	<string>13.0</string>
 	<key>LSUIElement</key>
 	<true/>
 </dict>
