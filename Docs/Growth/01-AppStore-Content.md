@@ -176,7 +176,7 @@ pomodoro,timer,focus,productivity,menubar,tomato,break,rest,free,lightweight,min
 
 **App Name**: `Pomodoro Timer Lite` (保持不变)
 
-**Subtitle（优化版）**: `Menu Bar Focus Timer (under 2MB)`
+**Subtitle（优化版）**: `Menu Bar Focus Timer (< 2MB)`
 
 **字符数**: 29/30 ✅
 
