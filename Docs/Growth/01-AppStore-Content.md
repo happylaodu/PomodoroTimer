@@ -9,12 +9,12 @@
 ### 英文版（English U.S.）
 
 ```
-🆕 NEW: Customizable work & rest durations in Settings!
+🆕 NEW in v1.4: Full Chinese localization + Global keyboard shortcuts (⌘⇧P/T/R/M)!
 
-Stay focused with the lightest Pomodoro timer for Mac—just 1.5MB!
+Stay focused with the lightest Pomodoro timer for Mac—just under 2MB!
 
 ✨ WHY CHOOSE POMODORO TIMER LITE?
-• Ultra-lightweight (1.5MB) - 90% smaller than competitors
+• Ultra-lightweight (under 2MB) - 90% smaller than competitors
 • Completely free, no ads, no subscriptions
 • Lives quietly in your menu bar - no Dock clutter
 • Privacy-first - zero data collection
@@ -24,6 +24,9 @@ Stay focused with the lightest Pomodoro timer for Mac—just 1.5MB!
 • Configure short rest (3-30 min) and long rest (10-60 min)
 • Auto-start work, rest, or next cycle
 • Set rounds before long rest
+• 🆕 Global keyboard shortcuts (⌘⇧P/T/R/M)
+• 🆕 Choose from 12 notification sounds
+• 🆕 Launch at login option
 
 📊 TRACK YOUR PRODUCTIVITY
 • Daily, weekly, and total work session counters
@@ -52,12 +55,12 @@ Download now and start your first focused session! 🍅
 ### 简体中文版（Simplified Chinese）
 
 ```
-🆕 新功能：设置面板支持自定义工作和休息时长！
+🆕 v1.4 新功能：完整中文支持+全局键盘快捷键（⌘⇧P/T/R/M）！
 
-Mac 上最轻量的番茄钟应用——仅需 1.5MB！
+Mac 上最轻量的番茄钟应用——仅需 不到2MB！
 
 ✨ 为什么选择番茄计时器 Lite？
-• 超轻量（1.5MB）- 比同类应用小 90%
+• 超轻量（不到2MB）- 比同类应用小 90%
 • 完全免费，无广告，无订阅
 • 安静地存在于菜单栏 - 不占用 Dock 空间
 • 隐私至上 - 零数据收集
@@ -67,6 +70,9 @@ Mac 上最轻量的番茄钟应用——仅需 1.5MB！
 • 配置短休息（3-30 分钟）和长休息（10-60 分钟）
 • 自动开始工作、休息或下一轮
 • 设置长休息前的工作轮数
+• 🆕 全局键盘快捷键（⌘⇧P/T/R/M）
+• 🆕 12种通知声音可选
+• 🆕 开机自启动选项
 
 📊 追踪你的效率
 • 每日、每周、总计工作时段计数器
@@ -96,21 +102,21 @@ Mac 上最轻量的番茄钟应用——仅需 1.5MB！
 
 **特点**: 可随时修改，无需新版本审核
 
-### 英文版
+### 英文版（v1.4）
 
 ```
-🆕 v1.3: Customize durations & auto-start! Lightest Mac Pomodoro (1.5MB). 7-day charts, free, no ads. Download now! 🍅
+🆕 v1.4: Chinese localization + Global shortcuts (⌘⇧P/T/R)! 12 sounds, launch at login. Lightest Pomodoro (under 2MB), free, no ads! 🍅
 ```
 
-**字符数**: 127 字符（限制 170）
+**字符数**: 140 字符（限制 170）✅
 
-### 简体中文版
+### 简体中文版（v1.4）
 
 ```
-🆕 v1.3：自定义时长+自动开始！最轻量番茄钟（1.5MB），7天图表，免费无广告！🍅
+🆕 v1.4：中文支持+全局快捷键（⌘⇧P/T/R）！12种声音、自启动。最轻量番茄钟（不到2MB），免费无广告！🍅
 ```
 
-**字符数**: 48 字符（限制 170）
+**字符数**: 65 字符（限制 170）✅
 
 ---
 
@@ -170,13 +176,13 @@ pomodoro,timer,focus,productivity,menubar,tomato,break,rest,free,lightweight,min
 
 **App Name**: `Pomodoro Timer Lite` (保持不变)
 
-**Subtitle（优化版）**: `Menu Bar Focus Timer (1.5MB)`
+**Subtitle（优化版）**: `Menu Bar Focus Timer (under 2MB)`
 
 **字符数**: 29/30 ✅
 
 **优化理由：**
 - ✅ 包含 `Menu Bar` 关键词（搜索词）
-- ✅ 强调 `1.5MB` 核心卖点
+- ✅ 强调 `under 2MB` 核心卖点
 - ✅ 保留 `Focus Timer` 核心功能描述
 
 ### 简体中文版
@@ -185,13 +191,13 @@ pomodoro,timer,focus,productivity,menubar,tomato,break,rest,free,lightweight,min
 
 **优化说明：** 删除 "- 专注工作休息"，Name 保持简洁，详细说明放 Subtitle
 
-**Subtitle（优化版）**: `极简菜单栏番茄钟 仅1.5MB`
+**Subtitle（优化版）**: `极简菜单栏番茄钟 仅under 2MB`
 
 **字符数**: 15/30 ✅
 
 **优化理由：**
 - ✅ 包含 `菜单栏` 关键词
-- ✅ 强调 `1.5MB` 卖点
+- ✅ 强调 `under 2MB` 卖点
 - ✅ 突出 `极简` 设计风格
 
 ---
@@ -227,7 +233,7 @@ https://github.com/happylaodu/PomodoroTimer
 
 ### 关键改进点：
 
-1. **强调"1.5MB"轻量化**
+1. **强调"under 2MB"轻量化**
    - 这是最大差异化卖点
    - 在描述开头就提及
 
