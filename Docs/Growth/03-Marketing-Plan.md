@@ -317,7 +317,7 @@ Mac效率神器 | 最轻量的番茄钟才1.5MB！
 ```
 Show HN: I made a minimal Pomodoro timer for macOS (1.5MB, open source)
 
-Link: https://github.com/happylaodu/PomodoroTimer
+Link: [App Store Link]
 ```
 
 **正文补充（第一条评论）：**
@@ -340,9 +340,15 @@ This one is:
 
 Built with SwiftUI and native AppKit. Happy to answer any questions!
 
-App Store: [link]
 GitHub: https://github.com/happylaodu/PomodoroTimer
 ```
+
+**策略调整（基于v1.3数据）：**
+- ✅ **主链接用App Store**：直接获得用户下载，提升排名
+- ✅ **标题说明开源**：吸引开发者关注
+- ✅ **评论里放GitHub**：让感兴趣的人能找到代码
+- 📊 **上次数据**：HN带来14 views，12 unique visitors，24 cloners (96%转化率)
+- 🎯 **本次目标**：获得真实用户下载，而不只是clone
 
 **注意事项：**
 - HN 社区对技术细节感兴趣
