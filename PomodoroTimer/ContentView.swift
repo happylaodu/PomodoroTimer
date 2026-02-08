@@ -52,7 +52,7 @@ struct ContentView: View {
     @State private var showStatsPopover = false
     
     var body: some View {
-        let totalTime = timer.state == .work ? 25 * 60 : 5 * 60
+        let totalTime = timer.state == .work ? timer.workDuration * 60 : timer.currentRestDuration * 60
         let progress = Double(timer.timeRemaining) / Double(totalTime)
 
         VStack(spacing: 20) {

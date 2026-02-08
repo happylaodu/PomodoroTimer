@@ -415,6 +415,10 @@ class PomodoroTimer: ObservableObject {
         roundsBeforeLongRest > 0 && (completedRounds % roundsBeforeLongRest == 0)
     }
 
+    var currentRestDuration: Int {
+        isLongRest ? longRestDuration : shortRestDuration
+    }
+
     // MARK: - Keyboard Shortcut Support
 
     /// Switch to work mode (used by keyboard shortcuts)
