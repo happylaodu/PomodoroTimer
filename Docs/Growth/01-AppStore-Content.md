@@ -191,9 +191,9 @@ pomodoro,timer,focus,productivity,menubar,tomato,break,rest,free,lightweight,min
 
 **优化说明：** 删除 "- 专注工作休息"，Name 保持简洁，详细说明放 Subtitle
 
-**Subtitle（优化版）**: `极简菜单栏番茄钟 仅under 2MB`
+**Subtitle（优化版）**: `菜单栏番茄钟 轻量（不足2MB）`
 
-**字符数**: 15/30 ✅
+**字符数**: 16/30 ✅
 
 **优化理由：**
 - ✅ 包含 `菜单栏` 关键词
