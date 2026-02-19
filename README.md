@@ -1,6 +1,6 @@
 # 🍅 Pomodoro Timer Lite
 
-[![App Store](https://img.shields.io/badge/App%20Store-Download-blue?logo=apple)](https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476)
+[![App Store](https://img.shields.io/badge/App%20Store-Download-blue?logo=apple)](https://apps.apple.com/app/pomodoro-timer-lite/id6748662476)
 [![GitHub stars](https://img.shields.io/github/stars/happylaodu/PomodoroTimer?style=social)](https://github.com/happylaodu/PomodoroTimer/stargazers)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-macOS%2013%2B-lightgrey)](https://www.apple.com/macos)
@@ -9,7 +9,7 @@
 
 A minimal and elegant menu bar Pomodoro timer, built with Swift and SwiftUI. Stay focused, track your productivity, and respect your privacy.
 
-[📥 Download on App Store](https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476) | [🐛 Report Issues](https://github.com/happylaodu/PomodoroTimer/issues)
+[📥 Download on App Store](https://apps.apple.com/app/pomodoro-timer-lite/id6748662476) | [🐛 Report Issues](https://github.com/happylaodu/PomodoroTimer/issues)
 
 ---
 
@@ -20,11 +20,23 @@ A minimal and elegant menu bar Pomodoro timer, built with Swift and SwiftUI. Sta
 - Native Swift & SwiftUI, zero third-party dependencies
 - Minimal resource usage
 
-### ⚙️ Fully Customizable (New in v1.3!)
+### ⚙️ Fully Customizable
 - Adjust work duration (15-90 minutes)
 - Configure short rest (3-30 min) and long rest (10-60 min)
 - Auto-start work, rest, or next cycle
 - Set rounds before long rest
+- Launch automatically at login
+
+### ⌨️ Global Keyboard Shortcuts
+- Show Window: ⌘⇧T
+- Start/Pause: ⌘⇧P
+- Reset Timer: ⌘⇧R
+- Switch Mode: ⌘⇧M
+
+### 🔔 Sound Notifications
+- Choose from 12 built-in sounds
+- Preview sounds before selecting
+- Option to disable sound completely
 
 ### 📊 Track Your Productivity
 - Daily, weekly, and total session counters
@@ -35,7 +47,7 @@ A minimal and elegant menu bar Pomodoro timer, built with Swift and SwiftUI. Sta
 - Menu bar integration — no Dock clutter
 - Animated tomato icons for work/rest/pause states
 - Full dark mode support
-- Gentle sound notifications
+- Multi-language support (English & 简体中文)
 
 ### 🔒 Privacy-First
 - **Zero data collection**
@@ -65,7 +77,7 @@ A minimal and elegant menu bar Pomodoro timer, built with Swift and SwiftUI. Sta
 
 ### Option 1: Download from App Store (Recommended)
 
-[![Download on App Store](https://tools.applemediaservices.com/api/badges/download-on-the-mac-app-store/black/en-us?size=250x83)](https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476)
+[![Download on App Store](https://tools.applemediaservices.com/api/badges/download-on-the-mac-app-store/black/en-us?size=250x83)](https://apps.apple.com/app/pomodoro-timer-lite/id6748662476)
 
 ### Option 2: Build from Source
 
@@ -103,12 +115,13 @@ A minimal and elegant menu bar Pomodoro timer, built with Swift and SwiftUI. Sta
 
 ---
 
-## 🆕 What's New in v1.3
+## 🆕 What's New in v1.4
 
-- ⚙️ **Settings Panel**: Customize all timer durations
-- 🔄 **Auto-Start Options**: Seamless workflow automation
-- 📊 **Improved Tracking**: Better session statistics
-- 🎨 **UI Enhancements**: Smoother animations
+- 🌍 **Chinese Localization**: Full Simplified Chinese support
+- ⌨️ **Global Shortcuts**: Control timer from any app (⌘⇧T/P/R/M)
+- 🔔 **Sound Customization**: Choose from 12 notification sounds
+- 🚀 **Launch at Login**: Auto-start when computer boots
+- 🐛 **Bug Fixes**: Timer sync issues and chart improvements
 
 [View full changelog →](https://github.com/happylaodu/PomodoroTimer/releases)
 
@@ -157,10 +170,9 @@ Contributions are welcome! Here's how you can help:
 
 ## 📊 Roadmap
 
-- [ ] Global keyboard shortcuts
-- [ ] Sound customization
-- [ ] Simplified Chinese localization
 - [ ] macOS Focus Mode integration (research)
+- [ ] iOS companion app
+- [ ] Additional language support
 
 See [Ideas.md](.claude/Ideas.md) for the full feature backlog.
 
@@ -191,7 +203,7 @@ You're free to:
 If you find this app helpful:
 
 - ⭐ **Star this repo** on GitHub
-- 📝 **Rate it** on the [App Store](https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476)
+- 📝 **Rate it** on the [App Store](https://apps.apple.com/app/pomodoro-timer-lite/id6748662476)
 - 🐦 **Share** with friends who need better focus
 - ☕ **Buy me a coffee** (just kidding, it's free forever!)
 
@@ -207,7 +219,7 @@ Built with ❤️ for the Pomodoro Technique community.
 
 ## 🔗 Links
 
-- [App Store Listing](https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476)
+- [App Store Listing](https://apps.apple.com/app/pomodoro-timer-lite/id6748662476)
 - [Report Issues](https://github.com/happylaodu/PomodoroTimer/issues)
 - [Marketing Plan](Docs/Growth/03-Marketing-Plan.md)
 - [Long-Term Strategy](Docs/Growth/04-Long-Term-Strategy.md)
