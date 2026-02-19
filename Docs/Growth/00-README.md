@@ -78,7 +78,7 @@
 
 - **App Store Connect**: https://appstoreconnect.apple.com
 - **GitHub Repository**: https://github.com/happylaodu/PomodoroTimer
-- **App Store Link**: https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
+- **App Store Link**: https://apps.apple.com/app/pomodoro-timer-lite/id6748662476
 
 ---
 

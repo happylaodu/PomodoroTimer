@@ -290,7 +290,7 @@ let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variable
 
 ## 下载和开源
 
-**App Store**：https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
+**App Store**：https://apps.apple.com/app/pomodoro-timer-lite/id6748662476
 **GitHub**：https://github.com/happylaodu/PomodoroTimer
 
 完全免费，MIT 开源。
