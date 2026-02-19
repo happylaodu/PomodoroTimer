@@ -61,8 +61,8 @@ A minimal and elegant menu bar Pomodoro timer, built with Swift and SwiftUI. Sta
 
 ### Menu Bar & Main Interface
 <p float="left">
-  <img src="Docs/Growth/screenshots/1.4/work-time-en.png" width="300" alt="Work Time" />
-  <img src="Docs/Growth/screenshots/1.4/rest-time-en.png" width="300" alt="Rest Time" />
+  <img src="Docs/Growth/screenshots/1.4/work-time.png" width="300" alt="Work Time" />
+  <img src="Docs/Growth/screenshots/1.4/rest-time.png" width="300" alt="Rest Time" />
 </p>
 
 ### 7-Day Productivity Chart
