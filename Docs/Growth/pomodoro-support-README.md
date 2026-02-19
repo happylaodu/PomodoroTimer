@@ -4,7 +4,7 @@ This is the support repository for **Pomodoro Timer Lite**, a lightweight macOS 
 
 ## 📥 Download
 
-[![Download on App Store](https://tools.applemediaservices.com/api/badges/download-on-the-mac-app-store/black/en-us?size=250x83)](https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476)
+[![Download on App Store](https://tools.applemediaservices.com/api/badges/download-on-the-mac-app-store/black/en-us?size=250x83)](https://apps.apple.com/app/pomodoro-timer-lite/id6748662476)
 
 ## 💻 Source Code
 
@@ -28,7 +28,7 @@ Please report bugs and feature requests in the main repository:
 
 If you find this app helpful:
 - ⭐ Star the [main repository](https://github.com/happylaodu/PomodoroTimer)
-- 📝 Rate on the [App Store](https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476)
+- 📝 Rate on the [App Store](https://apps.apple.com/app/pomodoro-timer-lite/id6748662476)
 - 🐦 Share with friends
 
 ---

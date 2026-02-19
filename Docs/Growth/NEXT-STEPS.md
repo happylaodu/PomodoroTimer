@@ -7,7 +7,7 @@ v1.3 已审核通过，App Store 链接已更新，营销内容已准备完毕�
 ## ✅ 已完成
 
 - ✅ v1.3 审核通过
-- ✅ 获取 App Store 链接：https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
+- ✅ 获取 App Store 链接：https://apps.apple.com/app/pomodoro-timer-lite/id6748662476
 - ✅ 更新 README.md（添加 App Store badge 和截图）
 - ✅ 准备所有平台的营销内容（见 `06-Ready-To-Publish.md`）
 - ✅ 创建 v1.3 git tag

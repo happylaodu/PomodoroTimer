@@ -2,7 +2,7 @@
 
 所有内容已准备好，等 v1.3 审核通过后直接复制发布。
 
-**App Store 链接**: https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
+**App Store 链接**: https://apps.apple.com/app/pomodoro-timer-lite/id6748662476
 
 ---
 
@@ -30,7 +30,7 @@
 
 **Topics/Tags**: `productivity, mac, focus, time-management, pomodoro, open-source, menubar`
 
-**Website**: https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
+**Website**: https://apps.apple.com/app/pomodoro-timer-lite/id6748662476
 
 **Social Links**: `https://github.com/happylaodu/PomodoroTimer`
 
@@ -51,7 +51,7 @@ v1.3: Settings panel, auto-start, improved tracking
 
 Perfect for developers & students!
 
-📦 https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
+📦 https://apps.apple.com/app/pomodoro-timer-lite/id6748662476
 💻 https://github.com/happylaodu/PomodoroTimer
 ```
 
@@ -132,7 +132,7 @@ Thanks for the suggestion! I'm keeping a list of feature requests. The goal is t
 • 支持自动开始下一轮工作
 • 界面优化
 
-App Store: https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
+App Store: https://apps.apple.com/app/pomodoro-timer-lite/id6748662476
 开源地址: https://github.com/happylaodu/PomodoroTimer
 
 欢迎试用，有任何建议都可以在 GitHub 提 issue！
@@ -172,7 +172,7 @@ I built a minimal Pomodoro timer that lives in your macOS menu bar. Just shipped
 **Why I built it:**
 I wanted a Pomodoro timer that's simple, lightweight, and respects privacy. Most apps are either bloated or subscription-based, so I made this one open source and free.
 
-App Store: https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
+App Store: https://apps.apple.com/app/pomodoro-timer-lite/id6748662476
 GitHub (open source): https://github.com/happylaodu/PomodoroTimer
 
 Would love to hear your feedback! 🍅
@@ -198,7 +198,7 @@ For anyone looking for a simple Pomodoro timer on Mac, I built one that's:
 
 Perfect for the Pomodoro Technique - 25 min work, 5 min rest cycles.
 
-Download: https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
+Download: https://apps.apple.com/app/pomodoro-timer-lite/id6748662476
 Source code: https://github.com/happylaodu/PomodoroTimer
 
 Happy to answer any questions!
@@ -235,7 +235,7 @@ After using bloated Pomodoro apps for years, I decided to build my own.
 **Result:**
 Just launched v1.3 on the App Store!
 
-App Store: https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
+App Store: https://apps.apple.com/app/pomodoro-timer-lite/id6748662476
 GitHub: https://github.com/happylaodu/PomodoroTimer
 
 Would love feedback from fellow makers! 🚀
@@ -271,7 +271,7 @@ Would love feedback from fellow makers! 🚀
 
 5. **开源**：代码在 GitHub 上公开，可以自己编译，没有后门
 
-App Store 链接：https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
+App Store 链接：https://apps.apple.com/app/pomodoro-timer-lite/id6748662476
 GitHub: https://github.com/happylaodu/PomodoroTimer
 
 作为一个番茄工作法的重度用户（每天 8-10 个番茄钟），试过很多 App，这个是我用下来最简洁的。没有花里胡哨的功能，就是好好做个计时器。
@@ -320,7 +320,7 @@ GitHub: https://github.com/happylaodu/PomodoroTimer
 
 ## 下载
 
-App Store: https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
+App Store: https://apps.apple.com/app/pomodoro-timer-lite/id6748662476
 开源地址: https://github.com/happylaodu/PomodoroTimer
 
 欢迎试用和反馈！
@@ -360,7 +360,7 @@ App Store: https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
 不用担心突然收费或有广告
 
 App Store搜：Pomodoro Timer Lite
-或者访问：https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
+或者访问：https://apps.apple.com/app/pomodoro-timer-lite/id6748662476
 
 #Mac软件 #效率工具 #番茄工作法 #学习方法 #考研 #学生党 #打工人 #专注力 #时间管理 #免费软件
 ```
@@ -448,7 +448,7 @@ Technical details:
 - UserDefaults for persistence
 - Charts framework for visualizations
 
-App Store: https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
+App Store: https://apps.apple.com/app/pomodoro-timer-lite/id6748662476
 GitHub: https://github.com/happylaodu/PomodoroTimer
 
 Happy to answer any questions about the implementation or design decisions!
@@ -492,7 +492,7 @@ Considered it, but menu bar integration is a core feature. On iOS, it would need
 
 对我来说很重要，因为现在还没有任何评分 😅
 
-App Store 链接：https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
+App Store 链接：https://apps.apple.com/app/pomodoro-timer-lite/id6748662476
 
 谢谢！🙏
 ```
@@ -506,7 +506,7 @@ I recently launched a free Pomodoro timer app for Mac on the App Store!
 
 Would you mind checking it out and leaving a rating if you find it useful? Honest feedback is much appreciated - it really helps with visibility.
 
-App Store: https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
+App Store: https://apps.apple.com/app/pomodoro-timer-lite/id6748662476
 
 Thanks! 🙏
 ```
@@ -593,4 +593,4 @@ Thanks! 🙏
 
 **创建时间**: 2026-02-01
 **状态**: ✅ 准备就绪，等待 v1.3 审核通过
-**App Store 链接**: https://apps.apple.com/cn/app/pomodoro-timer-lite/id6748662476
+**App Store 链接**: https://apps.apple.com/app/pomodoro-timer-lite/id6748662476
