@@ -2,6 +2,34 @@
 
 ## Pending Ideas
 
+### Idea-18: [Feature] Add Charts to PDF Reports
+**Created**: 2026-02-26
+
+Include visual charts in exported PDF reports for better data visualization:
+- Add bar chart or line chart to PDF reports (Weekly/Monthly/All-Time)
+- Chart should match the data shown in the daily breakdown table
+- Options:
+  - Bar chart: Similar to existing in-app chart, shows sessions per day/week
+  - Line chart: Shows trends over time
+- Place chart between summary statistics and daily breakdown table
+- Use Core Graphics to render chart directly in PDF
+- Maintain professional appearance and consistent styling
+- Priority: Medium (enhances PDF report value)
+
+### Idea-17: [Feature] Enhanced Chart Time Range Options
+**Created**: 2026-02-26
+
+Add flexible time range selection to the usage statistics chart:
+- Currently: Fixed 7-day view only
+- Proposed: Three view options for users to toggle between
+  - **Last 7 Days**: Daily bars (current implementation)
+  - **Last 30 Days**: Daily bars showing one month of data
+  - **All-Time Overview**: Weekly aggregated bars (each bar = 1 week total)
+- UI: Add segmented control or dropdown to switch between views
+- Maintain consistent chart styling and layout
+- Preserve existing 7-day default view for backward compatibility
+- Priority: Medium (enhances data visibility for long-term users)
+
 ### Idea-15: [Feature] Achievement System
 **Created**: 2026-02-24
 
