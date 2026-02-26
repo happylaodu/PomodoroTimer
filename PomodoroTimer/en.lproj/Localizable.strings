@@ -48,7 +48,7 @@
 "Show Window" = "Show Window";
 "Start/Pause" = "Start/Pause";
 "Switch Mode" = "Switch Mode";
-"💡 Tip: If you don't see the tomato icon in the menu bar, use ⌘⇧T to show the window and locate the icon. To reposition: hold ⌘ and drag less-used icons to the left (hidden area) to make room for frequently-used apps." = "💡 Tip: If you don't see the tomato icon in the menu bar, use ⌘⇧T to show the window and locate the icon. To reposition: hold ⌘ and drag less-used icons to the left (hidden area) to make room for frequently-used apps.";
+"💡 Tip: If you don't see the tomato icon in the menu bar, use ⌘⇧T to show the window and locate the icon. To reposition: hold ⌘ and drag less-used icons to the left (hidden area) to make room for frequently-used apps." = "💡 Tip: If you don't see the tomato icon in the menu bar, use ⌘ ⇧ T to show the window and locate the icon. To reposition: hold ⌘ and drag less-used icons to the left (hidden area) to make room for frequently-used apps.";
 
 /* StatusBarController.swift */
 "Quit Pomodoro Timer" = "Quit Pomodoro Timer";

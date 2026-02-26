@@ -125,7 +125,7 @@ struct SettingsView: View {
                             Text(NSLocalizedString("Show Window", comment: ""))
                                 .frame(width: 100, alignment: .leading)
                             Spacer()
-                            Text("⌘⇧T")
+                            Text("⌘ ⇧ T")
                                 .font(.system(.body, design: .monospaced))
                                 .foregroundColor(.secondary)
                         }
@@ -133,7 +133,7 @@ struct SettingsView: View {
                             Text(NSLocalizedString("Start/Pause", comment: ""))
                                 .frame(width: 100, alignment: .leading)
                             Spacer()
-                            Text("⌘⇧P")
+                            Text("⌘ ⇧ P")
                                 .font(.system(.body, design: .monospaced))
                                 .foregroundColor(.secondary)
                         }
@@ -141,7 +141,7 @@ struct SettingsView: View {
                             Text(NSLocalizedString("Reset", comment: ""))
                                 .frame(width: 100, alignment: .leading)
                             Spacer()
-                            Text("⌘⇧R")
+                            Text("⌘ ⇧ R")
                                 .font(.system(.body, design: .monospaced))
                                 .foregroundColor(.secondary)
                         }
@@ -149,7 +149,7 @@ struct SettingsView: View {
                             Text(NSLocalizedString("Switch Mode", comment: ""))
                                 .frame(width: 100, alignment: .leading)
                             Spacer()
-                            Text("⌘⇧M")
+                            Text("⌘ ⇧ M")
                                 .font(.system(.body, design: .monospaced))
                                 .foregroundColor(.secondary)
                         }
