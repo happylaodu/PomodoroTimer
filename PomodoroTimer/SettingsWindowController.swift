@@ -22,7 +22,6 @@ class SettingsWindowController: NSObject {
         newWindow.setContentSize(NSSize(width: 440, height: 780))
         newWindow.styleMask = [.titled, .closable]
         newWindow.isReleasedWhenClosed = false
-        newWindow.level = .floating  // Ensure window appears on top
         newWindow.center()
 
         self.window = newWindow
