@@ -48,7 +48,7 @@
 "Show Window" = "显示窗口";
 "Start/Pause" = "开始/暂停";
 "Switch Mode" = "切换模式";
-"💡 Tip: If you don't see the tomato icon in the menu bar, use ⌘⇧T to show the window and locate the icon. To reposition: hold ⌘ and drag less-used icons to the left (hidden area) to make room for frequently-used apps." = "💡 提示：如果在菜单栏没有看到番茄图标，可以用 ⌘⇧T 呼出窗口来定位图标位置。调整位置：按住 ⌘ 将不常用图标拖到左侧（隐藏区域），为常用应用腾出空间。";
+"💡 Tip: If you don't see the tomato icon in the menu bar, use ⌘⇧T to show the window and locate the icon. To reposition: hold ⌘ and drag less-used icons to the left (hidden area) to make room for frequently-used apps." = "💡 提示：如果在菜单栏没有看到番茄图标，可以用 ⌘ ⇧ T 呼出窗口来定位图标位置。调整位置：按住 ⌘ 将不常用图标拖到左侧（隐藏区域），为常用应用腾出空间。";
 
 /* StatusBarController.swift */
 "Quit Pomodoro Timer" = "退出番茄计时器";
