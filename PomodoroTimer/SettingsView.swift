@@ -34,7 +34,7 @@ struct SettingsView: View {
                         .font(.title3).bold().foregroundColor(.accentColor)
                         .padding(.bottom, 4)
                     Toggle(NSLocalizedString("Start automatically when computer starts", comment: ""), isOn: $launchAtLogin)
-                        .onChange(of: launchAtLogin) { _, newValue in
+                        .onChange(of: launchAtLogin) { newValue in
                             updateLaunchAtLogin(enabled: newValue)
                         }
                     Toggle(NSLocalizedString("Auto Start Work on First Launch Each Day", comment: ""), isOn: $autoStartWork)
@@ -64,7 +64,7 @@ struct SettingsView: View {
                     }
                     .disabled(!soundEnabled)
                     .foregroundStyle(soundEnabled ? .primary : .secondary)
-                    .onChange(of: notificationSound) { _, newValue in
+                    .onChange(of: notificationSound) { newValue in
                         previewSound(newValue)
                     }
                 }

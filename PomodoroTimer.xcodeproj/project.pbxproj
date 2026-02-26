@@ -27,8 +27,6 @@
 		D0D1F1262E21B81A0046C94F /* PomodoroTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PomodoroTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0D1F1342E21B81C0046C94F /* PomodoroTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PomodoroTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0D1F13E2E21B81C0046C94F /* PomodoroTimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PomodoroTimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DCDE0C2DD2154E3FBB5B8683 /* Localizable.strings in Resources */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		37518E2ABFE74CBE82FBFA8A /* Localizable.strings in Resources */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -223,24 +221,11 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXVariantGroup section */
-		5935D509EAE04B30953CE2EF /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DCDE0C2DD2154E3FBB5B8683 /* Localizable.strings */,
-				37518E2ABFE74CBE82FBFA8A /* Localizable.strings */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-	/* End PBXVariantGroup section */
-
 /* Begin PBXResourcesBuildPhase section */
 		D0D1F1242E21B81A0046C94F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D45B40055613419E8762FF30 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,7 +233,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D45B40055613419E8762FF30 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,7 +240,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D45B40055613419E8762FF30 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +423,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.brightjune.PomodoroTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -469,6 +453,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.brightjune.PomodoroTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";

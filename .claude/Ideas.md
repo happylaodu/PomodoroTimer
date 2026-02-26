@@ -2,25 +2,28 @@
 
 ## Pending Ideas
 
-### Idea-14: [Feature] iPadOS and iOS Support
-**Created**: 2026-02-07
+### Idea-16: [Feature] Statistics Export
+**Created**: 2026-02-24
 
-Add support for iPadOS and iOS platforms:
-- Adapt UI for iPad and iPhone screens
-- Handle platform-specific differences (no menu bar on iOS)
-- Consider touch interface adaptations
-- Test on different device sizes
-- Potentially separate apps or universal binary
+Implement export functionality for Pomodoro statistics:
+- Export data to CSV format for spreadsheet analysis
+- Export data to PDF format for reports
+- Weekly report generation with summary and trends
+- Monthly report generation with detailed statistics
+- Include metrics: total sessions, work/rest ratio, productivity trends
+- Priority: Medium (planned for v1.5)
 
-### Idea-12: [Research] Focus Mode Integration
-**Created**: 2026-01-31
+### Idea-15: [Feature] Achievement System
+**Created**: 2026-02-24
 
-Research the feasibility of integrating with macOS Focus Mode:
-- Automatically enable Do Not Disturb during work sessions
-- Previous attempts (private APIs, AppleScript, Shortcuts) were unstable or impractical
-- Continue exploring alternative implementation approaches
-- Possible new directions: System Extensions, Shortcuts.app automation
-- Priority: Low (research-oriented, may not be feasible)
+Implement gamification through achievement badges to increase user engagement:
+- 7-day streak achievement → unlock special badge
+- 100 Pomodoro sessions milestone → unlock special icon
+- Other achievements: first session, 30-day streak, 500 sessions, etc.
+- Display achievements in app (Settings or dedicated view)
+- Local storage for achievement data
+- Increases motivation and retention
+- Priority: Medium (planned for v1.5)
 
 ### Idea-13: [Improvement] Translate All Chinese Content in Repo to English
 **Created**: 2026-02-01
@@ -36,6 +39,58 @@ Update all files in the repository that contain Chinese text to use only English
 <!-- New ideas will be added here -->
 
 ## Completed Ideas
+
+### Idea-12: [Research] Focus Mode Integration
+**Created**: 2026-01-31
+**Completed**: 2026-02-24
+
+Successfully completed comprehensive research on macOS Focus Mode integration feasibility:
+
+**Research findings**:
+1. **No official API exists** for programmatically controlling Focus Mode (enable/disable)
+2. **Available APIs are read-only**:
+   - `INFocusStatusCenter` - Can READ Focus status (requires Communication Notifications entitlement)
+   - Focus Filters API - Can REACT to Focus changes and filter app content
+   - Cannot programmatically enable/disable Focus Mode
+
+3. **Workarounds investigated**:
+   - Shortcuts automation: Requires manual user setup, not seamless
+   - Reading system files: Violates App Store sandboxing policies
+   - AppleScript/UI automation: Unreliable and fragile
+   - Private APIs: Violates App Store policies
+   - System Extensions: Not applicable to Focus Mode control
+
+4. **App Store compliance**: All workarounds violate App Store policies or require impractical user setup
+
+**Recommendation**: **Not feasible** for App Store distribution
+
+**Alternatives documented**:
+1. User education - Guide users to set up native macOS Focus automation
+2. In-app notification muting - Control only PomodoroTimer's notifications
+3. Optional Shortcuts integration for power users
+
+**Testing performed**:
+1. ✅ Shortcuts automation - VERIFIED WORKING:
+   - Created "Enable Do Not Disturb" and "Disable Do Not Disturb" shortcuts
+   - Both execute successfully via `shortcuts run "<name>"`
+   - Technically viable but requires manual user setup
+
+2. ⚠️ INFocusStatusCenter API - TESTED BUT NOT VIABLE:
+   - Added `NSFocusStatusUsageDescription` to Info.plist
+   - Authorization granted (status = 3)
+   - Error: `DNDErrorDomain Code=1004 "App is missing Communication Notifications entitlement"`
+   - Requires special entitlement only granted to communication apps
+   - App Store rejection risk: HIGH
+
+**Deliverable**:
+- Created comprehensive research document: `Docs/Focus-Mode-Integration-Research.md`
+- Documented all findings, API examples, workarounds, and alternatives
+- Included real-world test results and verification data
+- Included references to official Apple documentation and community solutions
+
+**Conclusion**: Feature will not be implemented due to lack of official API support and Communication Notifications entitlement requirement. Recommended alternatives (user education, in-app muting) provide better user experience while remaining App Store compliant.
+
+---
 
 ### Idea-10: [Feature] Global Keyboard Shortcuts
 **Created**: 2026-01-31
@@ -296,6 +351,22 @@ The new-idea command defaults to no parameters, but users can optionally add a g
 ---
 
 <!-- Rejected ideas will be moved here, including rejection reasons -->
+
+---
+
+## Deferred to v2.0
+
+### Idea-14: [Feature] iPadOS and iOS Support
+**Created**: 2026-02-07
+**Deferred**: 2026-02-19
+**Reason**: Too large scope for v1.5. Should focus on macOS growth and user validation first. iOS support requires major UI/UX redesign (no menu bar, touch interface) and should be considered for v2.0 major release when macOS version has proven product-market fit (500-1000+ monthly downloads).
+
+Original scope:
+- Adapt UI for iPad and iPhone screens
+- Handle platform-specific differences (no menu bar on iOS)
+- Consider touch interface adaptations
+- Test on different device sizes
+- Potentially separate apps or universal binary
 
 ---
 
