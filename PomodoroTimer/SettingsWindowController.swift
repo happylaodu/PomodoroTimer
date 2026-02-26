@@ -30,9 +30,10 @@ class SettingsWindowController: NSObject {
         newWindow.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
 
-        // Force view refresh after window is shown
-        DispatchQueue.main.async {
-            hostingController.rootView = SettingsView(timer: self.timer)
-        }
+        // Note: Removed force view refresh to avoid layout recursion warning
+        // Creating new window instance each time should be sufficient for state refresh
+        // DispatchQueue.main.async {
+        //     hostingController.rootView = SettingsView(timer: self.timer)
+        // }
     }
 }
