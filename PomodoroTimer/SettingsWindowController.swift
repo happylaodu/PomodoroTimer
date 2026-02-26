@@ -19,7 +19,7 @@ class SettingsWindowController: NSObject {
         let hostingController = NSHostingController(rootView: SettingsView(timer: timer))
         let newWindow = NSWindow(contentViewController: hostingController)
         newWindow.title = NSLocalizedString("Settings", comment: "Settings window title")
-        newWindow.setContentSize(NSSize(width: 440, height: 780))
+        newWindow.setContentSize(NSSize(width: 440, height: 880))
         newWindow.styleMask = [.titled, .closable]
         newWindow.isReleasedWhenClosed = false
         newWindow.center()
