@@ -11,6 +11,8 @@ import ServiceManagement
 import AppKit
 
 struct SettingsView: View {
+    var timer: PomodoroTimer?
+
     @AppStorage("launchAtLogin") private var launchAtLogin = false
     @AppStorage("autoStartWork") private var autoStartWork = false
     @AppStorage("autoStartRest") private var autoStartRest = false
@@ -82,6 +84,36 @@ struct SettingsView: View {
                     Stepper(String(format: NSLocalizedString("Long Rest Duration: %d", comment: ""), longRestDuration), value: $longRestDuration, in: 10...60)
                         .disabled(!enableLongRest)
                         .foregroundStyle(enableLongRest ? .primary : .secondary)
+                }
+
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(NSLocalizedString("📊 Statistics Export", comment: ""))
+                        .font(.title3).bold().foregroundColor(.accentColor)
+                        .padding(.bottom, 4)
+
+                    HStack {
+                        Button(NSLocalizedString("Export to CSV", comment: "")) {
+                            exportCSV()
+                        }
+                        .buttonStyle(.bordered)
+
+                        Button(NSLocalizedString("Weekly Report (PDF)", comment: "")) {
+                            exportPDF(reportType: .weekly)
+                        }
+                        .buttonStyle(.bordered)
+                    }
+
+                    HStack {
+                        Button(NSLocalizedString("Monthly Report (PDF)", comment: "")) {
+                            exportPDF(reportType: .monthly)
+                        }
+                        .buttonStyle(.bordered)
+
+                        Button(NSLocalizedString("All-Time Report (PDF)", comment: "")) {
+                            exportPDF(reportType: .all)
+                        }
+                        .buttonStyle(.bordered)
+                    }
                 }
 
                 VStack(alignment: .leading, spacing: 10) {
@@ -165,6 +197,40 @@ struct SettingsView: View {
                 sound.play()
             }
         }
+    }
+
+    private func exportCSV() {
+        guard let timer = timer else {
+            showExportAlert(title: "Error", message: "Timer not available")
+            return
+        }
+
+        StatisticsExporter.saveCSVToFile(
+            dailyHistory: timer.dailyHistory,
+            totalSessions: timer.totalWorkSessions
+        )
+    }
+
+    private func exportPDF(reportType: StatisticsExporter.ReportType) {
+        guard let timer = timer else {
+            showExportAlert(title: "Error", message: "Timer not available")
+            return
+        }
+
+        StatisticsExporter.exportToPDF(
+            dailyHistory: timer.dailyHistory,
+            totalSessions: timer.totalWorkSessions,
+            reportType: reportType
+        )
+    }
+
+    private func showExportAlert(title: String, message: String) {
+        let alert = NSAlert()
+        alert.messageText = title
+        alert.informativeText = message
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "OK")
+        alert.runModal()
     }
 }
 

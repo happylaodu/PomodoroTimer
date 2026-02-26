@@ -57,3 +57,10 @@
 "🍅 Pomodoro Session Ended" = "🍅 番茄钟结束";
 "Rest is over. Time to focus!" = "休息结束，开始专注！";
 "Work completed. Take a break!" = "工作完成，休息一下吧！";
+
+/* Statistics Export */
+"📊 Statistics Export" = "📊 统计数据导出";
+"Export to CSV" = "导出为 CSV";
+"Weekly Report (PDF)" = "每周报告（PDF）";
+"Monthly Report (PDF)" = "每月报告（PDF）";
+"All-Time Report (PDF)" = "总体报告（PDF）";

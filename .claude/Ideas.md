@@ -2,17 +2,6 @@
 
 ## Pending Ideas
 
-### Idea-16: [Feature] Statistics Export
-**Created**: 2026-02-24
-
-Implement export functionality for Pomodoro statistics:
-- Export data to CSV format for spreadsheet analysis
-- Export data to PDF format for reports
-- Weekly report generation with summary and trends
-- Monthly report generation with detailed statistics
-- Include metrics: total sessions, work/rest ratio, productivity trends
-- Priority: Medium (planned for v1.5)
-
 ### Idea-15: [Feature] Achievement System
 **Created**: 2026-02-24
 
@@ -39,6 +28,75 @@ Update all files in the repository that contain Chinese text to use only English
 <!-- New ideas will be added here -->
 
 ## Completed Ideas
+
+### Idea-16: [Feature] Statistics Export
+**Created**: 2026-02-24
+**Completed**: 2026-02-26
+
+Successfully implemented comprehensive statistics export functionality with CSV and PDF report generation:
+
+**What was done:**
+
+1. Created StatisticsExporter class with export capabilities:
+   - CSV export: Date, Sessions, Cumulative Total columns
+   - PDF export: Professional reports with summary statistics
+   - Support for Weekly (last 7 days), Monthly (last 30 days), and All-Time reports
+   - Uses macOS NSSavePanel for user-friendly file saving
+
+2. Added Statistics Export section to Settings:
+   - "Export to CSV" button - exports all historical data to spreadsheet format
+   - "Weekly Report (PDF)" button - generates PDF report for last 7 days
+   - "Monthly Report (PDF)" button - generates PDF report for last 30 days
+   - "All-Time Report (PDF)" button - generates comprehensive PDF report
+
+3. PDF report features:
+   - Professional layout with title, date, and summary section
+   - Summary statistics: total sessions, days tracked, average per day, most productive day
+   - Daily breakdown table with dates and session counts
+   - Uses Core Graphics for proper PDF rendering on macOS
+   - Automatic file naming with date stamp
+
+4. Updated Settings window:
+   - Increased height to 780px to accommodate new section
+   - Export section placed before Keyboard Shortcuts
+   - All buttons use bordered style for consistency
+
+5. Added localization strings:
+   - English: "📊 Statistics Export", "Export to CSV", "Weekly Report (PDF)", etc.
+   - Chinese: "📊 统计数据导出", "导出为 CSV", "每周报告（PDF）", etc.
+
+6. Architecture improvements:
+   - SettingsView now accepts optional PomodoroTimer parameter
+   - SettingsWindowController stores weak reference to timer
+   - AppDelegate passes timer to SettingsWindowController on launch
+   - Proper separation of concerns between UI and export logic
+
+**Implementation details:**
+- CSV format: Simple 3-column format (Date, Sessions, Cumulative Total)
+- PDF generation: Uses CGContext and CGDataConsumer for macOS compatibility
+- Report filtering: Calendar-based date filtering for weekly/monthly reports
+- Statistics calculation: Total sessions, average, maximum, day count
+- Error handling: Alert dialogs for export failures
+- File naming: Automatic naming with report type and date
+
+**Files created/modified:**
+- New: `StatisticsExporter.swift` - Export functionality
+- Modified: `SettingsView.swift` - Added export UI section and export methods
+- Modified: `SettingsWindowController.swift` - Pass timer instance to SettingsView
+- Modified: `AppDelegate.swift` - Set timer reference in SettingsWindowController
+- Modified: `en.lproj/Localizable.strings` - Added English strings
+- Modified: `zh-Hans.lproj/Localizable.strings` - Added Chinese strings
+
+**Testing:**
+- Build succeeded ✓
+- All files properly integrated into Xcode project ✓
+
+**Next steps:**
+- User testing of export functionality
+- Consider adding email export option in future version
+- Consider adding chart images to PDF reports
+
+---
 
 ### Idea-12: [Research] Focus Mode Integration
 **Created**: 2026-01-31
