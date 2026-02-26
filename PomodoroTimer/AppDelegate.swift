@@ -58,8 +58,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
 
+        // Check if this is the first launch
+        let isFirstLaunch = !UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
+        if isFirstLaunch {
+            UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
+
+            // Show popover on first launch to help user find the menu bar icon
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                self?.statusBar?.showPopover()
+            }
+        }
+
         // Register/unregister launch at login based on user preference
-        let launchAtLogin = UserDefaults.standard.bool(forKey: "launchAtLogin")
+        // For first launch, launchAtLogin defaults to true
+        let launchAtLogin = UserDefaults.standard.object(forKey: "launchAtLogin") as? Bool ?? true
         do {
             if launchAtLogin {
                 try SMAppService.mainApp.register()
