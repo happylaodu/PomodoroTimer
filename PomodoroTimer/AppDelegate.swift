@@ -30,6 +30,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self?.statusBar?.closePopover()
         }
 
+        // Pass timer to SettingsWindowController for statistics export
+        SettingsWindowController.shared.timer = self.timer
+
         // Register global keyboard shortcuts
         KeyboardShortcutManager.shared.timer = self.timer
         KeyboardShortcutManager.shared.statusBar = self.statusBar

@@ -57,3 +57,10 @@
 "🍅 Pomodoro Session Ended" = "🍅 Pomodoro Session Ended";
 "Rest is over. Time to focus!" = "Rest is over. Time to focus!";
 "Work completed. Take a break!" = "Work completed. Take a break!";
+
+/* Statistics Export */
+"📊 Statistics Export" = "📊 Statistics Export";
+"Export to CSV" = "Export to CSV";
+"Weekly Report (PDF)" = "Weekly Report (PDF)";
+"Monthly Report (PDF)" = "Monthly Report (PDF)";
+"All-Time Report (PDF)" = "All-Time Report (PDF)";
