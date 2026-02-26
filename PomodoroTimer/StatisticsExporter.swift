@@ -101,19 +101,15 @@ class StatisticsExporter {
         let headingFont = NSFont.boldSystemFont(ofSize: 16)
         let bodyFont = NSFont.systemFont(ofSize: 12)
 
-        // Flip coordinate system for proper PDF rendering
-        context.translateBy(x: 0, y: rect.height)
-        context.scaleBy(x: 1.0, y: -1.0)
-
-        var yPosition: CGFloat = rect.height - 50
+        var yPosition: CGFloat = 50
 
         // Title
         let titleAttributes: [NSAttributedString.Key: Any] = [
             .font: titleFont,
             .foregroundColor: NSColor.black
         ]
-        drawText(context: context, text: title, attributes: titleAttributes, at: CGPoint(x: 50, y: yPosition))
-        yPosition -= 40
+        drawText(context: context, text: title, attributes: titleAttributes, at: CGPoint(x: 50, y: yPosition), pageHeight: rect.height)
+        yPosition += 40
 
         // Date range
         let dateRange = "Generated: \(currentDateString())"
@@ -121,8 +117,8 @@ class StatisticsExporter {
             .font: bodyFont,
             .foregroundColor: NSColor.gray
         ]
-        drawText(context: context, text: dateRange, attributes: dateAttributes, at: CGPoint(x: 50, y: yPosition))
-        yPosition -= 30
+        drawText(context: context, text: dateRange, attributes: dateAttributes, at: CGPoint(x: 50, y: yPosition), pageHeight: rect.height)
+        yPosition += 30
 
         // Summary section
         let summaryTitle = "Summary"
@@ -130,8 +126,8 @@ class StatisticsExporter {
             .font: headingFont,
             .foregroundColor: NSColor.black
         ]
-        drawText(context: context, text: summaryTitle, attributes: summaryAttributes, at: CGPoint(x: 50, y: yPosition))
-        yPosition -= 25
+        drawText(context: context, text: summaryTitle, attributes: summaryAttributes, at: CGPoint(x: 50, y: yPosition), pageHeight: rect.height)
+        yPosition += 25
 
         // Statistics
         let stats = calculateStatistics(data: data, totalSessions: totalSessions)
@@ -141,40 +137,42 @@ class StatisticsExporter {
         ]
 
         for line in stats {
-            drawText(context: context, text: line, attributes: bodyAttributes, at: CGPoint(x: 70, y: yPosition))
-            yPosition -= 20
+            drawText(context: context, text: line, attributes: bodyAttributes, at: CGPoint(x: 70, y: yPosition), pageHeight: rect.height)
+            yPosition += 20
         }
 
-        yPosition -= 20
+        yPosition += 20
 
         // Daily breakdown
         let breakdownTitle = "Daily Breakdown"
-        drawText(context: context, text: breakdownTitle, attributes: summaryAttributes, at: CGPoint(x: 50, y: yPosition))
-        yPosition -= 25
+        drawText(context: context, text: breakdownTitle, attributes: summaryAttributes, at: CGPoint(x: 50, y: yPosition), pageHeight: rect.height)
+        yPosition += 25
 
         // Table header
-        drawText(context: context, text: "Date                    Sessions", attributes: bodyAttributes, at: CGPoint(x: 70, y: yPosition))
-        yPosition -= 20
+        drawText(context: context, text: "Date                    Sessions", attributes: bodyAttributes, at: CGPoint(x: 70, y: yPosition), pageHeight: rect.height)
+        yPosition += 20
 
         // Table rows
         for (date, count) in data {
             let rowText = "\(date)         \(count)"
-            drawText(context: context, text: rowText, attributes: bodyAttributes, at: CGPoint(x: 70, y: yPosition))
-            yPosition -= 18
+            drawText(context: context, text: rowText, attributes: bodyAttributes, at: CGPoint(x: 70, y: yPosition), pageHeight: rect.height)
+            yPosition += 18
 
             // Stop if we run out of space
-            if yPosition < 50 {
+            if yPosition > rect.height - 50 {
                 break
             }
         }
     }
 
     /// Helper to draw text in PDF context
-    private static func drawText(context: CGContext, text: String, attributes: [NSAttributedString.Key: Any], at point: CGPoint) {
+    private static func drawText(context: CGContext, text: String, attributes: [NSAttributedString.Key: Any], at point: CGPoint, pageHeight: CGFloat) {
         let attributedString = NSAttributedString(string: text, attributes: attributes)
         let line = CTLineCreateWithAttributedString(attributedString)
 
-        context.textPosition = point
+        // Convert from top-left origin to bottom-left origin (PDF coordinate system)
+        let pdfY = pageHeight - point.y
+        context.textPosition = CGPoint(x: point.x, y: pdfY)
         CTLineDraw(line, context)
     }
 
