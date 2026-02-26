@@ -13,7 +13,7 @@ import AppKit
 struct SettingsView: View {
     var timer: PomodoroTimer?
 
-    @AppStorage("launchAtLogin") private var launchAtLogin = false
+    @AppStorage("launchAtLogin") private var launchAtLogin = true
     @AppStorage("autoStartWork") private var autoStartWork = false
     @AppStorage("autoStartRest") private var autoStartRest = false
     @AppStorage("autoStartNextCycle") private var autoStartNextCycle = false
