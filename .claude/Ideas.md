@@ -2,20 +2,6 @@
 
 ## Pending Ideas
 
-### Idea-18: [Feature] Add Charts to PDF Reports
-**Created**: 2026-02-26
-
-Include visual charts in exported PDF reports for better data visualization:
-- Add bar chart or line chart to PDF reports (Weekly/Monthly/All-Time)
-- Chart should match the data shown in the daily breakdown table
-- Options:
-  - Bar chart: Similar to existing in-app chart, shows sessions per day/week
-  - Line chart: Shows trends over time
-- Place chart between summary statistics and daily breakdown table
-- Use Core Graphics to render chart directly in PDF
-- Maintain professional appearance and consistent styling
-- Priority: Medium (enhances PDF report value)
-
 ### Idea-17: [Feature] Enhanced Chart Time Range Options
 **Created**: 2026-02-26
 
@@ -56,6 +42,73 @@ Update all files in the repository that contain Chinese text to use only English
 <!-- New ideas will be added here -->
 
 ## Completed Ideas
+
+### Idea-18: [Feature] Add Charts to PDF Reports
+**Created**: 2026-02-26
+**Completed**: 2026-02-27
+
+Successfully implemented comprehensive chart visualization in PDF reports with both daily and weekly views:
+
+**What was done:**
+
+1. Daily bar chart rendering:
+   - Created `drawBarChart()` method using Core Graphics
+   - Chart displays sessions per day matching the daily breakdown table data
+   - Supports all report types: Weekly (7 days), Monthly (30 days), and All-Time
+   - Chart positioned between summary statistics and daily breakdown table
+   - Blue-colored bars matching in-app chart design
+
+2. Weekly overview chart (Monthly/All-Time reports with >7 days):
+   - Automatic weekly data aggregation (week starts on Sunday)
+   - Green-colored bars to differentiate from daily chart
+   - Week labels show start date (MM/DD format)
+   - Helps visualize week-to-week trends
+
+3. Chart visual features:
+   - Y-axis with grid lines and labels showing session counts
+   - X-axis with rotated date labels at -45 degrees for readability
+   - Value labels on top of each bar for exact counts
+   - Professional appearance with proper margins and spacing
+   - Optimized label positioning to avoid overlap
+
+4. PDF pagination improvements:
+   - Multi-page support for complete data display
+   - Smart page breaks to avoid orphaned table headers
+   - Automatic new page creation when space is insufficient
+   - All data rows guaranteed to be included (no truncation)
+
+5. Core Graphics implementation:
+   - PDF coordinate system handling (bottom-left origin)
+   - Automatic scaling based on maximum value in data
+   - Dynamic bar width calculation based on data count
+   - Axes and grid lines for better readability
+   - Text rendering with proper fonts and positioning
+
+**Implementation details:**
+- Weekly aggregation: `aggregateDataByWeek()` groups data by week (Sunday-Saturday)
+- Bar colors: Blue for daily (#0079FF), Green for weekly (#34C759)
+- Chart dimensions: 180pt height, page width minus margins
+- Label offset: 4pt right shift for center alignment
+- Pagination threshold: 120pt remaining space for table header
+
+**Files modified:**
+- Modified: `StatisticsExporter.swift` - Added chart rendering, pagination, and weekly aggregation
+
+**Testing:**
+- Build succeeded ✓
+- Daily charts render correctly in all report types ✓
+- Weekly charts appear only when appropriate ✓
+- Multi-page PDFs generated correctly ✓
+- Label alignment optimized ✓
+
+**User benefits:**
+- Visual representation of productivity trends (daily and weekly)
+- Easier identification of patterns and peaks across different time scales
+- More valuable and professional PDF reports
+- Complete data visibility without truncation
+- Better understanding of work session distribution over time
+
+---
 
 ### Idea-16: [Feature] Statistics Export
 **Created**: 2026-02-24
