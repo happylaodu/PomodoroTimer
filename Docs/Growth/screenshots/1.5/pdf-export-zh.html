@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF导出截图 - v1.5 中文版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro SC', 'PingFang SC', 'Hiragino Sans GB', 'Helvetica Neue', Arial, sans-serif;
+            background: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 1280px;
+            height: 800px;
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .text-section {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 60px 80px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 100%);
+            z-index: 10;
+        }
+
+        .main-title {
+            font-size: 64px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 16px;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 28px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .screenshot-wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin-top: 100px;
+        }
+
+        .screenshot {
+            max-width: 100%;
+            max-height: 580px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .instructions {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            max-width: 340px;
+            z-index: 1000;
+        }
+
+        .instructions h3 {
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+            line-height: 1.6;
+        }
+
+        .instructions button {
+            margin-top: 10px;
+            background: #f6d365;
+            color: #333;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+            font-weight: 600;
+        }
+
+        .instructions button:hover {
+            background: #f4c94d;
+        }
+
+        .instructions.hidden {
+            display: none;
+        }
+
+        .highlight {
+            color: #ffd700;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-section">
+            <h1 class="main-title">导出专业报告</h1>
+            <p class="subtitle">📊 精美图表 • PDF & CSV格式 • 每周、每月、全部时间报告</p>
+        </div>
+
+        <div class="screenshot-wrapper">
+            <img src="pdf-export-zh.png" alt="PDF报告含图表" class="screenshot" id="screenshot">
+        </div>
+    </div>
+
+    <div class="instructions" id="instructions">
+        <h3>📸 截图步骤：</h3>
+        <ol>
+            <li>切换系统语言到<strong>简体中文</strong></li>
+            <li>从设置中导出<strong>月度报告 (PDF)</strong></li>
+            <li>打开生成的PDF文件</li>
+            <li><span class="highlight">重要：</span>调整PDF位置显示：<br>
+                - 报告标题和摘要统计<br>
+                - <strong>每日活动图表</strong>（蓝色柱状图）<br>
+                - <strong>每周概览图表</strong>（绿色柱状图）<br>
+                - 部分每日数据表格
+            </li>
+            <li>保存截图为 <code>pdf-export-zh.png</code></li>
+            <li>刷新此页面</li>
+            <li>点击下方按钮</li>
+            <li>按 <kbd>Cmd+Shift+4</kbd>，再按<kbd>空格</kbd></li>
+            <li>点击浏览器窗口</li>
+        </ol>
+        <button onclick="hideInstructions()">隐藏提示，准备截图</button>
+    </div>
+
+    <script>
+        function hideInstructions() {
+            document.getElementById('instructions').classList.add('hidden');
+        }
+
+        const screenshot = document.getElementById('screenshot');
+        screenshot.onerror = function() {
+            alert('找不到 pdf-export-zh.png，请将PDF截图保存为 pdf-export-zh.png');
+        };
+    </script>
+</body>
+</html>
