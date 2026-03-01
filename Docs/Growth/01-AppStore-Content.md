@@ -9,7 +9,7 @@
 ### 英文版（English U.S.）
 
 ```
-🆕 NEW in v1.4: Full Chinese localization + Global keyboard shortcuts (⌘⇧P/T/R/M)!
+🆕 NEW in v1.5: Statistics Export - CSV & PDF reports (Weekly/Monthly/All-Time)!
 
 Stay focused with the lightest Pomodoro timer for Mac—just under 2MB!
 
@@ -24,13 +24,15 @@ Stay focused with the lightest Pomodoro timer for Mac—just under 2MB!
 • Configure short rest (3-30 min) and long rest (10-60 min)
 • Auto-start work, rest, or next cycle
 • Set rounds before long rest
-• 🆕 Global keyboard shortcuts (⌘⇧P/T/R/M)
-• 🆕 Choose from 12 notification sounds
-• 🆕 Launch at login option
+• Global keyboard shortcuts (⌘⇧P/T/R/M)
+• Choose from 12 notification sounds
+• Launch at login option
 
 📊 TRACK YOUR PRODUCTIVITY
 • Daily, weekly, and total work session counters
 • 7-day productivity chart to visualize trends
+• 🆕 Export data to CSV for spreadsheet analysis
+• 🆕 Generate professional PDF reports (Weekly/Monthly/All-Time)
 • See your progress at a glance
 
 🎨 ELEGANT DESIGN
@@ -50,12 +52,12 @@ Whether you're studying, coding, or writing, Pomodoro Timer Lite keeps you focus
 Download now and start your first focused session! 🍅
 ```
 
-**字符数**: ~1100 字符（限制 4000）
+**字符数**: ~1200 字符（限制 4000）
 
 ### 简体中文版（Simplified Chinese）
 
 ```
-🆕 v1.4 新功能：完整中文支持+全局键盘快捷键（⌘⇧P/T/R/M）！
+🆕 v1.5 新功能：统计数据导出 - CSV 和 PDF 报告（每周/每月/总体）！
 
 Mac 上最轻量的番茄钟应用——仅需 不到2MB！
 
@@ -70,13 +72,15 @@ Mac 上最轻量的番茄钟应用——仅需 不到2MB！
 • 配置短休息（3-30 分钟）和长休息（10-60 分钟）
 • 自动开始工作、休息或下一轮
 • 设置长休息前的工作轮数
-• 🆕 全局键盘快捷键（⌘⇧P/T/R/M）
-• 🆕 12种通知声音可选
-• 🆕 开机自启动选项
+• 全局键盘快捷键（⌘⇧P/T/R/M）
+• 12种通知声音可选
+• 开机自启动选项
 
 📊 追踪你的效率
 • 每日、每周、总计工作时段计数器
 • 7 天生产力图表，可视化趋势
+• 🆕 导出数据为 CSV 格式用于分析
+• 🆕 生成专业 PDF 报告（每周/每月/总体）
 • 一目了然查看进度
 
 🎨 优雅设计
@@ -102,21 +106,21 @@ Mac 上最轻量的番茄钟应用——仅需 不到2MB！
 
 **特点**: 可随时修改，无需新版本审核
 
-### 英文版（v1.4）
+### 英文版（v1.5）
 
 ```
-🆕 v1.4: Chinese localization + Global shortcuts (⌘⇧P/T/R)! 12 sounds, launch at login. Lightest Pomodoro (under 2MB), free, no ads! 🍅
+🆕 v1.5: Statistics Export - CSV & PDF reports (Weekly/Monthly/All-Time)! Lightest Pomodoro (under 2MB), free, no ads! 🍅
 ```
 
-**字符数**: 140 字符（限制 170）✅
+**字符数**: 132 字符（限制 170）✅
 
-### 简体中文版（v1.4）
+### 简体中文版（v1.5）
 
 ```
-🆕 v1.4：中文支持+全局快捷键（⌘⇧P/T/R）！12种声音、自启动。最轻量番茄钟（不到2MB），免费无广告！🍅
+🆕 v1.5：统计导出 - CSV 和 PDF 报告（每周/每月/总体）！最轻量番茄钟（不到2MB），免费无广告！🍅
 ```
 
-**字符数**: 65 字符（限制 170）✅
+**字符数**: 62 字符（限制 170）✅
 
 ---
 
@@ -286,4 +290,5 @@ https://github.com/happylaodu/PomodoroTimer
 ---
 
 **创建时间**: 2026-01-31
-**适用版本**: 1.3+
+**最后更新**: 2026-02-28
+**适用版本**: 1.5+

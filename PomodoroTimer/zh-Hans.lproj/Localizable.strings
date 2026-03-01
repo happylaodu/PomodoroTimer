@@ -64,3 +64,30 @@
 "Weekly Report (PDF)" = "每周报告（PDF）";
 "Monthly Report (PDF)" = "每月报告（PDF）";
 "All-Time Report (PDF)" = "总体报告（PDF）";
+
+/* StatisticsExporter.swift - CSV Export */
+"Export Statistics to CSV" = "导出统计数据为 CSV";
+"Cumulative Total" = "累计总数";
+
+/* StatisticsExporter.swift - PDF Export */
+"Export %@ Report" = "导出%@报告";
+"Export Successful" = "导出成功";
+"Export Failed" = "导出失败";
+"Report exported to %@" = "报告已导出至 %@";
+
+/* PDF Report Content */
+"Weekly" = "每周";
+"Monthly" = "每月";
+"All-Time" = "总体";
+"Generated: %@" = "生成日期：%@";
+"Summary" = "摘要";
+"Total sessions in period: %d" = "周期内总番茄钟：%d";
+"Number of days: %d" = "天数：%d";
+"Average sessions per day: %.1f" = "平均每天番茄钟数：%.1f";
+"Most productive day: %@ (%d sessions)" = "效率最高的一天：%@（%d 个番茄钟）";
+"sessions" = "个番茄钟";
+"All-time total sessions: %d" = "历史总番茄钟：%d";
+"Activity Chart" = "活动图表";
+"Weekly Overview" = "每周概览";
+"Daily Breakdown" = "每日明细";
+"Sessions" = "番茄钟数";

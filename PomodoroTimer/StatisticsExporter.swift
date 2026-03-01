@@ -8,7 +8,10 @@ class StatisticsExporter {
 
     /// Export all statistics to CSV format
     static func exportToCSV(dailyHistory: [String: Int], totalSessions: Int) -> String {
-        var csv = "Date,Sessions,Cumulative Total\n"
+        let dateLabel = NSLocalizedString("Date", comment: "")
+        let sessionsLabel = NSLocalizedString("Sessions", comment: "")
+        let cumulativeLabel = NSLocalizedString("Cumulative Total", comment: "")
+        var csv = "\(dateLabel),\(sessionsLabel),\(cumulativeLabel)\n"
 
         // Sort dates chronologically
         let sortedHistory = dailyHistory.sorted { $0.key < $1.key }
@@ -29,15 +32,27 @@ class StatisticsExporter {
         let savePanel = NSSavePanel()
         savePanel.allowedContentTypes = [.commaSeparatedText]
         savePanel.nameFieldStringValue = "pomodoro_statistics_\(currentDateString()).csv"
-        savePanel.title = "Export Statistics to CSV"
+        savePanel.title = NSLocalizedString("Export Statistics to CSV", comment: "")
 
         savePanel.begin { response in
-            if response == .OK, let url = savePanel.url {
+            guard response == .OK, let url = savePanel.url else { return }
+
+            // Perform file writing on background thread
+            DispatchQueue.global(qos: .userInitiated).async {
                 do {
                     try csv.write(to: url, atomically: true, encoding: .utf8)
-                    showAlert(title: "Export Successful", message: "Statistics exported to \(url.lastPathComponent)")
+
+                    // Show success alert on main thread
+                    DispatchQueue.main.async {
+                        let title = NSLocalizedString("Export Successful", comment: "")
+                        let message = String(format: NSLocalizedString("Report exported to %@", comment: ""), url.lastPathComponent)
+                        showAlert(title: title, message: message)
+                    }
                 } catch {
-                    showAlert(title: "Export Failed", message: error.localizedDescription)
+                    // Show error alert on main thread
+                    DispatchQueue.main.async {
+                        showAlert(title: NSLocalizedString("Export Failed", comment: ""), message: error.localizedDescription)
+                    }
                 }
             }
         }
@@ -52,15 +67,28 @@ class StatisticsExporter {
         let savePanel = NSSavePanel()
         savePanel.allowedContentTypes = [.pdf]
         savePanel.nameFieldStringValue = "pomodoro_\(reportType.rawValue)_report_\(currentDateString()).pdf"
-        savePanel.title = "Export \(reportType.displayName) Report"
+        savePanel.title = String(format: NSLocalizedString("Export %@ Report", comment: ""), reportType.displayName)
 
         savePanel.begin { response in
-            if response == .OK, let url = savePanel.url {
+            guard response == .OK, let url = savePanel.url else { return }
+
+            // Perform file writing on background thread
+            DispatchQueue.global(qos: .userInitiated).async {
                 do {
-                    try pdfData.write(to: url)
-                    showAlert(title: "Export Successful", message: "Report exported to \(url.lastPathComponent)")
+                    // Use atomic write to safely replace existing file
+                    try pdfData.write(to: url, options: .atomic)
+
+                    // Show success alert on main thread
+                    DispatchQueue.main.async {
+                        let title = NSLocalizedString("Export Successful", comment: "")
+                        let message = String(format: NSLocalizedString("Report exported to %@", comment: ""), url.lastPathComponent)
+                        showAlert(title: title, message: message)
+                    }
                 } catch {
-                    showAlert(title: "Export Failed", message: error.localizedDescription)
+                    // Show error alert on main thread
+                    DispatchQueue.main.async {
+                        showAlert(title: NSLocalizedString("Export Failed", comment: ""), message: error.localizedDescription)
+                    }
                 }
             }
         }
@@ -169,7 +197,7 @@ class StatisticsExporter {
         yPosition += 40
 
         // Date range
-        let dateRange = "Generated: \(currentDateString())"
+        let dateRange = String(format: NSLocalizedString("Generated: %@", comment: ""), currentDateString())
         let dateAttributes: [NSAttributedString.Key: Any] = [
             .font: bodyFont,
             .foregroundColor: NSColor.gray
@@ -188,7 +216,7 @@ class StatisticsExporter {
         var y = yPosition
 
         // Summary section
-        let summaryTitle = "Summary"
+        let summaryTitle = NSLocalizedString("Summary", comment: "")
         let summaryAttributes: [NSAttributedString.Key: Any] = [
             .font: headingFont,
             .foregroundColor: NSColor.black
@@ -223,7 +251,7 @@ class StatisticsExporter {
         var y = yPosition
 
         // Chart
-        let chartTitle = "Activity Chart"
+        let chartTitle = NSLocalizedString("Activity Chart", comment: "")
         drawText(context: context, text: chartTitle, attributes: summaryAttributes, at: CGPoint(x: 50, y: y), pageHeight: pageHeight)
         y += 25
 
@@ -243,7 +271,7 @@ class StatisticsExporter {
         var y = yPosition
 
         // Daily breakdown title
-        let breakdownTitle = "Daily Breakdown"
+        let breakdownTitle = NSLocalizedString("Daily Breakdown", comment: "")
         let summaryAttributes: [NSAttributedString.Key: Any] = [
             .font: headingFont,
             .foregroundColor: NSColor.black
@@ -256,7 +284,10 @@ class StatisticsExporter {
             .font: bodyFont,
             .foregroundColor: NSColor.black
         ]
-        drawText(context: context, text: "Date                    Sessions", attributes: bodyAttributes, at: CGPoint(x: 70, y: y), pageHeight: pageHeight)
+        let dateLabel = NSLocalizedString("Date", comment: "")
+        let sessionsLabel = NSLocalizedString("Sessions", comment: "")
+        let headerText = "\(dateLabel)                    \(sessionsLabel)"
+        drawText(context: context, text: headerText, attributes: bodyAttributes, at: CGPoint(x: 70, y: y), pageHeight: pageHeight)
         y += 20
 
         return y
@@ -279,7 +310,7 @@ class StatisticsExporter {
         yPosition += 40
 
         // Date range
-        let dateRange = "Generated: \(currentDateString())"
+        let dateRange = String(format: NSLocalizedString("Generated: %@", comment: ""), currentDateString())
         let dateAttributes: [NSAttributedString.Key: Any] = [
             .font: bodyFont,
             .foregroundColor: NSColor.gray
@@ -532,7 +563,7 @@ class StatisticsExporter {
         var y = yPosition
 
         // Chart title
-        let chartTitle = "Weekly Overview"
+        let chartTitle = NSLocalizedString("Weekly Overview", comment: "")
         drawText(context: context, text: chartTitle, attributes: summaryAttributes, at: CGPoint(x: 50, y: y), pageHeight: pageHeight)
         y += 25
 
@@ -709,15 +740,15 @@ class StatisticsExporter {
         let maxDay = data.max { $0.1 < $1.1 }
 
         var stats: [String] = []
-        stats.append("• Total sessions in period: \(sessionCount)")
-        stats.append("• Number of days: \(days)")
-        stats.append("• Average sessions per day: \(String(format: "%.1f", avgPerDay))")
+        stats.append("• " + String(format: NSLocalizedString("Total sessions in period: %d", comment: ""), sessionCount))
+        stats.append("• " + String(format: NSLocalizedString("Number of days: %d", comment: ""), days))
+        stats.append("• " + String(format: NSLocalizedString("Average sessions per day: %.1f", comment: ""), avgPerDay))
 
         if let max = maxDay {
-            stats.append("• Most productive day: \(max.0) (\(max.1) sessions)")
+            stats.append("• " + String(format: NSLocalizedString("Most productive day: %@ (%d sessions)", comment: ""), max.0, max.1))
         }
 
-        stats.append("• All-time total sessions: \(totalSessions)")
+        stats.append("• " + String(format: NSLocalizedString("All-time total sessions: %d", comment: ""), totalSessions))
 
         return stats
     }
@@ -731,9 +762,9 @@ class StatisticsExporter {
 
         var displayName: String {
             switch self {
-            case .weekly: return "Weekly"
-            case .monthly: return "Monthly"
-            case .all: return "All-Time"
+            case .weekly: return NSLocalizedString("Weekly", comment: "")
+            case .monthly: return NSLocalizedString("Monthly", comment: "")
+            case .all: return NSLocalizedString("All-Time", comment: "")
             }
         }
     }

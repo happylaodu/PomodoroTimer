@@ -376,12 +376,229 @@ if lastDate != today {
 - **Swift**: 隐式（Xcode 16 包含 Swift 5.10+）
 - **部署目标**: macOS 15.5+
 
+## 数据存储和沙箱
+
+### App Sandbox 位置
+
+应用启用了 **App Sandbox**（`com.apple.security.app-sandbox`），所有 UserDefaults 数据存储在：
+
+```
+~/Library/Containers/com.brightjune.PomodoroTimer/Data/Library/Preferences/com.brightjune.PomodoroTimer.plist
+```
+
+⚠️ **重要提示**：
+- 命令行的 `UserDefaults.standard` 访问的是用户全局域，**不是**应用的sandbox
+- 应用内部的 `UserDefaults.standard` 自动指向应用的sandbox domain
+- 调试时必须访问 Containers 目录下的 plist 文件
+
+### 存储的数据字段
+
+| 字段 | 类型 | 说明 | v1.5变化 |
+|------|------|------|----------|
+| `dailyWorkSessions` | Int | 今天完成的番茄钟数 | 无 |
+| `totalWorkSessions` | Int | 历史总番茄钟数 | 无 |
+| `completedRounds` | Int | 今天完成的工作轮数 | 无 |
+| `lastWorkDate` | String | 上次工作日期 (yyyy-MM-dd) | 无 |
+| `dailyHistory` | Data | 每日历史 JSON: `[String: Int]` | 无 |
+| `weeklyWorkSessions` | Int | 本周番茄钟数 | ❌ 已废弃 |
+| `lastWeeklyWorkDate` | String | 上次周记录日期 | ❌ 已废弃 |
+
+### v1.5 重要改动
+
+**`weeklyWorkSessions` 改为计算属性**：
+
+```swift
+var weeklyWorkSessions: Int {
+    // 从 dailyHistory 实时计算当前周的总数
+    // 使用 Calendar.dateInterval(of: .weekOfYear) 获取周边界
+    // 更准确，不依赖手动重置逻辑
+}
+```
+
+**优点**：
+- ✅ 始终准确（从原始数据计算）
+- ✅ 自动适配周定义（周日/周一开始）
+- ✅ 无需维护重置逻辑
+
+## 版本兼容性
+
+### v1.4 → v1.5 升级
+
+**兼容性**: ✅ **完全兼容，无需数据迁移**
+
+| 数据 | v1.4 | v1.5 | 兼容性 |
+|------|------|------|--------|
+| dailyWorkSessions | 存储 | 存储 | ✅ 完全兼容 |
+| totalWorkSessions | 存储 | 存储 | ✅ 完全兼容 |
+| dailyHistory | 存储 | 存储 | ✅ 格式不变 |
+| completedRounds | 存储 | 存储 | ✅ 完全兼容 |
+| weeklyWorkSessions | 存储+更新 | 计算属性 | ⚠️ 忽略旧值 |
+| lastWeeklyWorkDate | 存储 | 不使用 | ⚠️ 忽略 |
+
+**升级流程**：
+1. v1.5 读取 v1.4 的所有必要数据
+2. `dailyHistory` 被正确加载
+3. `weeklyWorkSessions` 从 `dailyHistory` 重新计算（更准确）
+4. 旧的 `weeklyWorkSessions` 值被忽略（安全）
+
+**已知问题**：
+- ⚠️ **不支持降级** (v1.5 → v1.4)：v1.5 不再写入 `weeklyWorkSessions`，降级后v1.4会显示过期数据
+
+### 数据格式
+
+**dailyHistory 格式**：
+```json
+{
+  "2026-02-27": 7,
+  "2026-02-26": 12,
+  "2026-02-25": 14
+}
+```
+
+编码方式：`JSONEncoder().encode([String: Int])` → `Data`
+
+## 测试和调试工具
+
+### 快速备份/恢复（推荐）
+
+```bash
+# 备份当前数据
+swift backup_sandbox_defaults.swift
+
+# 运行测试
+xcodebuild test -scheme PomodoroTimer -destination 'platform=macOS'
+
+# 恢复数据
+swift restore_sandbox_defaults.swift
+```
+
+备份位置：`~/.pomodoro_sandbox_backup.plist`
+
+### 查看数据
+
+```bash
+# 方法1: 使用plutil
+plutil -p ~/Library/Containers/com.brightjune.PomodoroTimer/Data/Library/Preferences/com.brightjune.PomodoroTimer.plist
+
+# 方法2: 运行诊断脚本
+./diagnose.sh
+```
+
+### 写入测试数据
+
+```bash
+# 生成30天假数据（工作日6-15个，周末2-6个）
+cat > /tmp/gen_data.swift << 'EOF'
+// 见 TESTING.md 中的完整脚本
+EOF
+swift /tmp/gen_data.swift
+```
+
+### 调试技巧
+
+1. **检查数据加载**：
+   - 在 `PomodoroTimer.init()` 设置断点
+   - 检查 `dailyHistory` 是否正确解码
+
+2. **验证周计算**：
+   - 检查 `weeklyWorkSessions` getter
+   - 确认 `Calendar.dateInterval(of: .weekOfYear)` 返回正确边界
+
+3. **沙箱问题排查**：
+   ```bash
+   # 检查容器是否存在
+   ls ~/Library/Containers/com.brightjune.PomodoroTimer/
+
+   # 检查plist权限
+   ls -la ~/Library/Containers/com.brightjune.PomodoroTimer/Data/Library/Preferences/
+   ```
+
+## 常见问题和排查
+
+### 问题1: Chart显示空白
+
+**症状**：UI显示"本周：0"，图表空白
+
+**原因**：
+- `dailyHistory` 未加载或为空
+- Sandbox plist中缺少 `dailyHistory` 字段
+
+**排查**：
+```bash
+# 检查是否存在dailyHistory
+plutil -p ~/Library/Containers/com.brightjune.PomodoroTimer/Data/Library/Preferences/com.brightjune.PomodoroTimer.plist | grep dailyHistory
+
+# 应该看到类似：
+# "dailyHistory" => {length = 465, bytes = 0x7b22...}
+```
+
+**修复**：
+1. 确保 `dailyHistory` 在sandbox plist中
+2. 重启应用强制重新加载
+3. 如果仍然为空，检查 `PomodoroTimer.init()` 的解码逻辑
+
+### 问题2: 测试后数据丢失
+
+**原因**：单元测试可能清空 UserDefaults
+
+**解决**：
+1. 测试前运行 `swift backup_sandbox_defaults.swift`
+2. 测试后运行 `swift restore_sandbox_defaults.swift`
+
+### 问题3: "本周"统计不准确
+
+**v1.4及之前**：基于存储的计数器，依赖重置逻辑
+
+**v1.5修复**：改为计算属性，从 `dailyHistory` 实时计算
+
+**验证计算**：
+```swift
+// 在 Swift REPL 或脚本中验证
+let calendar = Calendar.current
+let weekStart = calendar.dateInterval(of: .weekOfYear, for: Date())?.start
+// 检查 weekStart 是否正确（应该是本周日或周一）
+```
+
+### 问题4: CSV/PDF导出内容没有本地化
+
+**v1.5已修复**：
+- 所有导出文本使用 `NSLocalizedString`
+- CSV表头：中文环境显示"日期,番茄钟数,累计总数"
+- PDF内容：标题、统计、图表标签全部本地化
+
+### 问题5: 文件替换对话框无响应
+
+**症状**：导出时提示替换文件，点击"替换"按钮无响应
+
+**v1.5已修复**：
+- 文件写入移至后台线程 (`DispatchQueue.global`)
+- 使用 atomic 写入选项
+- UI操作确保在主线程
+
 ---
 
 **文档生成时间**: 2026-01-29
-**文档版本**: 1.1
+**文档版本**: 1.2
 
 ## 修改历史
+
+### v1.2 (2026-02-27)
+- **新增章节**：数据存储和沙箱
+  - 说明 App Sandbox 存储位置
+  - 列出所有UserDefaults字段及v1.5变化
+  - 解释 `weeklyWorkSessions` 改为计算属性
+- **新增章节**：版本兼容性
+  - v1.4 → v1.5 升级兼容性分析
+  - 数据格式说明
+- **新增章节**：测试和调试工具
+  - Sandbox备份/恢复工具使用说明
+  - 数据查看和调试技巧
+- **新增章节**：常见问题和排查
+  - Chart空白问题
+  - 数据丢失问题
+  - 周统计不准确问题
+  - 导出本地化问题
+  - 文件替换无响应问题
 
 ### v1.1 (2026-01-29)
 - 修复 `completedRounds` 跨天累计问题

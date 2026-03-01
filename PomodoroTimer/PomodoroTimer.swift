@@ -29,9 +29,33 @@ class PomodoroTimer: ObservableObject {
     @Published var state: State = .stopped
     @Published var isPaused: Bool = false
     @Published var dailyWorkSessions: Int = 0
-    @Published var weeklyWorkSessions: Int = 0
     @Published var totalWorkSessions: Int = 0
     @Published var dailyHistory: [String: Int] = [:]
+
+    // Computed property: calculate from dailyHistory instead of storing
+    var weeklyWorkSessions: Int {
+        let calendar = Calendar.current
+        let now = Date()
+
+        // Get the start of current week (Sunday or Monday depending on locale)
+        guard let weekStart = calendar.dateInterval(of: .weekOfYear, for: now)?.start else {
+            return 0
+        }
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.timeZone = TimeZone.current
+
+        var total = 0
+        for (dateStr, count) in dailyHistory {
+            if let date = formatter.date(from: dateStr),
+               date >= weekStart && date <= now {
+                total += count
+            }
+        }
+
+        return total
+    }
     @Published var completedRounds: Int = 0
     
     var onUpdateUI: (() -> Void)?
@@ -42,16 +66,13 @@ class PomodoroTimer: ObservableObject {
     
     private let userDefaultsKey = "PomodoroState"
     private let dailyWorkKey = "dailyWorkSessions"
-    private let weeklyWorkKey = "weeklyWorkSessions"
     private let totalWorkKey = "totalWorkSessions"
     private let lastWorkDateKey = "lastWorkDate"
-    private let lastWeeklyWorkDateKey = "lastWeeklyWorkDate"
     private let historyKey = "dailyHistory"
     private let completedRoundsKey = "completedRounds"
 
     init() {
         dailyWorkSessions = UserDefaults.standard.integer(forKey: dailyWorkKey)
-        weeklyWorkSessions = UserDefaults.standard.integer(forKey: weeklyWorkKey)
         totalWorkSessions = UserDefaults.standard.integer(forKey: totalWorkKey)
         completedRounds = UserDefaults.standard.integer(forKey: completedRoundsKey)
 
@@ -118,14 +139,6 @@ class PomodoroTimer: ObservableObject {
             UserDefaults.standard.set(today, forKey: lastWorkDateKey)
             UserDefaults.standard.set(dailyWorkSessions, forKey: dailyWorkKey)
             UserDefaults.standard.set(completedRounds, forKey: completedRoundsKey)
-        }
-
-        // Check week change
-        if let lastDateStr = UserDefaults.standard.string(forKey: lastWorkDateKey),
-           let lastDate = dateFromFormattedString(lastDateStr),
-           !Calendar.current.isDate(Date(), equalTo: lastDate, toGranularity: .weekOfYear) {
-            weeklyWorkSessions = 0
-            UserDefaults.standard.set(weeklyWorkSessions, forKey: weeklyWorkKey)
         }
 
         return isNewDay
@@ -344,15 +357,7 @@ class PomodoroTimer: ObservableObject {
             UserDefaults.standard.set(completedRounds, forKey: completedRoundsKey)
         }
 
-        let lastWeeklyDate = UserDefaults.standard.string(forKey: lastWeeklyWorkDateKey)
-        if let lastWeekDateStr = lastWeeklyDate,
-           let lastWeekDate = dateFromFormattedString(lastWeekDateStr),
-           !Calendar.current.isDate(Date(), equalTo: lastWeekDate, toGranularity: .weekOfYear) {
-            weeklyWorkSessions = 0
-        }
-
         dailyWorkSessions += 1
-        weeklyWorkSessions += 1
         totalWorkSessions += 1
 
         dailyHistory[today, default: 0] += 1
@@ -362,8 +367,6 @@ class PomodoroTimer: ObservableObject {
 
         UserDefaults.standard.set(today, forKey: lastWorkDateKey)
         UserDefaults.standard.set(dailyWorkSessions, forKey: dailyWorkKey)
-        UserDefaults.standard.set(formattedDate(Date()), forKey: lastWeeklyWorkDateKey)
-        UserDefaults.standard.set(weeklyWorkSessions, forKey: weeklyWorkKey)
         UserDefaults.standard.set(totalWorkSessions, forKey: totalWorkKey)
     }
     

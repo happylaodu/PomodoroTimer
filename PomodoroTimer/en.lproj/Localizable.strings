@@ -64,3 +64,31 @@
 "Weekly Report (PDF)" = "Weekly Report (PDF)";
 "Monthly Report (PDF)" = "Monthly Report (PDF)";
 "All-Time Report (PDF)" = "All-Time Report (PDF)";
+
+/* StatisticsExporter.swift - CSV Export */
+"Export Statistics to CSV" = "Export Statistics to CSV";
+"Date" = "Date";
+"Cumulative Total" = "Cumulative Total";
+
+/* StatisticsExporter.swift - PDF Export */
+"Export %@ Report" = "Export %@ Report";
+"Export Successful" = "Export Successful";
+"Export Failed" = "Export Failed";
+"Report exported to %@" = "Report exported to %@";
+
+/* PDF Report Content */
+"Weekly" = "Weekly";
+"Monthly" = "Monthly";
+"All-Time" = "All-Time";
+"Generated: %@" = "Generated: %@";
+"Summary" = "Summary";
+"Total sessions in period: %d" = "Total sessions in period: %d";
+"Number of days: %d" = "Number of days: %d";
+"Average sessions per day: %.1f" = "Average sessions per day: %.1f";
+"Most productive day: %@ (%d sessions)" = "Most productive day: %@ (%d sessions)";
+"sessions" = "sessions";
+"All-time total sessions: %d" = "All-time total sessions: %d";
+"Activity Chart" = "Activity Chart";
+"Weekly Overview" = "Weekly Overview";
+"Daily Breakdown" = "Daily Breakdown";
+"Sessions" = "Sessions";
