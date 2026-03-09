@@ -2,6 +2,20 @@
 
 ## Pending Ideas
 
+### Idea-19: [Feature] In-App Review Request
+**Created**: 2026-03-02
+
+Implement App Store review request functionality to encourage user ratings:
+- Smart timing triggers:
+  - After completing meaningful milestones (10, 50, 100 pomodoros)
+  - After consecutive usage days (e.g., 7-day streak)
+  - After viewing statistics or exporting reports
+- Implementation using StoreKit's `SKStoreReviewController.requestReview(in:)`
+- Anti-spam logic: Maximum once per 90 days
+- Track metrics: completed pomodoros count, last request date
+- Non-intrusive: system decides final display based on user interaction history
+- Priority: Medium (helps increase visibility and social proof)
+
 ### Idea-17: [Feature] Enhanced Chart Time Range Options
 **Created**: 2026-02-26
 
@@ -27,6 +41,13 @@ Implement gamification through achievement badges to increase user engagement:
 - Local storage for achievement data
 - Increases motivation and retention
 - Priority: Medium (planned for v1.5)
+
+- **Idea-20** (2026-03-05): [UX] Random Focus & Time Management Tips During Break
+  - Display random attention management and time management tips/tooltips during rest periods
+  - Show inspirational insights to help users stay mindful and productive
+  - Tips could cover: focus techniques, break best practices, productivity strategies
+  - Rotate through a curated collection of helpful advice
+  - Non-intrusive presentation that enhances break experience
 
 ### Idea-13: [Improvement] Translate All Chinese Content in Repo to English
 **Created**: 2026-02-01
