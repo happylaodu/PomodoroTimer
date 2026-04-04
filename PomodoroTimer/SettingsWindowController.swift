@@ -6,17 +6,43 @@ class SettingsWindowController: NSObject {
     private var window: NSWindow?
     var onShow: (() -> Void)?
     weak var timer: PomodoroTimer?
+    private var hasShownOnce = false
 
     func show() {
         // Call the onShow callback to close popover
         onShow?()
+
         // Close old window if exists
         if let oldWindow = window {
             oldWindow.close()
+            window = nil
         }
 
-        // Always create a new window to ensure fresh state
-        let hostingController = NSHostingController(rootView: SettingsView(timer: timer))
+        // Only use hide/unhide trick on first show to fix Toggle rendering
+        if !hasShownOnce {
+            hasShownOnce = true
+
+            // Force app deactivation and reactivation cycle before showing window
+            NSApp.hide(nil)
+
+            // Wait briefly for hide to complete, then create and show window
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) { [weak self] in
+                NSApp.unhide(nil)
+                NSApp.activate(ignoringOtherApps: true)
+                self?.createAndShowWindow()
+            }
+        } else {
+            // Subsequent shows: just create and show normally
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) { [weak self] in
+                NSApp.activate(ignoringOtherApps: true)
+                self?.createAndShowWindow()
+            }
+        }
+    }
+
+    private func createAndShowWindow() {
+        // Create and show the window
+        let hostingController = NSHostingController(rootView: SettingsView(timer: self.timer))
         let newWindow = NSWindow(contentViewController: hostingController)
         newWindow.title = NSLocalizedString("Settings", comment: "Settings window title")
         newWindow.setContentSize(NSSize(width: 440, height: 880))
@@ -26,14 +52,6 @@ class SettingsWindowController: NSObject {
 
         self.window = newWindow
 
-        // Show immediately to ensure proper window activation
         newWindow.makeKeyAndOrderFront(nil)
-        NSApp.activate(ignoringOtherApps: true)
-
-        // Note: Removed force view refresh to avoid layout recursion warning
-        // Creating new window instance each time should be sufficient for state refresh
-        // DispatchQueue.main.async {
-        //     hostingController.rootView = SettingsView(timer: self.timer)
-        // }
     }
 }

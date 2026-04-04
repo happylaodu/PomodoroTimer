@@ -51,7 +51,7 @@
 "💡 Tip: If you don't see the tomato icon in the menu bar, use ⌘⇧T to show the window and locate the icon. To reposition: hold ⌘ and drag less-used icons to the left (hidden area) to make room for frequently-used apps." = "💡 提示：如果在菜单栏没有看到番茄图标，可以用 ⌘ ⇧ T 呼出窗口来定位图标位置。调整位置：按住 ⌘ 将不常用图标拖到左侧（隐藏区域），为常用应用腾出空间。";
 
 /* StatusBarController.swift */
-"Quit Pomodoro Timer" = "退出番茄计时器";
+"Quit Pomodoro Timer Lite" = "退出番茄计时器 Lite";
 
 /* PomodoroTimer.swift - Notifications */
 "🍅 Pomodoro Session Ended" = "🍅 番茄钟结束";
@@ -91,3 +91,76 @@
 "Weekly Overview" = "每周概览";
 "Daily Breakdown" = "每日明细";
 "Sessions" = "番茄钟数";
+
+/* Achievements */
+"🏆 Achievements" = "🏆 成就";
+"Unlocked: %d/%d" = "已解锁：%d/%d";
+"View All" = "查看全部";
+"View Achievements" = "查看成就";
+"Achievements" = "成就";
+"achievements.title" = "成就";
+"achievements.current_streak" = "%d 天连续";
+"Today: %d" = "今天：%d";
+"Week: %d" = "本周：%d";
+"Total: %d" = "总计：%d";
+"%d days" = "%d 天";
+
+/* Achievements Window Tabs */
+"Badges" = "勋章";
+"Statistics" = "统计";
+"Last 7 Days" = "最近 7 天";
+"Last 30 Days" = "最近 30 天";
+"Last 52 Weeks" = "最近 52 周";
+"All Time" = "全部历史";
+"Current Streak" = "当前连续";
+"Total Days" = "总天数";
+"Total Sessions" = "总番茄钟数";
+"Average per Day" = "日均数量";
+"Average per Week" = "周均数量";
+"Daily Sessions" = "每日番茄钟";
+"Weekly Sessions" = "每周番茄钟";
+"Week" = "周";
+"This week: %d" = "本周：%d";
+
+/* Achievement Titles */
+"achievement.first_session.title" = "初次专注";
+"achievement.first_session.desc" = "完成第一个番茄钟";
+"achievement.sessions_10.title" = "初露锋芒";
+"achievement.sessions_10.desc" = "完成 10 个番茄钟";
+"achievement.sessions_50.title" = "持之以恒";
+"achievement.sessions_50.desc" = "完成 50 个番茄钟";
+"achievement.sessions_100.title" = "百里挑一";
+"achievement.sessions_100.desc" = "完成 100 个番茄钟";
+"achievement.sessions_500.title" = "专注大师";
+"achievement.sessions_500.desc" = "完成 500 个番茄钟";
+"achievement.sessions_1000.title" = "传奇之路";
+"achievement.sessions_1000.desc" = "完成 1000 个番茄钟";
+"achievement.streak_7.title" = "一周勇士";
+"achievement.streak_7.desc" = "连续使用应用 7 天";
+"achievement.streak_30.title" = "月度大师";
+"achievement.streak_30.desc" = "连续使用应用 30 天";
+"achievement.streak_100.title" = "坚持冠军";
+"achievement.streak_100.desc" = "连续使用应用 100 天";
+
+/* About Window */
+"app.name" = "番茄计时器 Lite";
+"About Pomodoro Timer Lite" = "关于番茄计时器 Lite";
+"Version %@ (Build %@)" = "版本 %@（构建 %@）";
+"A simple and elegant Pomodoro timer for macOS. Stay focused, boost productivity, and manage your time effectively with the Pomodoro Technique." = "一款简洁优雅的 macOS 番茄计时器。运用番茄工作法保持专注、提升效率、有效管理时间。";
+"Developer:" = "开发者：";
+"Copyright:" = "版权：";
+"System Requirements:" = "系统要求：";
+"View on App Store" = "在 App Store 查看";
+"Rate on App Store" = "在 App Store 评分";
+"Open Source on GitHub" = "在 GitHub 开源";
+"Licensed under MIT License" = "基于 MIT 许可证";
+
+/* Achievement Notifications */
+"🏆 Achievement Unlocked!" = "🏆 成就解锁！";
+"You've earned the \"%@\" badge!" = "你获得了「%@」徽章！";
+"🎉 Congratulations on unlocking new achievements!" = "🎉 恭喜解锁新成就！";
+"Dismiss" = "关闭";
+
+/* Chart Tooltip */
+"session" = "个番茄钟";
+"sessions" = "个番茄钟";

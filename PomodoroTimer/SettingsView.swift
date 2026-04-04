@@ -28,6 +28,8 @@ struct SettingsView: View {
     @AppStorage("notificationSound") private var notificationSound = "Ping"
     @AppStorage("soundEnabled") private var soundEnabled = true
 
+    @State private var refreshTrigger = false
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
@@ -169,7 +171,14 @@ struct SettingsView: View {
             .controlSize(.small)
         }
         .toggleStyle(.switch)
-        .frame(minWidth: 420, idealWidth: 420, minHeight: 720, idealHeight: 720)
+        .frame(minWidth: 420, idealWidth: 420, minHeight: 850, idealHeight: 850)
+        .id(refreshTrigger)
+        .onAppear {
+            // Force refresh on appear to fix Toggle rendering
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                refreshTrigger.toggle()
+            }
+        }
     }
 
     private func updateLaunchAtLogin(enabled: Bool) {
@@ -209,6 +218,9 @@ struct SettingsView: View {
             dailyHistory: timer.dailyHistory,
             totalSessions: timer.totalWorkSessions
         )
+
+        // Trigger review request after statistics export
+        ReviewRequestManager.shared.checkAndRequestReview(trigger: .statisticsExport)
     }
 
     private func exportPDF(reportType: StatisticsExporter.ReportType) {
@@ -222,6 +234,9 @@ struct SettingsView: View {
             totalSessions: timer.totalWorkSessions,
             reportType: reportType
         )
+
+        // Trigger review request after statistics export
+        ReviewRequestManager.shared.checkAndRequestReview(trigger: .statisticsExport)
     }
 
     private func showExportAlert(title: String, message: String) {

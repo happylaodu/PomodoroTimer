@@ -51,7 +51,7 @@
 "💡 Tip: If you don't see the tomato icon in the menu bar, use ⌘⇧T to show the window and locate the icon. To reposition: hold ⌘ and drag less-used icons to the left (hidden area) to make room for frequently-used apps." = "💡 Tip: If you don't see the tomato icon in the menu bar, use ⌘ ⇧ T to show the window and locate the icon. To reposition: hold ⌘ and drag less-used icons to the left (hidden area) to make room for frequently-used apps.";
 
 /* StatusBarController.swift */
-"Quit Pomodoro Timer" = "Quit Pomodoro Timer";
+"Quit Pomodoro Timer Lite" = "Quit Pomodoro Timer Lite";
 
 /* PomodoroTimer.swift - Notifications */
 "🍅 Pomodoro Session Ended" = "🍅 Pomodoro Session Ended";
@@ -92,3 +92,76 @@
 "Weekly Overview" = "Weekly Overview";
 "Daily Breakdown" = "Daily Breakdown";
 "Sessions" = "Sessions";
+
+/* Achievements */
+"🏆 Achievements" = "🏆 Achievements";
+"Unlocked: %d/%d" = "Unlocked: %d/%d";
+"View All" = "View All";
+"View Achievements" = "View Achievements";
+"Achievements" = "Achievements";
+"achievements.title" = "Achievements";
+"achievements.current_streak" = "%d day streak";
+"Today: %d" = "Today: %d";
+"Week: %d" = "Week: %d";
+"Total: %d" = "Total: %d";
+"%d days" = "%d days";
+
+/* Achievements Window Tabs */
+"Badges" = "Badges";
+"Statistics" = "Statistics";
+"Last 7 Days" = "Last 7 Days";
+"Last 30 Days" = "Last 30 Days";
+"Last 52 Weeks" = "Last 52 Weeks";
+"All Time" = "All Time";
+"Current Streak" = "Current Streak";
+"Total Days" = "Total Days";
+"Total Sessions" = "Total Sessions";
+"Average per Day" = "Average per Day";
+"Average per Week" = "Average per Week";
+"Daily Sessions" = "Daily Sessions";
+"Weekly Sessions" = "Weekly Sessions";
+"Week" = "Week";
+"This week: %d" = "This week: %d";
+
+/* Achievement Titles */
+"achievement.first_session.title" = "First Focus";
+"achievement.first_session.desc" = "Complete your first pomodoro session";
+"achievement.sessions_10.title" = "Getting Started";
+"achievement.sessions_10.desc" = "Complete 10 pomodoro sessions";
+"achievement.sessions_50.title" = "Dedicated";
+"achievement.sessions_50.desc" = "Complete 50 pomodoro sessions";
+"achievement.sessions_100.title" = "Centurion";
+"achievement.sessions_100.desc" = "Complete 100 pomodoro sessions";
+"achievement.sessions_500.title" = "Master of Focus";
+"achievement.sessions_500.desc" = "Complete 500 pomodoro sessions";
+"achievement.sessions_1000.title" = "Legend";
+"achievement.sessions_1000.desc" = "Complete 1000 pomodoro sessions";
+"achievement.streak_7.title" = "Week Warrior";
+"achievement.streak_7.desc" = "Use the app for 7 consecutive days";
+"achievement.streak_30.title" = "Monthly Master";
+"achievement.streak_30.desc" = "Use the app for 30 consecutive days";
+"achievement.streak_100.title" = "Consistency Champion";
+"achievement.streak_100.desc" = "Use the app for 100 consecutive days";
+
+/* About Window */
+"app.name" = "Pomodoro Timer Lite";
+"About Pomodoro Timer Lite" = "About Pomodoro Timer Lite";
+"Version %@ (Build %@)" = "Version %@ (Build %@)";
+"A simple and elegant Pomodoro timer for macOS. Stay focused, boost productivity, and manage your time effectively with the Pomodoro Technique." = "A simple and elegant Pomodoro timer for macOS. Stay focused, boost productivity, and manage your time effectively with the Pomodoro Technique.";
+"Developer:" = "Developer:";
+"Copyright:" = "Copyright:";
+"System Requirements:" = "System Requirements:";
+"View on App Store" = "View on App Store";
+"Rate on App Store" = "Rate on App Store";
+"Open Source on GitHub" = "Open Source on GitHub";
+"Licensed under MIT License" = "Licensed under MIT License";
+
+/* Achievement Notifications */
+"🏆 Achievement Unlocked!" = "🏆 Achievement Unlocked!";
+"You've earned the \"%@\" badge!" = "You've earned the \"%@\" badge!";
+"🎉 Congratulations on unlocking new achievements!" = "🎉 Congratulations on unlocking new achievements!";
+"Dismiss" = "Dismiss";
+
+/* Chart Tooltip */
+"session" = "session";
+"sessions" = "sessions";

@@ -4,8 +4,8 @@
 
 **PomodoroTimer** 是一个轻量级的 macOS 菜单栏番茄钟应用，使用 SwiftUI 构建。应用以 LSUIElement 方式运行（无 Dock 图标），常驻系统菜单栏，为用户提供简洁高效的时间管理工具。
 
-**版本**: 1.2 (Build 6)
-**最低系统要求**: macOS 15.5
+**版本**: 1.6 (准备发布)
+**最低系统要求**: macOS 13.0+
 **Bundle ID**: com.brightjune.PomodoroTimer
 **分类**: 生产力工具
 
@@ -515,6 +515,35 @@ swift /tmp/gen_data.swift
 
 ## 常见问题和排查
 
+### ⚠️ 问题0: UserDefaults 数据操作必读
+
+**症状**：数据丢失、无法恢复、操作无效
+
+**关键原则**：
+1. ⛔ **永远不要**直接用 `defaults delete/write` 命令操作 UserDefaults
+2. ⛔ **永远不要**手动修改非沙盒路径的 plist（`~/Library/Preferences/...`）
+3. ✅ **必须使用**项目提供的备份/恢复脚本：
+   - `backup_sandbox_defaults.swift` - 备份数据
+   - `restore_sandbox_defaults.swift` - 恢复数据
+4. ✅ 所有数据存储在：`~/Library/Containers/com.brightjune.PomodoroTimer/Data/Library/Preferences/`
+
+**正确的操作流程**：
+```bash
+# 1. 关闭 app
+killall "Pomodoro Timer Lite" 2>/dev/null
+
+# 2. 恢复备份（如果有）
+swift restore_sandbox_defaults.swift
+
+# 3. 如需修改数据，编写脚本直接操作沙盒 plist
+# 参考 project_context.md 第 487-495 行的示例
+```
+
+**如果数据已丢失**：
+1. 检查是否有备份：`ls -la ~/.pomodoro_sandbox_backup.plist`
+2. 如果有，运行 `swift restore_sandbox_defaults.swift`
+3. 如果没有，需要重新生成测试数据（参考第 487-495 行）
+
 ### 问题1: Chart显示空白
 
 **症状**：UI显示"本周：0"，图表空白
@@ -578,9 +607,26 @@ let weekStart = calendar.dateInterval(of: .weekOfYear, for: Date())?.start
 ---
 
 **文档生成时间**: 2026-01-29
-**文档版本**: 1.2
+**文档版本**: 1.3
 
 ## 修改历史
+
+### v1.3 (2026-04-02)
+- **更新版本信息**：v1.6 (准备发布)
+- **v1.6 主要功能**：
+  - 成就系统（9种徽章，session和streak两类）
+  - About窗口（应用信息展示）
+  - 评价请求系统（智能触发时机）
+  - Bug修复：badge达成时间计算
+- **新增文件**：
+  - `Achievement.swift`, `AchievementManager.swift`, `AchievementsView.swift`, `AchievementsWindowController.swift`
+  - `AboutView.swift`, `AboutWindowController.swift`
+  - `ReviewRequestManager.swift`
+  - `en.lproj/InfoPlist.strings`, `zh-Hans.lproj/InfoPlist.strings`
+- **文档更新**：
+  - 创建 `Docs/Growth/v1.6-Release-Notes.md`
+  - 创建 `Docs/Growth/v1.6-Release-Checklist.md`
+  - 更新 `.claude/Ideas.md` (Idea-24)
 
 ### v1.2 (2026-02-27)
 - **新增章节**：数据存储和沙箱

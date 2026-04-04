@@ -14,6 +14,7 @@ class StatusBarController {
     private var popover: NSPopover
     private var rightClickMonitor: Any?
     private var eventMonitor: Any?
+    private var badgeView: NSView?
 
     init(_ contentView: some View) {
         popover = NSPopover()
@@ -39,15 +40,42 @@ class StatusBarController {
         rightClickMonitor = NSEvent.addLocalMonitorForEvents(matching: [.rightMouseDown]) { [weak self] event in
             guard let self = self,
                   let button = self.statusItem.button,
-                  let window = button.window else {
+                  let _ = button.window else {
                 return event
             }
 
             let location = button.convert(event.locationInWindow, from: nil)
             if button.bounds.contains(location) {
                 let menu = NSMenu()
-                menu.addItem(NSMenuItem(title: NSLocalizedString("Quit Pomodoro Timer", comment: ""), action: #selector(self.quitApp), keyEquivalent: "q"))
-                menu.items.first?.target = self
+
+                // Add "About Pomodoro Timer Lite" menu item
+                let aboutItem = NSMenuItem(title: NSLocalizedString("About Pomodoro Timer Lite", comment: ""), action: #selector(self.showAbout), keyEquivalent: "")
+                aboutItem.target = self
+                menu.addItem(aboutItem)
+
+                // Add separator
+                menu.addItem(NSMenuItem.separator())
+
+                #if DEBUG
+                // Add "Request Review (Debug)" menu item - only visible in debug builds
+                let reviewItem = NSMenuItem(title: "Request Review (Debug)", action: #selector(self.requestReviewDebug), keyEquivalent: "")
+                reviewItem.target = self
+                menu.addItem(reviewItem)
+
+                // Add "Test Achievement Unlock (Debug)" menu item - only visible in debug builds
+                let achievementItem = NSMenuItem(title: "Test Achievement Unlock (Debug)", action: #selector(self.testAchievementUnlock), keyEquivalent: "")
+                achievementItem.target = self
+                menu.addItem(achievementItem)
+
+                // Add separator
+                menu.addItem(NSMenuItem.separator())
+                #endif
+
+                // Add "Quit" menu item
+                let quitItem = NSMenuItem(title: NSLocalizedString("Quit Pomodoro Timer Lite", comment: ""), action: #selector(self.quitApp), keyEquivalent: "q")
+                quitItem.target = self
+                menu.addItem(quitItem)
+
                 NSMenu.popUpContextMenu(menu, with: event, for: button)
                 return nil // Consume event
             }
@@ -88,6 +116,22 @@ class StatusBarController {
         }
     }
     
+    @objc func showAbout() {
+        AboutWindowController.shared.show()
+    }
+
+    #if DEBUG
+    @objc func requestReviewDebug() {
+        print("🔧 Debug: Manually triggering review request...")
+        ReviewRequestManager.shared.manualRequestReview()
+    }
+
+    @objc func testAchievementUnlock() {
+        print("🔧 Debug: Testing achievement unlock...")
+        AchievementManager.shared.testUnlockNextAchievement()
+    }
+    #endif
+
     @objc func quitApp() {
         NSApp.terminate(nil)
     }
@@ -144,5 +188,31 @@ class StatusBarController {
         }
 
         statusItem.button?.image = NSImage(named: iconName)
+    }
+
+    /// Update achievement badge on status bar
+    func updateAchievementBadge(count: Int) {
+        guard let button = statusItem.button else { return }
+
+        // Remove existing badge if any
+        badgeView?.removeFromSuperview()
+        badgeView = nil
+
+        guard count > 0 else { return }
+
+        // Create small badge dot - position at top-right corner (avoid going out of bounds)
+        let badgeSize: CGFloat = 8
+        let badge = NSView(frame: NSRect(x: button.bounds.width - badgeSize - 2, y: button.bounds.height - badgeSize - 13, width: badgeSize, height: badgeSize))
+
+        // Add red circle background
+        let circleLayer = CAShapeLayer()
+        circleLayer.path = CGPath(ellipseIn: badge.bounds, transform: nil)
+        circleLayer.fillColor = NSColor.systemRed.cgColor
+        badge.layer = CALayer()
+        badge.wantsLayer = true
+        badge.layer?.addSublayer(circleLayer)
+
+        button.addSubview(badge)
+        badgeView = badge
     }
 }

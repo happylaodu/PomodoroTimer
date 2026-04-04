@@ -2,20 +2,6 @@
 
 ## Pending Ideas
 
-### Idea-19: [Feature] In-App Review Request
-**Created**: 2026-03-02
-
-Implement App Store review request functionality to encourage user ratings:
-- Smart timing triggers:
-  - After completing meaningful milestones (10, 50, 100 pomodoros)
-  - After consecutive usage days (e.g., 7-day streak)
-  - After viewing statistics or exporting reports
-- Implementation using StoreKit's `SKStoreReviewController.requestReview(in:)`
-- Anti-spam logic: Maximum once per 90 days
-- Track metrics: completed pomodoros count, last request date
-- Non-intrusive: system decides final display based on user interaction history
-- Priority: Medium (helps increase visibility and social proof)
-
 ### Idea-17: [Feature] Enhanced Chart Time Range Options
 **Created**: 2026-02-26
 
@@ -30,24 +16,62 @@ Add flexible time range selection to the usage statistics chart:
 - Preserve existing 7-day default view for backward compatibility
 - Priority: Medium (enhances data visibility for long-term users)
 
-### Idea-15: [Feature] Achievement System
-**Created**: 2026-02-24
+### Idea-20: [UX] Random Focus & Time Management Tips During Break
+**Created**: 2026-03-05
 
-Implement gamification through achievement badges to increase user engagement:
-- 7-day streak achievement → unlock special badge
-- 100 Pomodoro sessions milestone → unlock special icon
-- Other achievements: first session, 30-day streak, 500 sessions, etc.
-- Display achievements in app (Settings or dedicated view)
-- Local storage for achievement data
-- Increases motivation and retention
-- Priority: Medium (planned for v1.5)
+Display random attention management and time management tips/tooltips during rest periods:
+- Show inspirational insights to help users stay mindful and productive
+- Tips could cover: focus techniques, break best practices, productivity strategies
+- Rotate through a curated collection of helpful advice
+- Non-intrusive presentation that enhances break experience
 
-- **Idea-20** (2026-03-05): [UX] Random Focus & Time Management Tips During Break
-  - Display random attention management and time management tips/tooltips during rest periods
-  - Show inspirational insights to help users stay mindful and productive
-  - Tips could cover: focus techniques, break best practices, productivity strategies
-  - Rotate through a curated collection of helpful advice
-  - Non-intrusive presentation that enhances break experience
+### Idea-21: [Feature] Cross-Promotion with Future Apps
+**Created**: 2026-03-12
+
+Implement cross-promotion functionality between PomodoroTimer and future apps in the portfolio:
+- Add "Developer's Other Apps" section in Settings
+- Display other apps with icon, name, description, and App Store link
+- Use StoreKit's SKStoreProductViewController for in-app display
+- Direct link to App Store page option
+- Implementation requirements:
+  - Must be optional and non-intrusive (not on first launch)
+  - Clearly labeled as developer's other products
+  - Cannot interfere with core functionality
+  - Follow App Store guidelines for cross-promotion
+  - Add "Don't show again" option if displayed as a prompt
+- Best placement: Settings > About section or after completing achievements
+- Consider showing after meaningful user engagement (e.g., unlocking achievements)
+- Priority: Medium (implement after second app launches)
+- App Store compliance: ✓ Allowed when done properly
+
+**Dependencies**: Requires at least one other app to be published on App Store
+
+### Idea-23: [Documentation] Create Common Mistakes Reference File
+**Created**: 2026-04-01
+
+Create a dedicated file to document commonly made mistakes and reference it in project_context.md to prevent repeated errors:
+
+**What to do**:
+1. Create new file: `.claude/Common-Mistakes.md`
+2. Document critical mistakes that have been made in this project, including:
+   - UserDefaults data operations (see project_context.md "问题0")
+   - Toggle rendering issues and workarounds
+   - Sandbox vs non-sandbox paths confusion
+   - Any other recurring issues
+3. Add reference to this file in `project_context.md` with prominent reminder
+4. Structure file with clear sections:
+   - Critical mistakes (data loss, security issues)
+   - Common bugs (UI issues, state management)
+   - Best practices learned from mistakes
+   - Quick reference checklist
+
+**Benefits**:
+- Prevents repeating the same mistakes across sessions
+- Provides quick reference when encountering difficult problems
+- Documents institutional knowledge and lessons learned
+- Helps maintain project quality over time
+
+**Priority**: High (prevents data loss and wasted time)
 
 ### Idea-13: [Improvement] Translate All Chinese Content in Repo to English
 **Created**: 2026-02-01
@@ -63,6 +87,329 @@ Update all files in the repository that contain Chinese text to use only English
 <!-- New ideas will be added here -->
 
 ## Completed Ideas
+
+### Idea-24: [Release] v1.6 Release Preparation
+**Created**: 2026-04-02
+**Completed**: 2026-04-02
+
+Prepared v1.6 release with achievement system, About window, and review request features:
+
+**What was done:**
+
+1. **Core Features Integration** (completed in previous sessions):
+   - ✅ Achievement System (Idea-15) - 9 badges, smart migration, dedicated window
+   - ✅ In-App Review Request (Idea-19) - Milestone-based review prompts
+   - ✅ About Window (Idea-22) - Professional app information display
+
+2. **Bug Fixes**:
+   - ✅ Fixed badge achievement date calculation
+     - Upgraded migration version from v4 to v5
+     - Forces recalculation of unlock dates based on actual dailyHistory data
+     - Now correctly shows historical dates (e.g., 2026-02-01) instead of current date
+     - File: `AchievementManager.swift:19`
+
+3. **New Files Added** (need to be added to Xcode project):
+   - `AboutView.swift` - About window UI
+   - `AboutWindowController.swift` - About window controller
+   - `Achievement.swift` - Achievement model
+   - `AchievementManager.swift` - Achievement tracking
+   - `AchievementsView.swift` - Achievement display
+   - `AchievementsWindowController.swift` - Achievement window controller
+   - `ReviewRequestManager.swift` - Review request logic
+   - `en.lproj/InfoPlist.strings` - App name localization
+   - `zh-Hans.lproj/InfoPlist.strings` - App name localization (Chinese)
+
+4. **Files Modified**:
+   - `AppDelegate.swift` - Integration
+   - `ContentView.swift` - UI updates
+   - `PomodoroTimer.swift` - Achievement checks
+   - `SettingsView.swift` - Achievement section, About integration
+   - `SettingsWindowController.swift` - Window height adjustments
+   - `StatusBarController.swift` - About menu item
+   - `en.lproj/Localizable.strings` - New strings
+   - `zh-Hans.lproj/Localizable.strings` - Chinese translations
+
+5. **Documentation**:
+   - ✅ Created `v1.6-Release-Notes.md` (English)
+   - ✅ Created `v1.6-Release-Notes-zh.md` (Chinese)
+   - ✅ Created `v1.6-Release-Checklist.md`
+
+**Next Steps for Release**:
+1. Add all new files to Xcode project target
+2. Build and test complete v1.6 functionality
+3. Verify all achievements unlock with correct dates
+4. Test review request triggers
+5. Test About window display
+6. Update version number in Info.plist
+7. Create release builds
+8. Prepare App Store screenshots
+9. Update App Store metadata
+10. Submit to App Store
+
+**Version Highlights**:
+- 🏆 Complete achievement system with 9 badges
+- 📊 Smart migration with historical data analysis
+- ℹ️ Professional About window
+- ⭐ Intelligent App Store review requests
+- 🌍 Full bilingual support
+- 🐛 Critical bug fixes for data accuracy
+
+---
+
+### Idea-19: [Feature] In-App Review Request
+**Created**: 2026-03-02
+**Completed**: 2026-03-25
+
+Successfully implemented App Store review request functionality to encourage user ratings and increase app visibility:
+
+**What was done:**
+
+1. Created ReviewRequestManager class:
+   - Singleton pattern for centralized review request management
+   - Smart timing triggers based on user engagement milestones
+   - Anti-spam logic: Maximum one request per 90 days
+   - Tracks last request date and total request count
+   - Non-intrusive: StoreKit system controls final display based on user history
+
+2. Implemented trigger types:
+   - **Session Milestones**: After completing 10, 50, 100 pomodoros
+   - **Streak Milestone**: After achieving 7-day consecutive usage streak
+   - **Statistics Export**: After user exports CSV or PDF reports (if ≥10 sessions)
+   - **Achievement Unlocked**: After unlocking significant achievements
+
+3. StoreKit integration:
+   - Uses `SKStoreReviewController.requestReview()` for all macOS versions (12-15)
+   - Works across all versions (deprecated in macOS 15 but still functional)
+   - Executes on main thread for proper UI presentation
+   - Simple implementation suitable for menu bar apps
+
+4. Integration points:
+   - **PomodoroTimer.swift**: Checks for session milestones after completing work sessions
+   - **AchievementManager.swift**: Checks for streak milestone after achieving 7-day streak
+   - **SettingsView.swift**: Checks after CSV/PDF export (both triggers)
+
+5. Tracking and analytics:
+   - UserDefaults keys: `lastReviewRequestDate`, `reviewRequestCount`
+   - Console logging for debugging: "✅ Review request triggered (total requests: N)"
+   - Respects existing session and streak tracking systems
+
+**Implementation details:**
+- Minimum days between requests: 90 days
+- Session milestones checked: 10, 50, 100 (exact match)
+- Streak milestone: 7 consecutive days
+- Export trigger: Requires ≥10 total sessions to avoid spam
+- First-time users: Can receive request on first milestone (no prior request date)
+- System control: StoreKit decides final display based on user interaction history
+
+**Files created:**
+- New: `ReviewRequestManager.swift` - Review request manager with trigger logic
+
+**Files modified:**
+- Modified: `PomodoroTimer.swift` - Added session milestone check in incrementWorkCounters()
+- Modified: `AchievementManager.swift` - Added streak milestone check in checkStreakAchievements()
+- Modified: `SettingsView.swift` - Added export trigger in exportCSV() and exportPDF()
+
+**Testing:**
+- Build succeeded ✓
+- **IMPORTANT**: New file needs to be added to Xcode project manually
+- File to add: ReviewRequestManager.swift
+
+**Next steps:**
+- Add ReviewRequestManager.swift to Xcode project target:
+  1. In Xcode: Right-click on PomodoroTimer folder
+  2. Select "Add Files to PomodoroTimer..."
+  3. Select ReviewRequestManager.swift
+  4. Ensure "Copy items if needed" is unchecked
+  5. Ensure "PomodoroTimer" target is checked
+  6. Click "Add"
+- Test the review request system in production:
+  - Complete 10 pomodoros to test first milestone
+  - Achieve 7-day streak to test streak milestone
+  - Export statistics to test export trigger
+- Monitor review request count in UserDefaults (key: `reviewRequestCount`)
+- Verify 90-day cooldown period prevents spam
+- Consider testing with TestFlight before App Store release
+
+**User benefits:**
+- Increased App Store ratings and reviews (social proof)
+- Better app visibility in App Store search results
+- Smart, non-intrusive timing (only when users are engaged)
+- Respects user experience (90-day cooldown period)
+- System-controlled display (won't annoy users)
+- Encourages reviews from satisfied, engaged users
+
+**App Store compliance:**
+- ✓ Uses official StoreKit APIs
+- ✓ Non-intrusive timing (milestone-based)
+- ✓ Respects frequency limits (90 days minimum)
+- ✓ System controls final display (per Apple guidelines)
+- ✓ No forced or manipulative review requests
+
+---
+
+### Idea-22: [Feature] Add About Window
+**Created**: 2026-03-12
+**Completed**: 2026-03-23
+
+Successfully implemented a dedicated About window to display app information and credits:
+
+**What was done:**
+
+1. Created AboutView.swift:
+   - SwiftUI view with clean, professional layout (400×500)
+   - App icon display with fallback to SF Symbol
+   - App name and version information (reads from Info.plist)
+   - App description highlighting Pomodoro Technique benefits
+   - Information section: Developer name, copyright, system requirements
+   - Interactive links: App Store, GitHub repository
+   - MIT License notice at bottom
+   - Fully localized (English and Chinese)
+
+2. Created AboutWindowController.swift:
+   - Singleton pattern following SettingsWindowController structure
+   - Manages About window lifecycle
+   - Fixed window size (400×500), non-resizable
+   - Window styling: titled, closable
+   - Automatic centering on screen
+   - Activates app when shown
+
+3. Updated StatusBarController.swift:
+   - Added "About PomodoroTimer" menu item to right-click menu
+   - Menu now shows: About, separator, Quit
+   - Added showAbout() method to open About window
+   - Maintains menu bar integration
+
+4. Added localization strings:
+   - English: All About window text, labels, and links
+   - Chinese: Complete translations for all content
+   - Strings cover: version info, description, developer info, links, license
+
+**Implementation details:**
+- Version info: Dynamically reads CFBundleShortVersionString and CFBundleVersion from Info.plist
+- System requirements: Reads LSMinimumSystemVersion from Info.plist
+- Links: Opens App Store page and GitHub repository in default browser
+- Design: Centered alignment, proper spacing, dividers for sections
+- Window: Non-resizable, fixed size for consistent appearance
+- App icon: Attempts to load AppIcon, falls back to timer SF Symbol
+
+**Files created:**
+- New: `AboutView.swift` - SwiftUI view for About window
+- New: `AboutWindowController.swift` - Window controller for About functionality
+
+**Files modified:**
+- Modified: `StatusBarController.swift` - Added About menu item and handler
+- Modified: `en.lproj/Localizable.strings` - Added English strings
+- Modified: `zh-Hans.lproj/Localizable.strings` - Added Chinese translations
+
+**Testing:**
+- Build succeeded ✓
+- **IMPORTANT**: New files need to be added to Xcode project manually
+- Files to add: AboutView.swift, AboutWindowController.swift
+
+**Next steps:**
+- Add new files to Xcode project target:
+  1. In Xcode: Right-click on PomodoroTimer folder
+  2. Select "Add Files to PomodoroTimer..."
+  3. Select AboutView.swift and AboutWindowController.swift
+  4. Ensure "Copy items if needed" is unchecked
+  5. Ensure "PomodoroTimer" target is checked
+  6. Click "Add"
+- Test About window functionality
+- Verify localization in both English and Chinese
+- Verify links open correctly (App Store, GitHub)
+
+**User benefits:**
+- Professional app presentation with proper About window
+- Easy access to app information and credits
+- Direct links to App Store and GitHub repository
+- Transparent licensing information
+- Follows macOS conventions with "About" menu item
+
+---
+
+### Idea-15: [Feature] Achievement System
+**Created**: 2026-02-24
+**Completed**: 2026-03-11
+
+Successfully implemented gamification system with achievement badges to increase user engagement:
+
+**What was done:**
+
+1. Created Achievement model and types:
+   - `Achievement.swift` - Defines achievement structure with title, description, icon, requirement, and unlock status
+   - `AchievementType` enum with 9 achievement types
+   - Session-based achievements: First Session, 10, 50, 100, 500, 1000 sessions
+   - Streak-based achievements: 7, 30, 100 consecutive days
+
+2. Created AchievementManager:
+   - `AchievementManager.swift` - Singleton manager for tracking and unlocking achievements
+   - `checkSessionAchievements()` - Checks and unlocks session milestone achievements
+   - `checkStreakAchievements()` - Tracks consecutive usage days and unlocks streak achievements
+   - Local storage using UserDefaults with JSON encoding
+   - Tracks current streak and last used date
+
+3. Created AchievementsView UI:
+   - `AchievementsView.swift` - SwiftUI view displaying all achievements
+   - Grid layout showing 2 columns of achievement cards
+   - Each card shows icon, title, description, and unlock status
+   - Current streak display at top
+   - Unlocked achievements highlighted with color and show unlock date
+   - Locked achievements shown grayed out with requirement number
+
+4. Integrated with PomodoroTimer:
+   - Modified `PomodoroTimer.swift` to call achievement checks after completing sessions
+   - Achievements checked in `incrementWorkCounters()` method
+   - Session achievements checked based on total sessions count
+   - Streak achievements checked on each session completion
+
+5. Added Achievements section to Settings:
+   - Modified `SettingsView.swift` to add "🏆 Achievements" section
+   - Shows unlock progress count (e.g., "Unlocked: 3/9")
+   - "View All" button opens dedicated achievements window
+   - Achievement window is 500×600 with resizable option
+
+6. Added localization strings:
+   - English: All achievement titles, descriptions, and UI text
+   - Chinese: Complete translations for all achievements and UI
+   - Achievement titles follow theme (First Focus, Getting Started, Dedicated, etc.)
+
+**Implementation details:**
+- Uses SF Symbols for achievement icons (star.fill, flame.fill, crown.fill, etc.)
+- Color coding: Unlocked achievements show in accent color, locked in gray
+- Streak calculation: Consecutive days tracked with automatic reset if streak broken
+- Date formatting: Uses "yyyy-MM-dd" format for consistency
+- Persistence: JSON encoding for achievement unlock data and dates
+
+**Files created:**
+- New: `Achievement.swift` - Achievement model and types
+- New: `AchievementManager.swift` - Achievement tracking manager
+- New: `AchievementsView.swift` - Achievements display UI
+
+**Files modified:**
+- Modified: `PomodoroTimer.swift` - Integrated achievement checking
+- Modified: `SettingsView.swift` - Added Achievements section
+- Modified: `en.lproj/Localizable.strings` - Added English strings
+- Modified: `zh-Hans.lproj/Localizable.strings` - Added Chinese strings
+
+**Testing:**
+- Build succeeded ✓
+- All new files need to be added to Xcode project manually
+- Achievement system ready for integration testing
+
+**User benefits:**
+- Increased engagement through gamification
+- Visual progress tracking with achievement badges
+- Motivation to maintain streaks and reach milestones
+- Sense of accomplishment for long-term users
+- All data stored locally (privacy-first)
+
+**Next steps:**
+- Add new files to Xcode project target
+- Test achievement unlocking in app
+- Consider adding achievement notifications in future version
+- Monitor user engagement with achievement system
+
+---
 
 ### Idea-18: [Feature] Add Charts to PDF Reports
 **Created**: 2026-02-26

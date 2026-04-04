@@ -368,6 +368,13 @@ class PomodoroTimer: ObservableObject {
         UserDefaults.standard.set(today, forKey: lastWorkDateKey)
         UserDefaults.standard.set(dailyWorkSessions, forKey: dailyWorkKey)
         UserDefaults.standard.set(totalWorkSessions, forKey: totalWorkKey)
+
+        // Check for achievement unlocks
+        AchievementManager.shared.checkSessionAchievements(totalSessions: totalWorkSessions)
+        AchievementManager.shared.checkStreakAchievements()
+
+        // Check for review request opportunities
+        ReviewRequestManager.shared.checkAndRequestReview(trigger: .sessionMilestone)
     }
     
     func lastNDaysHistory(_ n: Int) -> [(String, Int)] {
@@ -375,7 +382,7 @@ class PomodoroTimer: ObservableObject {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         formatter.timeZone = TimeZone.current
-        
+
         var result: [(String, Int)] = []
         for offset in (0..<n).reversed() {
             if let date = calendar.date(byAdding: .day, value: -offset, to: Date()) {
@@ -385,6 +392,36 @@ class PomodoroTimer: ObservableObject {
             }
         }
         return result
+    }
+
+    func allTimeHistory() -> [(String, Int)] {
+        return Array(dailyHistory).sorted { $0.key < $1.key }
+    }
+
+    func weeklyHistory(maxWeeks: Int = 52) -> [(String, Int)] {
+        let calendar = Calendar.current
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.timeZone = TimeZone.current
+
+        // Group data by week
+        var weeklyData: [String: Int] = [:]
+
+        for (dateString, count) in dailyHistory {
+            guard let date = formatter.date(from: dateString) else { continue }
+
+            // Get the week start date (Sunday or Monday depending on locale)
+            guard let weekStart = calendar.dateInterval(of: .weekOfYear, for: date)?.start else { continue }
+
+            let weekKey = formatter.string(from: weekStart)
+            weeklyData[weekKey, default: 0] += count
+        }
+
+        // Sort by week start date and limit to maxWeeks
+        let sorted = weeklyData.sorted { $0.key < $1.key }
+        let limited = sorted.suffix(maxWeeks)
+
+        return Array(limited)
     }
     
     func formattedDate(_ date: Date) -> String {
