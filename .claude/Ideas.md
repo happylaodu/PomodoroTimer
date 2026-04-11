@@ -46,33 +46,6 @@ Implement cross-promotion functionality between PomodoroTimer and future apps in
 
 **Dependencies**: Requires at least one other app to be published on App Store
 
-### Idea-23: [Documentation] Create Common Mistakes Reference File
-**Created**: 2026-04-01
-
-Create a dedicated file to document commonly made mistakes and reference it in project_context.md to prevent repeated errors:
-
-**What to do**:
-1. Create new file: `.claude/Common-Mistakes.md`
-2. Document critical mistakes that have been made in this project, including:
-   - UserDefaults data operations (see project_context.md "问题0")
-   - Toggle rendering issues and workarounds
-   - Sandbox vs non-sandbox paths confusion
-   - Any other recurring issues
-3. Add reference to this file in `project_context.md` with prominent reminder
-4. Structure file with clear sections:
-   - Critical mistakes (data loss, security issues)
-   - Common bugs (UI issues, state management)
-   - Best practices learned from mistakes
-   - Quick reference checklist
-
-**Benefits**:
-- Prevents repeating the same mistakes across sessions
-- Provides quick reference when encountering difficult problems
-- Documents institutional knowledge and lessons learned
-- Helps maintain project quality over time
-
-**Priority**: High (prevents data loss and wasted time)
-
 ### Idea-13: [Improvement] Translate All Chinese Content in Repo to English
 **Created**: 2026-02-01
 
@@ -87,6 +60,49 @@ Update all files in the repository that contain Chinese text to use only English
 <!-- New ideas will be added here -->
 
 ## Completed Ideas
+
+### Idea-23: [Documentation] Create Common Mistakes Reference File
+**Created**: 2026-04-01
+**Completed**: 2026-04-11
+
+Successfully created `.claude/Common-Mistakes.md` to document common mistakes and lessons learned:
+
+**What was done:**
+
+1. **Created Common-Mistakes.md file**:
+   - Structured with clear sections: Critical Mistakes, Common Bugs, Best Practices
+   - Quick Reference Checklist for pre-submission checks
+   - Easy to scan and reference during development
+
+2. **Documented first critical mistake**:
+   - App Store Connect emoji limitation discovered during v1.6 release
+   - Issue: App Store Connect does not support emoji in release notes
+   - Solution: Use text markers instead (【】for Chinese, [] for English)
+   - Prevention: Always check release notes before submission
+
+3. **File structure**:
+   - Critical Mistakes section (data loss, security, compatibility issues)
+   - Common Bugs section (recurring issues)
+   - Best Practices section (learned from mistakes)
+   - Quick Reference Checklist (pre-submission checks)
+
+4. **Applied immediately**:
+   - Fixed v1.6 release notes by removing all emoji
+   - Replaced with plain text section markers
+   - Updated `Docs/Growth/v1.6-Release-Checklist.md`
+
+**Benefits realized**:
+- Prevents repeating App Store submission errors
+- Quick reference for release process
+- Documents institutional knowledge
+- Growing reference as more patterns emerge
+
+**Next steps**:
+- Add more mistakes as they are discovered
+- Consider adding reference to project_context.md
+- Keep file updated with new lessons learned
+
+---
 
 ### Idea-24: [Release] v1.6 Release Preparation
 **Created**: 2026-04-02
