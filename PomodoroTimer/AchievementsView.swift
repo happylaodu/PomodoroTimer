@@ -17,10 +17,10 @@ struct AchievementsView: View {
             // Summary Statistics - visible on both tabs (fixed values only)
             HStack(spacing: 24) {
                 StatItem(
-                    icon: "flame.fill",
-                    color: .orange,
-                    label: NSLocalizedString("Current Streak", comment: ""),
-                    value: "\(manager.currentStreak)"
+                    icon: "🍅",
+                    color: .red,
+                    label: NSLocalizedString("Total Sessions", comment: ""),
+                    value: "\(timer.totalWorkSessions)"
                 )
 
                 Divider()
@@ -37,10 +37,10 @@ struct AchievementsView: View {
                     .frame(height: 24)
 
                 StatItem(
-                    icon: "target",
-                    color: .green,
-                    label: NSLocalizedString("Total Sessions", comment: ""),
-                    value: "\(timer.totalWorkSessions)"
+                    icon: "flame.fill",
+                    color: .orange,
+                    label: NSLocalizedString("Current Streak Days", comment: ""),
+                    value: "\(manager.currentStreak)"
                 )
             }
             .padding(.vertical, 12)
@@ -248,9 +248,15 @@ struct StatItem: View {
 
     var body: some View {
         HStack(spacing: 6) {
-            Image(systemName: icon)
-                .foregroundColor(color)
-                .font(.body)
+            // Support both SF Symbols and emoji
+            if icon.count == 1 && icon.unicodeScalars.first?.properties.isEmoji == true {
+                Text(icon)
+                    .font(.body)
+            } else {
+                Image(systemName: icon)
+                    .foregroundColor(color)
+                    .font(.body)
+            }
 
             VStack(alignment: .leading, spacing: 1) {
                 Text(label)
@@ -398,7 +404,10 @@ struct AchievementCard: View {
 
     private func formatDate(_ date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateStyle = .short
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.calendar = Calendar(identifier: .gregorian)
+        formatter.timeZone = TimeZone.current
+        formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter.string(from: date)
     }
 }

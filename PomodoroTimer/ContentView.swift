@@ -82,8 +82,8 @@ struct StatsView: View {
                     // Check if tooltip would go off the top edge
                     let showBelow = hoverLocation.y < tooltipHeight
 
-                    let xOffset = showOnLeft ? hoverLocation.x  - tooltipWidth/2 : hoverLocation.x
-                    let yOffset = showBelow ? hoverLocation.y + 10 : hoverLocation.y
+                    let xOffset = showOnLeft ? hoverLocation.x  - tooltipWidth/2 - 6 : hoverLocation.x - tooltipWidth/4
+                    let yOffset = showBelow ? hoverLocation.y + 20 : hoverLocation.y - tooltipHeight/2 - 15
 
                     VStack(spacing: 2) {
                         Text(formatDate(selectedDate))
@@ -119,7 +119,6 @@ struct StatsView: View {
         // Calculate available plot width
         let trailingPadding: CGFloat = 22  // .padding(.trailing, 60)
         let plotWidth = chartWidth - leadingPadding - yAxisSpace
-        //let plotWidth = chartWidth
 
 
         guard xInPlot >= 0 && xInPlot <= plotWidth else {
@@ -129,13 +128,11 @@ struct StatsView: View {
 
         // Find the bar index - round to nearest instead of truncating
         let barWidth = plotWidth / CGFloat(sortedStats.count)
-        let index = Int(((xInPlot - barWidth/2) / barWidth).rounded())
+        let index = Int(((xInPlot + barWidth/2) / barWidth).rounded()) - 1 
 
         if index >= 0 && index < sortedStats.count {
             selectedDate = sortedStats[index].0
-        } else if index == -1 {
-            selectedDate = sortedStats[0].0
-        }
+        } 
         else {
             selectedDate = nil
         }

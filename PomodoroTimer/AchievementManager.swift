@@ -85,7 +85,9 @@ class AchievementManager: ObservableObject {
     private func migrateSessionAchievements(from history: [String: Int]) {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
+        formatter.calendar = Calendar(identifier: .gregorian)
         formatter.timeZone = TimeZone.current
+        formatter.locale = Locale(identifier: "en_US_POSIX")
 
         // Get sorted dates (oldest first)
         let sortedDates = history
@@ -135,7 +137,9 @@ class AchievementManager: ObservableObject {
     private func migrateStreakAchievements(from history: [String: Int]) {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
+        formatter.calendar = Calendar(identifier: .gregorian)
         formatter.timeZone = TimeZone.current
+        formatter.locale = Locale(identifier: "en_US_POSIX")
 
         // Get sorted dates (oldest first)
         let dates = history
@@ -191,7 +195,9 @@ class AchievementManager: ObservableObject {
     private func calculateLongestStreak(from history: [String: Int]) -> Int {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
+        formatter.calendar = Calendar(identifier: .gregorian)
         formatter.timeZone = TimeZone.current
+        formatter.locale = Locale(identifier: "en_US_POSIX")
 
         // Get all dates with sessions > 0 and sort them
         let dates = history
@@ -229,7 +235,9 @@ class AchievementManager: ObservableObject {
     private func calculateCurrentStreak(from history: [String: Int]) -> Int {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
+        formatter.calendar = Calendar(identifier: .gregorian)
         formatter.timeZone = TimeZone.current
+        formatter.locale = Locale(identifier: "en_US_POSIX")
 
         let today = Calendar.current.startOfDay(for: Date())
 
@@ -406,7 +414,9 @@ class AchievementManager: ObservableObject {
     private func formattedDate(_ date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
+        formatter.calendar = Calendar(identifier: .gregorian)
         formatter.timeZone = TimeZone.current
+        formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter.string(from: date)
     }
 
