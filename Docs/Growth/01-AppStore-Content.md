@@ -11,10 +11,10 @@
 ```
 NEW in v1.6: Achievement System - 9 badges to unlock, dual-tab stats window!
 
-Stay focused with the lightest Pomodoro timer for Mac—just under 2MB!
+Stay focused with the lightest Pomodoro timer for Mac—just 2.2MB!
 
 WHY CHOOSE POMODORO TIMER LITE?
-• Ultra-lightweight (under 2MB) - 90% smaller than competitors
+• Ultra-lightweight (2.2MB) - 90% smaller than competitors
 • Completely free, no ads, no subscriptions
 • Lives quietly in your menu bar - no Dock clutter
 • Privacy-first - zero data collection
@@ -66,10 +66,10 @@ Download now and start your first focused session!
 ```
 v1.6 新功能：成就系统 - 9 种徽章解锁，双标签统计窗口！
 
-Mac 上最轻量的番茄钟应用——仅需 不到2MB！
+Mac 上最轻量的番茄钟应用——仅需 2.2MB！
 
 为什么选择番茄计时器 Lite？
-• 超轻量（不到2MB）- 比同类应用小 90%
+• 超轻量（2.2MB）- 比同类应用小 90%
 • 完全免费，无广告，无订阅
 • 安静地存在于菜单栏 - 不占用 Dock 空间
 • 隐私至上 - 零数据收集
@@ -123,7 +123,7 @@ Mac 上最轻量的番茄钟应用——仅需 不到2MB！
 ### 英文版（v1.6）
 
 ```
-v1.6: Achievement System - 9 badges, dual-tab stats! Lightest Pomodoro (under 2MB), free, no ads!
+v1.6: Achievement System - 9 badges, dual-tab stats! Lightest Pomodoro (2.2MB), free, no ads!
 ```
 
 **字符数**: 100 字符（限制 170）✅
@@ -133,7 +133,7 @@ v1.6: Achievement System - 9 badges, dual-tab stats! Lightest Pomodoro (under 2M
 ### 简体中文版（v1.6）
 
 ```
-v1.6：成就系统 - 9 种徽章，双标签统计！最轻量番茄钟（不到2MB），免费无广告！
+v1.6：成就系统 - 9 种徽章，双标签统计！最轻量番茄钟（2.2MB），免费无广告！
 ```
 
 **字符数**: 45 字符（限制 170）✅
@@ -194,13 +194,13 @@ pomodoro,timer,focus,productivity,menubar,achievement,badge,streak,free,lightwei
 
 **App Name**: `Pomodoro Timer Lite` (保持不变)
 
-**Subtitle（优化版）**: `Menu Bar Focus Timer (< 2MB)`
+**Subtitle（优化版）**: `Menu Bar Focus Timer (2.2MB)`
 
 **字符数**: 29/30 ✅
 
 **优化理由：**
 - ✅ 包含 `Menu Bar` 关键词（搜索词）
-- ✅ 强调 `under 2MB` 核心卖点
+- ✅ 强调 `2.2MB` 核心卖点
 - ✅ 保留 `Focus Timer` 核心功能描述
 
 ### 简体中文版
@@ -209,13 +209,13 @@ pomodoro,timer,focus,productivity,menubar,achievement,badge,streak,free,lightwei
 
 **优化说明：** 删除 "- 专注工作休息"，Name 保持简洁，详细说明放 Subtitle
 
-**Subtitle（优化版）**: `菜单栏番茄钟 轻量（不足2MB）`
+**Subtitle（优化版）**: `菜单栏番茄钟 轻量（2.2MB）`
 
 **字符数**: 16/30 ✅
 
 **优化理由：**
 - ✅ 包含 `菜单栏` 关键词
-- ✅ 强调 `under 2MB` 卖点
+- ✅ 强调 `2.2MB` 卖点
 - ✅ 突出 `极简` 设计风格
 
 ---
@@ -251,7 +251,7 @@ https://github.com/happylaodu/PomodoroTimer
 
 ### 关键改进点：
 
-1. **强调"under 2MB"轻量化**
+1. **强调"2.2MB"轻量化**
    - 这是最大差异化卖点
    - 在描述开头就提及
 

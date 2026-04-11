@@ -54,6 +54,38 @@ Version 1.6 - Achievement System
 
 ---
 
+### File Size Accuracy in Marketing
+
+**Issue**: Marketing claims must match actual app size to avoid misleading users
+
+**What happened**:
+- v1.5 and earlier: Marketed as "under 2MB"
+- v1.6 actual size: Download 1.46 MB, **Installed 2.19 MB**
+- Users see the installed size, not download size
+- Claiming "under 2MB" while actual install is 2.19 MB is misleading
+
+**Solution**:
+- Always check actual build size before finalizing marketing content
+- Use installed size (not download size) for marketing claims
+- Updated all references: "under 2MB" → "2.2MB"
+- Being accurate (2.2MB) is still impressive and honest
+
+**Prevention**:
+- Before every release, build and check App Store Connect file size report
+- Update marketing content if size changes significantly
+- Round up to be safe (2.19 MB → 2.2 MB in marketing)
+
+**Files to update when size changes**:
+- `Docs/Growth/01-AppStore-Content.md` (App Description, Promotional Text, Subtitle)
+- Release checklist files
+- Marketing articles and documentation
+
+**Where to check build size**:
+- Xcode → Organizer → Archives → Distribute → App Store Connect
+- After upload: App Store Connect → TestFlight → Build details
+
+---
+
 ## Common Bugs
 
 ### UserDefaults Data Operations

@@ -228,7 +228,7 @@ After using bloated Pomodoro apps for years, I decided to build my own.
 - Native AppKit integration
 
 **Challenges:**
-- Keeping it under 2MB while adding features
+- Keeping it 2.2MB while adding features
 - Designing intuitive UX in limited menu bar space
 - Making charts work smoothly with SwiftUI
 
@@ -461,7 +461,7 @@ Happy to answer any questions about the implementation or design decisions!
 I used a hybrid approach - SwiftUI for the UI (modern, declarative) and AppKit for menu bar integration (NSStatusItem). SwiftUI made the charts and animations much easier to implement while keeping the bundle size small.
 ```
 
-**Q: How did you keep it under 2MB?**
+**Q: How did you keep it 2.2MB?**
 ```
 - No third-party dependencies
 - Native frameworks only (SwiftUI, AppKit, Charts)
