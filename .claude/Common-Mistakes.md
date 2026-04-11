@@ -8,20 +8,25 @@ This file documents critical mistakes and lessons learned to prevent repeated er
 
 ### App Store Connect Limitations
 
-**Issue**: App Store Connect does not support emoji and special characters in release notes
+**Issue**: App Store Connect does not support emoji and special characters in metadata
 
 **What happened**:
 - Prepared v1.6 release notes with emoji symbols (🏆, 🎉, ✨, 🎨, 🌍)
 - App Store Connect rejected the submission due to unsupported characters
 - Had to manually remove all emojis before submission
+- Also affected App Description and Promotional Text
 
 **Solution**:
 - Use text markers instead: `【标题】` for Chinese, `[Section Title]` for English
-- Never use emoji in App Store metadata (release notes, descriptions)
+- Never use emoji in ANY App Store metadata:
+  - Release notes (What's New)
+  - App Description
+  - Promotional Text
+  - Subtitle
 - Emoji are fine for GitHub releases, documentation, and in-app content
 
 **Prevention**:
-- When preparing App Store release notes, use only:
+- When preparing App Store content, use only:
   - Plain text
   - Basic punctuation
   - Numbers and letters
@@ -29,8 +34,10 @@ This file documents critical mistakes and lessons learned to prevent repeated er
 
 **Files to check before App Store submission**:
 - Release checklists (e.g., `Docs/Growth/v1.6-Release-Checklist.md`)
-- App Store Connect metadata
+- App Store content file (`Docs/Growth/01-AppStore-Content.md`)
 - Release notes (both Chinese and English versions)
+- App Description
+- Promotional Text
 
 **Example of correct format**:
 ```

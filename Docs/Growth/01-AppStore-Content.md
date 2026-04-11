@@ -9,17 +9,24 @@
 ### 英文版（English U.S.）
 
 ```
-🆕 NEW in v1.5: Statistics Export - CSV & PDF reports (Weekly/Monthly/All-Time)!
+NEW in v1.6: Achievement System - 9 badges to unlock, dual-tab stats window!
 
 Stay focused with the lightest Pomodoro timer for Mac—just under 2MB!
 
-✨ WHY CHOOSE POMODORO TIMER LITE?
+WHY CHOOSE POMODORO TIMER LITE?
 • Ultra-lightweight (under 2MB) - 90% smaller than competitors
 • Completely free, no ads, no subscriptions
 • Lives quietly in your menu bar - no Dock clutter
 • Privacy-first - zero data collection
 
-⚙️ CUSTOMIZABLE SETTINGS
+ACHIEVEMENT SYSTEM
+• 9 achievement badges to earn your progress
+• Session-based achievements (1/10/50/100/500/1000 sessions)
+• Streak-based achievements (7/30/100 consecutive days)
+• Automatic historical data analysis and unlocking
+• Dual-tab window: Badges & Statistics charts
+
+CUSTOMIZABLE SETTINGS
 • Adjust work duration (15-90 minutes)
 • Configure short rest (3-30 min) and long rest (10-60 min)
 • Auto-start work, rest, or next cycle
@@ -28,11 +35,11 @@ Stay focused with the lightest Pomodoro timer for Mac—just under 2MB!
 • Choose from 12 notification sounds
 • Launch at login option
 
-📊 TRACK YOUR PRODUCTIVITY
+TRACK YOUR PRODUCTIVITY
 • Daily, weekly, and total work session counters
-• 7-day productivity chart to visualize trends
-• 🆕 Export data to CSV for spreadsheet analysis
-• 🆕 Generate professional PDF reports (Weekly/Monthly/All-Time)
+• Visual charts (7 days / 30 days / all time)
+• Export data to CSV for spreadsheet analysis
+• Generate professional PDF reports (Weekly/Monthly/All-Time)
 • See your progress at a glance
 
 🎨 ELEGANT DESIGN
@@ -57,17 +64,24 @@ Download now and start your first focused session! 🍅
 ### 简体中文版（Simplified Chinese）
 
 ```
-🆕 v1.5 新功能：统计数据导出 - CSV 和 PDF 报告（每周/每月/总体）！
+v1.6 新功能：成就系统 - 9 种徽章解锁，双标签统计窗口！
 
 Mac 上最轻量的番茄钟应用——仅需 不到2MB！
 
-✨ 为什么选择番茄计时器 Lite？
+为什么选择番茄计时器 Lite？
 • 超轻量（不到2MB）- 比同类应用小 90%
 • 完全免费，无广告，无订阅
 • 安静地存在于菜单栏 - 不占用 Dock 空间
 • 隐私至上 - 零数据收集
 
-⚙️ 可自定义设置
+成就系统
+• 9 种成就徽章，记录你的专注进步
+• 基于会话数的成就（1/10/50/100/500/1000 次）
+• 基于连续使用的成就（7/30/100 天）
+• 自动分析历史数据并解锁成就
+• 双标签窗口：勋章页和统计图表
+
+可自定义设置
 • 调整工作时长（15-90 分钟）
 • 配置短休息（3-30 分钟）和长休息（10-60 分钟）
 • 自动开始工作、休息或下一轮
@@ -76,11 +90,11 @@ Mac 上最轻量的番茄钟应用——仅需 不到2MB！
 • 12种通知声音可选
 • 开机自启动选项
 
-📊 追踪你的效率
+追踪你的效率
 • 每日、每周、总计工作时段计数器
-• 7 天生产力图表，可视化趋势
-• 🆕 导出数据为 CSV 格式用于分析
-• 🆕 生成专业 PDF 报告（每周/每月/总体）
+• 可视化图表（7天 / 30天 / 全部历史）
+• 导出数据为 CSV 格式用于分析
+• 生成专业 PDF 报告（每周/每月/总体）
 • 一目了然查看进度
 
 🎨 优雅设计
@@ -106,21 +120,25 @@ Mac 上最轻量的番茄钟应用——仅需 不到2MB！
 
 **特点**: 可随时修改，无需新版本审核
 
-### 英文版（v1.5）
+### 英文版（v1.6）
 
 ```
-🆕 v1.5: Statistics Export - CSV & PDF reports (Weekly/Monthly/All-Time)! Lightest Pomodoro (under 2MB), free, no ads! 🍅
+v1.6: Achievement System - 9 badges, dual-tab stats! Lightest Pomodoro (under 2MB), free, no ads!
 ```
 
-**字符数**: 132 字符（限制 170）✅
+**字符数**: 100 字符（限制 170）✅
 
-### 简体中文版（v1.5）
+**注意**: App Store Connect 不支持 emoji，已移除所有表情符号
+
+### 简体中文版（v1.6）
 
 ```
-🆕 v1.5：统计导出 - CSV 和 PDF 报告（每周/每月/总体）！最轻量番茄钟（不到2MB），免费无广告！🍅
+v1.6：成就系统 - 9 种徽章，双标签统计！最轻量番茄钟（不到2MB），免费无广告！
 ```
 
-**字符数**: 62 字符（限制 170）✅
+**字符数**: 45 字符（限制 170）✅
+
+**注意**: App Store Connect 不支持 emoji，已移除所有表情符号
 
 ---
 
@@ -128,49 +146,45 @@ Mac 上最轻量的番茄钟应用——仅需 不到2MB！
 
 **限制**: 100 字符，用逗号分隔
 
-### 英文版（优化版）
+### 英文版（v1.6 优化版）
 
 ```
-pomodoro,timer,focus,productivity,menubar,tomato,break,rest,free,lightweight,minimal,efficient,mac
+pomodoro,timer,focus,productivity,menubar,achievement,badge,streak,free,lightweight,minimal,mac
 ```
 
-**字符数**: 99/100 ✅
+**字符数**: 95/100 ✅
 
-**关键词策略：**
+**v1.6 关键词策略：**
 - `pomodoro` - 核心关键词（必须）
 - `timer` - 高频搜索词
 - `focus` - 用户需求词
 - `productivity` - 品类词
 - `menubar` - 场景词（差异化）
-- `tomato` - 替代搜索词
-- `break`, `rest` - 功能词
+- `achievement` - v1.6 新功能核心词
+- `badge` - 成就系统相关词
+- `streak` - 连续使用功能词
 - `free` - 高转化词
 - `lightweight` - 核心卖点
 - `minimal` - 设计风格词
-- `efficient` - 效率词
 - `mac` - 平台精准定位
 
-**优化说明：**
-- ✅ 新增 `tomato`, `break`, `rest`, `efficient`, `mac`
-- ❌ 删除 `study`, `work`（太宽泛，竞争激烈）
-- ❌ 删除 `technique`（pomodoro 自动匹配）
-- ❌ 删除 `timemanagement`（释放空间）
+**v1.6 优化说明：**
+- ✅ 新增 `achievement`, `badge`, `streak`（v1.6 成就系统）
+- ❌ 删除 `tomato`, `break`, `rest`, `efficient`（为新功能让路）
 
-### 简体中文版（优化版）
+### 简体中文版（v1.6 优化版）
 
 ```
-番茄钟,番茄工作法,计时器,专注,效率,学习,工作,休息,菜单栏,极简,免费,时间管理,提醒,轻量,Mac,工具,定时器,专注力
+番茄钟,番茄工作法,计时器,专注,效率,成就,徽章,连续打卡,菜单栏,极简,免费,时间管理,轻量,Mac,工具,定时器,专注力
 ```
 
-**字符数**: ~85/100 ✅
+**字符数**: ~80/100 ✅
 
-**新增关键词：**
-- `提醒` - 功能词
-- `轻量` - 核心卖点
-- `Mac` - 平台词
-- `工具` - 品类词
-- `定时器` - 同义词（覆盖不同搜索习惯）
-- `专注力` - 用户需求词
+**v1.6 新增关键词：**
+- `成就` - v1.6 成就系统核心词
+- `徽章` - 成就功能词
+- `连续打卡` - 连续使用功能（用户常用搜索词）
+- 保留核心词：`提醒`, `轻量`, `Mac`, `工具`, `定时器`, `专注力`
 
 ---
 
@@ -290,5 +304,11 @@ https://github.com/happylaodu/PomodoroTimer
 ---
 
 **创建时间**: 2026-01-31
-**最后更新**: 2026-02-28
-**适用版本**: 1.5+
+**最后更新**: 2026-04-11
+**适用版本**: 1.6+
+
+**v1.6 更新说明**:
+- 新增成就系统相关内容（Description, Promotional Text）
+- 更新关键词（添加 achievement, badge, streak 等）
+- 移除所有 emoji（App Store Connect 不支持）
+- 添加双标签统计窗口说明
