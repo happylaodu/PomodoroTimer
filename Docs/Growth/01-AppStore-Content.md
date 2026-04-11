@@ -1,4 +1,4 @@
-# 📝 App Store Connect - 优化内容
+# App Store Connect - 优化内容
 
 本文档包含所有需要在 App Store Connect 中更新的内容，直接复制粘贴即可使用。
 
@@ -42,13 +42,13 @@ TRACK YOUR PRODUCTIVITY
 • Generate professional PDF reports (Weekly/Monthly/All-Time)
 • See your progress at a glance
 
-🎨 ELEGANT DESIGN
+ELEGANT DESIGN
 • Native macOS design with animated icons
 • Full dark mode support
 • Gentle sound notifications
 • Clean, distraction-free interface
 
-🚀 PERFECT FOR
+PERFECT FOR
 - Students mastering the Pomodoro Technique
 - Remote workers staying on track
 - Developers minimizing distractions
@@ -56,7 +56,7 @@ TRACK YOUR PRODUCTIVITY
 
 Whether you're studying, coding, or writing, Pomodoro Timer Lite keeps you focused—right from your menu bar.
 
-Download now and start your first focused session! 🍅
+Download now and start your first focused session!
 ```
 
 **字符数**: ~1200 字符（限制 4000）
@@ -97,13 +97,13 @@ Mac 上最轻量的番茄钟应用——仅需 不到2MB！
 • 生成专业 PDF 报告（每周/每月/总体）
 • 一目了然查看进度
 
-🎨 优雅设计
+优雅设计
 • 原生 macOS 设计，带动画图标
 • 完整深色模式支持
 • 温柔的声音提醒
 • 简洁、无干扰界面
 
-🚀 适用人群
+适用人群
 - 正在学习番茄工作法的学生
 - 需要保持专注的远程工作者
 - 想要减少干扰的开发者
@@ -111,7 +111,7 @@ Mac 上最轻量的番茄钟应用——仅需 不到2MB！
 
 无论你是在学习、编程还是写作，番茄计时器 Lite 都能让你保持专注——就在菜单栏中。
 
-立即下载，开启你的第一个专注时段！🍅
+立即下载，开启你的第一个专注时段！
 ```
 
 ---
@@ -247,7 +247,7 @@ https://github.com/happylaodu/PomodoroTimer
 
 ---
 
-## 📊 优化重点说明
+## 优化重点说明
 
 ### 关键改进点：
 
@@ -292,7 +292,7 @@ https://github.com/happylaodu/PomodoroTimer
 
 ---
 
-## 🔄 更新频率建议
+## 更新频率建议
 
 | 内容 | 更新频率 | 说明 |
 |------|----------|------|
