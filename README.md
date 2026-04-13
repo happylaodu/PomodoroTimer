@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-macOS%2013%2B-lightgrey)](https://www.apple.com/macos)
 
-**The lightest Pomodoro timer for macOS menu bar — just 1.5MB!**
+**The lightest Pomodoro timer for macOS menu bar — just 2.2MB!**
 
 A minimal and elegant menu bar Pomodoro timer, built with Swift and SwiftUI. Stay focused, track your productivity, and respect your privacy.
 
@@ -16,7 +16,7 @@ A minimal and elegant menu bar Pomodoro timer, built with Swift and SwiftUI. Sta
 ## ✨ Features
 
 ### 🪶 Ultra-Lightweight
-- **Only 1.5MB** — 90% smaller than competitors
+- **Only 2.2MB** — 90% smaller than competitors
 - Native Swift & SwiftUI, zero third-party dependencies
 - Minimal resource usage
 
@@ -38,10 +38,17 @@ A minimal and elegant menu bar Pomodoro timer, built with Swift and SwiftUI. Sta
 - Preview sounds before selecting
 - Option to disable sound completely
 
+### 🏆 Achievement System
+- **9 achievement badges** to unlock and collect
+- Session-based achievements (1, 10, 50, 100, 500, 1000 sessions)
+- Streak-based achievements (7, 30, 100 consecutive days)
+- Smart migration analyzes your history and unlocks earned achievements
+- Beautiful dual-tab window: Badges + Statistics visualization
+
 ### 📊 Track Your Productivity
 - Daily, weekly, and total session counters
-- 7-day productivity chart
-- Visualize your focus trends
+- 7-day, 30-day, and all-time productivity charts
+- Visualize your focus trends and progress
 
 ### 🎨 Native macOS Design
 - Menu bar integration — no Dock clutter
@@ -59,19 +66,22 @@ A minimal and elegant menu bar Pomodoro timer, built with Swift and SwiftUI. Sta
 
 ## 📸 Screenshots
 
-### Menu Bar & Main Interface
+### Achievement System (New in v1.6!)
 <p float="left">
-  <img src="Docs/Growth/screenshots/1.4/work-time.png" width="300" alt="Work Time" />
-  <img src="Docs/Growth/screenshots/1.4/rest-time.png" width="300" alt="Rest Time" />
+  <img src="Docs/Growth/screenshots/1.6/appstore-achievements.png" width="400" alt="Achievements - Badges" />
+  <img src="Docs/Growth/screenshots/1.6/appstore-chart.png" width="400" alt="Achievements - Statistics" />
 </p>
 
-### 7-Day Productivity Chart
-<img src="Docs/Growth/screenshots/1.4/chart.png" width="400" alt="7-Day Chart" />
+### Menu Bar & Main Interface
+<p float="left">
+  <img src="Docs/Growth/screenshots/1.6/appstore-work-time.png" width="300" alt="Work Time" />
+  <img src="Docs/Growth/screenshots/1.6/appstore-settings-en.png" width="300" alt="Settings Panel" />
+</p>
 
-### Settings Panel
-<img src="Docs/Growth/screenshots/1.4/settings.png" width="400" alt="Settings Panel" />
+### PDF Export & Reports
+<img src="Docs/Growth/screenshots/1.6/5-pdf-export.png" width="400" alt="PDF Export" />
 
-*Full dark mode support | Customizable durations | Auto-start options*
+*Full dark mode support | Achievement tracking | Customizable durations | Professional reports*
 
 ## 📥 Installation
 
@@ -107,21 +117,22 @@ A minimal and elegant menu bar Pomodoro timer, built with Swift and SwiftUI. Sta
 
 | Feature | Pomodoro Timer Lite | Other Apps |
 |---------|-------------------|------------|
-| Size | 1.5MB | 10-50MB |
+| Size | 2.2MB | 10-50MB |
 | Price | Free | $5-15 or subscription |
 | Data Collection | Zero | Analytics, cloud sync |
+| Achievements | ✅ 9 badges | ❌ No |
 | Customization | Full control | Often limited |
 | Open Source | ✅ Yes | ❌ No |
 
 ---
 
-## 🆕 What's New in v1.4
+## 🆕 What's New in v1.6
 
-- 🌍 **Chinese Localization**: Full Simplified Chinese support
-- ⌨️ **Global Shortcuts**: Control timer from any app (⌘⇧T/P/R/M)
-- 🔔 **Sound Customization**: Choose from 12 notification sounds
-- 🚀 **Launch at Login**: Auto-start when computer boots
-- 🐛 **Bug Fixes**: Timer sync issues and chart improvements
+- 🏆 **Achievement System**: 9 badges to unlock (session-based + streak-based)
+- 📊 **Statistics Tab**: Visual charts showing 7-day, 30-day, and all-time trends
+- 🎯 **Smart Migration**: Automatically analyzes history and unlocks earned achievements
+- ✨ **Enhanced UI**: Achievements at top of settings, dedicated dual-tab window
+- 🌍 **Full Bilingual Support**: Achievement names and descriptions in English & Chinese
 
 [View full changelog →](https://github.com/happylaodu/PomodoroTimer/releases)
 
@@ -139,13 +150,18 @@ A minimal and elegant menu bar Pomodoro timer, built with Swift and SwiftUI. Sta
 
 ```
 PomodoroTimer/
-├── PomodoroTimer.swift      # Main timer logic & state management
-├── ContentView.swift         # Popup UI (SwiftUI)
-├── StatusBarController.swift # Menu bar integration (AppKit)
-├── SettingsView.swift        # Settings panel
-├── ChartView.swift           # 7-day productivity chart
-├── AppDelegate.swift         # App lifecycle & notifications
-└── Assets.xcassets/          # Icons and resources
+├── PomodoroTimer.swift           # Main timer logic & state management
+├── ContentView.swift              # Popup UI (SwiftUI)
+├── StatusBarController.swift      # Menu bar integration (AppKit)
+├── SettingsView.swift             # Settings panel
+├── ChartView.swift                # Productivity charts
+├── Achievement.swift              # Achievement data model
+├── AchievementManager.swift       # Achievement tracking & unlocking
+├── AchievementsView.swift         # Achievement UI (dual-tab window)
+├── AchievementsWindowController.swift  # Achievement window management
+├── ReviewRequestManager.swift     # Smart review prompts
+├── AppDelegate.swift              # App lifecycle & notifications
+└── Assets.xcassets/               # Icons and resources
 ```
 
 ---
@@ -170,9 +186,11 @@ Contributions are welcome! Here's how you can help:
 
 ## 📊 Roadmap
 
-- [ ] macOS Focus Mode integration (research)
+- [x] Achievement system with gamification (v1.6)
+- [ ] Achievement notifications
+- [ ] Additional achievements and milestones
+- [ ] macOS Focus Mode integration
 - [ ] iOS companion app
-- [ ] Additional language support
 
 See [Ideas.md](.claude/Ideas.md) for the full feature backlog.
 
