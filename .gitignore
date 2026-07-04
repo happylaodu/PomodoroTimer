@@ -1,4 +1,7 @@
 
+# VSCode
+.vscode/
+
 # Xcode
 build/
 DerivedData/
@@ -53,5 +56,12 @@ fastlane/screenshots
 # Package installers
 *.pkg
 
-# Backup directories
-PomodoroTimer 2025-*/
+# Build artifact directories (timestamped .app copies)
+PomodoroTimer [0-9]*/
+
+# Backup plists
+*.plist.bak
+~/.pomodoro_sandbox_backup.plist
+
+# Code coverage
+*.profraw
