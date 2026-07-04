@@ -16,39 +16,48 @@
 "Show past 7 days progress chart" = "显示过去 7 天的进度图表";
 "Quit Pomodoro Timer Lite" = "退出番茄计时器 Lite";
 
-/* SettingsView.swift */
+/* SettingsView.swift - Tabs */
+"General" = "通用";
+"Timer" = "计时器";
+"Sound" = "声音";
+"Shortcuts" = "快捷键";
+"Export" = "导出";
+"Settings" = "设置";
+
+/* SettingsView.swift - General */
 "Start automatically when computer starts" = "开机时自动启动";
-"⏱ Auto Start Control" = "⏱ 自动启动控制";
-"🔔 Sound" = "🔔 声音";
-"Enable Sound" = "启用声音";
-"Notification Sound" = "通知声音";
-"Ping" = "Ping";
-"Glass" = "Glass";
-"Hero" = "Hero";
-"Tink" = "Tink";
-"Purr" = "Purr";
-"Basso" = "Basso";
-"Blow" = "Blow";
-"Bottle" = "Bottle";
-"Frog" = "Frog";
-"Funk" = "Funk";
-"Pop" = "Pop";
-"Sosumi" = "Sosumi";
-"⏲ Duration (Minutes)" = "⏲ 时长（分钟）";
+"Auto Start Control" = "自动启动控制";
 "Auto Start Work on First Launch Each Day" = "每天首次启动时自动开始工作";
 "Auto Start Rest After Work" = "工作后自动开始休息";
 "Auto Start Work After Rest" = "休息后自动开始工作";
+
+/* SettingsView.swift - Timer */
+"Duration" = "时长";
+"Work Duration" = "工作时长";
+"Short Rest Duration" = "短休息时长";
+"Long Rest" = "长休息";
 "Enable Long Rest" = "启用长休息";
-"Work Duration: %d" = "工作时长：%d";
-"Short Rest Duration: %d" = "短休息时长：%d";
-"Long Rest Duration: %d" = "长休息时长：%d";
-"Long Rest After %d Rounds" = "%d 轮后长休息";
-"Settings" = "设置";
-"⌨️ Keyboard Shortcuts" = "⌨️ 键盘快捷键";
+"Rounds Before Long Rest" = "长休息前轮数";
+"Long Rest Duration" = "长休息时长";
+"min" = "分钟";
+"rounds" = "轮";
+
+/* SettingsView.swift - Sound */
+"Notification" = "通知";
+"Enable Sound" = "启用声音";
+"Notification Sound" = "通知声音";
+"Preview Sound" = "试听";
+
+/* SettingsView.swift - Shortcuts */
+"Keyboard Shortcuts" = "键盘快捷键";
 "Show Window" = "显示窗口";
 "Start/Pause" = "开始/暂停";
 "Switch Mode" = "切换模式";
-"💡 Tip: If you don't see the tomato icon in the menu bar, use ⌘⇧T to show the window and locate the icon. To reposition: hold ⌘ and drag less-used icons to the left (hidden area) to make room for frequently-used apps." = "💡 提示：如果在菜单栏没有看到番茄图标，可以用 ⌘ ⇧ T 呼出窗口来定位图标位置。调整位置：按住 ⌘ 将不常用图标拖到左侧（隐藏区域），为常用应用腾出空间。";
+"Open Settings" = "打开设置";
+"Tip: If you don't see the tomato icon in the menu bar, use ⇧⌘T to show the window and locate the icon. To reposition: hold ⌘ and drag less-used icons to the left (hidden area) to make room for frequently-used apps." = "提示：如果在菜单栏没有看到番茄图标，可以用 ⇧⌘T 呼出窗口来定位图标位置。调整位置：按住 ⌘ 将不常用图标拖到左侧（隐藏区域），为常用应用腾出空间。";
+
+/* SettingsView.swift - Export */
+"Export Data" = "导出数据";
 
 /* StatusBarController.swift */
 "Quit Pomodoro Timer Lite" = "退出番茄计时器 Lite";

@@ -333,7 +333,8 @@ class PomodoroTimer: ObservableObject {
         // Only add sound to notification if sound is enabled (default to true if not set)
         let soundEnabled = UserDefaults.standard.object(forKey: "soundEnabled") as? Bool ?? true
         if soundEnabled {
-            content.sound = UNNotificationSound.default
+            // Disable system notification sound to avoid mixing with custom sound
+            content.sound = nil
         }
 
         playSound(repeat: 3)
