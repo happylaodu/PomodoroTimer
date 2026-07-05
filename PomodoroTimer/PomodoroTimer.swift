@@ -337,7 +337,7 @@ class PomodoroTimer: ObservableObject {
             content.sound = nil
         }
 
-        playSound(repeat: max(1, min(UserDefaults.standard.integer(forKey: "soundRepeatCount") == 0 ? 3 : UserDefaults.standard.integer(forKey: "soundRepeatCount"), 5)))
+        playSound(repeat: max(1, min(UserDefaults.standard.integer(forKey: "soundRepeatCount"), 5)))
 
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
 

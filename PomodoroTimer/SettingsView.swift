@@ -184,7 +184,6 @@ struct DurationField: View {
 struct SoundSettingsView: View {
     @AppStorage("soundEnabled") private var soundEnabled = true
     @AppStorage("notificationSound") private var notificationSound = "Ping"
-    @AppStorage("autoPreviewSound") private var autoPreviewSound = true
     @AppStorage("soundRepeatCount") private var soundRepeatCount = 3
 
     var body: some View {
@@ -209,9 +208,7 @@ struct SoundSettingsView: View {
                     }
                     .disabled(!soundEnabled)
                     .onChange(of: notificationSound) { newValue in
-                        if autoPreviewSound {
-                            previewSound(newValue)
-                        }
+                        previewSound(newValue)
                     }
 
                     Spacer()
@@ -219,13 +216,10 @@ struct SoundSettingsView: View {
                     Button {
                         previewSound(notificationSound)
                     } label: {
-                        Image(systemName: "speaker.wave.2.fill")
+                        Image(systemName: "play.circle")
                     }
                     .disabled(!soundEnabled)
                 }
-
-                Toggle(NSLocalizedString("Auto-preview when selecting sound", comment: ""), isOn: $autoPreviewSound)
-                    .disabled(!soundEnabled)
 
                 DurationField(
                     label: NSLocalizedString("Sound Repeat Count", comment: ""),

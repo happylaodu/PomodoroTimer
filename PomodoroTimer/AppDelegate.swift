@@ -16,6 +16,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
     private var achievementObserver: NSObjectProtocol?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        UserDefaults.standard.register(defaults: ["soundRepeatCount": 3])
+
         let contentView = ContentView(timer: self.timer)
         statusBar = StatusBarController(contentView)
 
@@ -132,11 +134,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
     }
 
     // MARK: - UNUserNotificationCenterDelegate
-
-    /// Handle system Cmd+, shortcut to open settings
-    @objc func openSettings(_ sender: Any?) {
-        SettingsWindowController.shared.show()
-    }
 
     /// Handle notification tap - open main window when user taps achievement notification
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {

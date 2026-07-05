@@ -32,10 +32,8 @@ class SettingsWindowController: NSObject {
             }
         } else {
             // Subsequent shows: just create and show normally
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) { [weak self] in
-                NSApp.activate(ignoringOtherApps: true)
-                self?.createAndShowWindow()
-            }
+            NSApp.activate(ignoringOtherApps: true)
+            createAndShowWindow()
         }
     }
 
