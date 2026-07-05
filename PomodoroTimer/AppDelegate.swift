@@ -16,6 +16,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
     private var achievementObserver: NSObjectProtocol?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        UserDefaults.standard.register(defaults: ["soundRepeatCount": 3])
+
         let contentView = ContentView(timer: self.timer)
         statusBar = StatusBarController(contentView)
 

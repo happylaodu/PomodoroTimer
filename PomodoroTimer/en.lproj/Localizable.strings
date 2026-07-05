@@ -16,39 +16,49 @@
 "Show past 7 days progress chart" = "Show past 7 days progress chart";
 "Quit Pomodoro Timer Lite" = "Quit Pomodoro Timer Lite";
 
-/* SettingsView.swift */
+/* SettingsView.swift - Tabs */
+"General" = "General";
+"Timer" = "Timer";
+"Sound" = "Sound";
+"Shortcuts" = "Shortcuts";
+"Export" = "Export";
+"Settings" = "Settings";
+
+/* SettingsView.swift - General */
 "Start automatically when computer starts" = "Start automatically when computer starts";
-"⏱ Auto Start Control" = "⏱ Auto Start Control";
-"🔔 Sound" = "🔔 Sound";
-"Enable Sound" = "Enable Sound";
-"Notification Sound" = "Notification Sound";
-"Ping" = "Ping";
-"Glass" = "Glass";
-"Hero" = "Hero";
-"Tink" = "Tink";
-"Purr" = "Purr";
-"Basso" = "Basso";
-"Blow" = "Blow";
-"Bottle" = "Bottle";
-"Frog" = "Frog";
-"Funk" = "Funk";
-"Pop" = "Pop";
-"Sosumi" = "Sosumi";
-"⏲ Duration (Minutes)" = "⏲ Duration (Minutes)";
+"Auto Start Control" = "Auto Start Control";
 "Auto Start Work on First Launch Each Day" = "Auto Start Work on First Launch Each Day";
 "Auto Start Rest After Work" = "Auto Start Rest After Work";
 "Auto Start Work After Rest" = "Auto Start Work After Rest";
+
+/* SettingsView.swift - Timer */
+"Duration" = "Duration";
+"Work Duration" = "Work Duration";
+"Short Rest Duration" = "Short Rest Duration";
+"Long Rest" = "Long Rest";
 "Enable Long Rest" = "Enable Long Rest";
-"Work Duration: %d" = "Work Duration: %d";
-"Short Rest Duration: %d" = "Short Rest Duration: %d";
-"Long Rest Duration: %d" = "Long Rest Duration: %d";
-"Long Rest After %d Rounds" = "Long Rest After %d Rounds";
-"Settings" = "Settings";
-"⌨️ Keyboard Shortcuts" = "⌨️ Keyboard Shortcuts";
+"Rounds Before Long Rest" = "Rounds Before Long Rest";
+"Long Rest Duration" = "Long Rest Duration";
+"min" = "min";
+"rounds" = "rounds";
+
+/* SettingsView.swift - Sound */
+"Notification" = "Notification";
+"Enable Sound" = "Enable Sound";
+"Notification Sound" = "Notification Sound";
+"Sound Repeat Count" = "Sound Repeat Count";
+"times" = "times";
+
+/* SettingsView.swift - Shortcuts */
+"Keyboard Shortcuts" = "Keyboard Shortcuts";
 "Show Window" = "Show Window";
 "Start/Pause" = "Start/Pause";
 "Switch Mode" = "Switch Mode";
-"💡 Tip: If you don't see the tomato icon in the menu bar, use ⌘⇧T to show the window and locate the icon. To reposition: hold ⌘ and drag less-used icons to the left (hidden area) to make room for frequently-used apps." = "💡 Tip: If you don't see the tomato icon in the menu bar, use ⌘ ⇧ T to show the window and locate the icon. To reposition: hold ⌘ and drag less-used icons to the left (hidden area) to make room for frequently-used apps.";
+"Open Settings" = "Open Settings";
+"Tip: If you don't see the tomato icon in the menu bar, use ⇧⌘T to show the window and locate the icon. To reposition: hold ⌘ and drag less-used icons to the left (hidden area) to make room for frequently-used apps." = "Tip: If you don't see the tomato icon in the menu bar, use ⇧⌘T to show the window and locate the icon. To reposition: hold ⌘ and drag less-used icons to the left (hidden area) to make room for frequently-used apps.";
+
+/* SettingsView.swift - Export */
+"Export Data" = "Export Data";
 
 /* StatusBarController.swift */
 "Quit Pomodoro Timer Lite" = "Quit Pomodoro Timer Lite";

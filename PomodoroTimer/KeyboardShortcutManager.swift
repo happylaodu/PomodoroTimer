@@ -61,6 +61,16 @@ class KeyboardShortcutManager {
             }
         )
 
+        // Settings: Cmd+Shift+,
+        registerShortcut(
+            keyCode: UInt32(kVK_ANSI_Comma),
+            modifiers: UInt32(cmdKey | shiftKey),
+            id: 5,
+            action: { [weak self] in
+                self?.openSettings()
+            }
+        )
+
         // Install event handler
         var eventType = EventTypeSpec(eventClass: OSType(kEventClassKeyboard), eventKind: UInt32(kEventHotKeyPressed))
         InstallEventHandler(GetApplicationEventTarget(), { (_, event, userData) -> OSStatus in
@@ -116,6 +126,10 @@ class KeyboardShortcutManager {
 
     private func showWindow() {
         statusBar?.showPopover()
+    }
+
+    private func openSettings() {
+        SettingsWindowController.shared.show()
     }
 
     deinit {
