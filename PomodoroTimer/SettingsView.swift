@@ -39,6 +39,7 @@ struct SettingsView: View {
                     Label(NSLocalizedString("Export", comment: "Settings tab"), systemImage: "square.and.arrow.up")
                 }
         }
+        .padding(.top, 8)
         .frame(minWidth: 450, minHeight: 300, idealHeight: 450)
     }
 }
@@ -154,14 +155,14 @@ struct DurationField: View {
                 .onChange(of: isFocused) { focused in
                     if !focused { commit() }
                 }
-            Text(unit)
-                .foregroundColor(.secondary)
-                .frame(width: 40, alignment: .leading)
             Stepper("", value: $value, in: range)
                 .labelsHidden()
                 .onChange(of: value) { newValue in
                     textValue = "\(newValue)"
                 }
+            Text(unit)
+                .foregroundColor(.secondary)
+                .fixedSize()
         }
         .onAppear {
             textValue = "\(value)"
@@ -169,8 +170,9 @@ struct DurationField: View {
     }
 
     private func commit() {
-        if let num = Int(textValue), range.contains(num) {
-            value = num
+        if let num = Int(textValue) {
+            value = min(max(num, range.lowerBound), range.upperBound)
+            textValue = "\(value)"
         } else {
             textValue = "\(value)"
         }
@@ -182,6 +184,8 @@ struct DurationField: View {
 struct SoundSettingsView: View {
     @AppStorage("soundEnabled") private var soundEnabled = true
     @AppStorage("notificationSound") private var notificationSound = "Ping"
+    @AppStorage("autoPreviewSound") private var autoPreviewSound = true
+    @AppStorage("soundRepeatCount") private var soundRepeatCount = 3
 
     var body: some View {
         Form {
@@ -204,6 +208,11 @@ struct SoundSettingsView: View {
                         Text("Sosumi").tag("Sosumi")
                     }
                     .disabled(!soundEnabled)
+                    .onChange(of: notificationSound) { newValue in
+                        if autoPreviewSound {
+                            previewSound(newValue)
+                        }
+                    }
 
                     Spacer()
 
@@ -214,6 +223,17 @@ struct SoundSettingsView: View {
                     }
                     .disabled(!soundEnabled)
                 }
+
+                Toggle(NSLocalizedString("Auto-preview when selecting sound", comment: ""), isOn: $autoPreviewSound)
+                    .disabled(!soundEnabled)
+
+                DurationField(
+                    label: NSLocalizedString("Sound Repeat Count", comment: ""),
+                    value: $soundRepeatCount,
+                    range: 1...5,
+                    unit: NSLocalizedString("times", comment: "Duration unit")
+                )
+                .disabled(!soundEnabled)
             }
         }
         .formStyle(.grouped)
@@ -224,7 +244,7 @@ struct SoundSettingsView: View {
         guard soundEnabled else { return }
         guard let sound = NSSound(named: NSSound.Name(soundName)) else { return }
 
-        for i in 0..<3 {
+        for i in 0..<soundRepeatCount {
             DispatchQueue.main.asyncAfter(deadline: .now() + Double(i) * 0.5) {
                 sound.stop()
                 sound.play()
@@ -239,11 +259,11 @@ struct ShortcutsSettingsView: View {
     var body: some View {
         Form {
             Section(NSLocalizedString("Keyboard Shortcuts", comment: "Settings section")) {
-                ShortcutRow(title: NSLocalizedString("Show Window", comment: ""), shortcut: "⇧⌘T")
-                ShortcutRow(title: NSLocalizedString("Start/Pause", comment: ""), shortcut: "⇧⌘P")
-                ShortcutRow(title: NSLocalizedString("Reset", comment: ""), shortcut: "⇧⌘R")
-                ShortcutRow(title: NSLocalizedString("Switch Mode", comment: ""), shortcut: "⇧⌘M")
-                ShortcutRow(title: NSLocalizedString("Open Settings", comment: ""), shortcut: "⌘,")
+                ShortcutRow(title: NSLocalizedString("Open Settings", comment: ""), shortcut: "⌘⇧,")
+                ShortcutRow(title: NSLocalizedString("Switch Mode", comment: ""), shortcut: "⌘⇧M")
+                ShortcutRow(title: NSLocalizedString("Start/Pause", comment: ""), shortcut: "⌘⇧P")
+                ShortcutRow(title: NSLocalizedString("Reset", comment: ""), shortcut: "⌘⇧R")
+                ShortcutRow(title: NSLocalizedString("Show Window", comment: ""), shortcut: "⌘⇧T")
             }
 
             Section {

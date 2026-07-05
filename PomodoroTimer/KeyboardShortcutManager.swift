@@ -61,10 +61,10 @@ class KeyboardShortcutManager {
             }
         )
 
-        // Settings: Cmd+,
+        // Settings: Cmd+Shift+,
         registerShortcut(
             keyCode: UInt32(kVK_ANSI_Comma),
-            modifiers: UInt32(cmdKey),
+            modifiers: UInt32(cmdKey | shiftKey),
             id: 5,
             action: { [weak self] in
                 self?.openSettings()

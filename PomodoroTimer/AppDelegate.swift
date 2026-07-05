@@ -133,6 +133,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
 
     // MARK: - UNUserNotificationCenterDelegate
 
+    /// Handle system Cmd+, shortcut to open settings
+    @objc func openSettings(_ sender: Any?) {
+        SettingsWindowController.shared.show()
+    }
+
     /// Handle notification tap - open main window when user taps achievement notification
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         // Check if this is an achievement notification
