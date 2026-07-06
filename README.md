@@ -54,7 +54,7 @@ A minimal and elegant menu bar Pomodoro timer, built with Swift and SwiftUI. Sta
 - Menu bar integration — no Dock clutter
 - Animated tomato icons for work/rest/pause states
 - Full dark mode support
-- Multi-language support (English & 简体中文)
+- Multi-language support (English & Simplified Chinese)
 
 ### 🔒 Privacy-First
 - **Zero data collection**

@@ -69,7 +69,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
                 window.setContentSize(NSSize(width: 280, height: 320))
                 window.minSize = NSSize(width: 280, height: 320)
                 window.maxSize = NSSize(width: 280, height: 320)
-                window.styleMask.remove(.resizable) // 可选：防止用户调整窗口大小
+                window.styleMask.remove(.resizable) // Optional: prevent user from resizing window
             }
         }
 

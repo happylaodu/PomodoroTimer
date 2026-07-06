@@ -1,72 +1,72 @@
 # Testing Guide
 
-## 重要说明
+## Important Notes
 
-⚠️ **应用使用App Sandbox**，UserDefaults存储在：
+⚠️ **The app uses App Sandbox**, so UserDefaults are stored at:
 ```
 ~/Library/Containers/com.brightjune.PomodoroTimer/Data/Library/Preferences/com.brightjune.PomodoroTimer.plist
 ```
 
-**不是** `~/Library/Preferences/`
+**Not** at `~/Library/Preferences/`.
 
-## UserDefaults Backup & Restore（推荐）
+## UserDefaults Backup & Restore (recommended)
 
-### 备份当前数据
+### Back up current data
 
 ```bash
 swift backup_sandbox_defaults.swift
 ```
 
-这会将sandboxed plist备份到 `~/.pomodoro_sandbox_backup.plist`
+This copies the sandboxed plist to `~/.pomodoro_sandbox_backup.plist`.
 
-### 恢复备份数据
+### Restore backed-up data
 
 ```bash
 swift restore_sandbox_defaults.swift
 ```
 
-从备份文件恢复sandboxed数据
+Restores sandboxed data from the backup file.
 
-### 测试工作流程
+### Test workflow
 
 ```bash
-# 1. 测试前备份
+# 1. Back up before testing
 swift backup_sandbox_defaults.swift
 
-# 2. 运行测试
+# 2. Run tests
 xcodebuild test -scheme PomodoroTimer -destination 'platform=macOS'
 
-# 3. 测试后恢复
+# 3. Restore after testing
 swift restore_sandbox_defaults.swift
 ```
 
-## 查看当前数据
+## Inspect current data
 
 ```bash
-# 查看sandbox plist
+# View the sandbox plist
 plutil -p ~/Library/Containers/com.brightjune.PomodoroTimer/Data/Library/Preferences/com.brightjune.PomodoroTimer.plist
 
-# 或者运行诊断
+# Or run the diagnostic script
 ./diagnose.sh
 ```
 
-## 备份文件位置
+## Backup file locations
 
-- **Sandbox备份**：`~/.pomodoro_sandbox_backup.plist` （✅ 推荐使用）
-- 旧备份：`~/.pomodoro_defaults_backup.json` （不适用于sandbox）
+- **Sandbox backup**: `~/.pomodoro_sandbox_backup.plist` (✅ recommended)
+- Legacy backup: `~/.pomodoro_defaults_backup.json` (does not apply to sandboxed data)
 
-## 数据字段
+## Data fields
 
-- `dailyWorkSessions` - 今天的番茄钟数
-- `weeklyWorkSessions` - 本周（已废弃，现从dailyHistory计算）
-- `totalWorkSessions` - 历史总数
-- `dailyHistory` - 每日历史（JSON encoded Data）
-- `completedRounds` - 今天完成的轮数
-- `lastWorkDate` - 上次工作日期
+- `dailyWorkSessions` — pomodoros completed today
+- `weeklyWorkSessions` — current week total (deprecated; now derived from `dailyHistory`)
+- `totalWorkSessions` — cumulative total across all history
+- `dailyHistory` — per-day history (JSON-encoded `Data`)
+- `completedRounds` — rounds completed today
+- `lastWorkDate` — date of the last work session
 
-## 注意事项
+## Cautions
 
-⚠️ **重要**：
-1. 运行单元测试可能清除数据，务必先备份
-2. 应用使用sandbox，数据在Containers目录
-3. 命令行的`UserDefaults.standard`和应用内的domain不同
+⚠️ **Important**:
+1. Running unit tests may clear data — always back up first.
+2. The app uses App Sandbox; data lives under the Containers directory.
+3. The command-line `UserDefaults.standard` domain differs from the app's sandboxed domain.

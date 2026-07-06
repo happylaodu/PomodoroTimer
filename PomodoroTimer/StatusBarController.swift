@@ -34,7 +34,7 @@ class StatusBarController {
             button.action = #selector(togglePopover(_:))
             button.target = self
         }
-        // 创建右键菜单（或长按菜单）
+        // Create right-click menu (or long-press menu)
         // statusItem.menu = menu
 
         rightClickMonitor = NSEvent.addLocalMonitorForEvents(matching: [.rightMouseDown]) { [weak self] event in
@@ -167,7 +167,7 @@ class StatusBarController {
         NSApp.activate(ignoringOtherApps: true)
     }
 
-    /// 可选：你可以更新菜单栏的文字，比如显示当前倒计时
+    /// Optional: update menu bar text, e.g. to display current countdown
     func updateTitle(_ text: String) {
         if let button = statusItem.button {
             let attributes: [NSAttributedString.Key: Any] = [

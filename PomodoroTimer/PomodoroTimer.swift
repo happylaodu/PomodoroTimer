@@ -158,7 +158,7 @@ class PomodoroTimer: ObservableObject {
             state = .work
         }
 
-        timer?.invalidate() // 避免重复定时器
+        timer?.invalidate() // Avoid duplicate timers
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {[weak self] _ in
             self?.tick()
         }
@@ -187,7 +187,7 @@ class PomodoroTimer: ObservableObject {
     func toggleCurrentPhase() {
         timer?.invalidate()
 
-        // 切换状态
+        // Switch state
         if state == .rest {
             state = .work
             timeRemaining = workDuration * 60

@@ -1,173 +1,212 @@
-# App Store Screenshots - v1.6
+# v1.6 App Store Screenshots
 
-This folder contains templates and guidelines for generating App Store screenshots for version 1.6.
-
-## Screenshot Strategy for v1.6
-
-v1.6 introduces the **Achievement System** - the main selling point that must be showcased.
-
-### 5 Screenshots (in order):
-
-1. **Work Time** - Main timer interface (keep from v1.5)
-2. **Achievements** - NEW: Achievement window with dual-tab design ⭐ CORE FEATURE
-3. **Settings** - UPDATED: Achievements section at top
-4. **Chart** - In-app productivity chart (updated tooltips)
-5. **PDF Export** - Professional reports (keep from v1.5)
-
-## What's New in v1.6 Screenshots
-
-### New Screenshots:
-- **Achievements** (`achievements-en.html`, `achievements-zh.html`)
-  - Must show the dual-tab window (Badges + Statistics)
-  - Showcase unlocked and locked achievements
-  - Display current streak and statistics
-  - This is the MAIN selling point of v1.6
-
-### Updated Screenshots:
-- **Settings** (`settings-en.html`, `settings-zh.html`)
-  - Achievements section now at top with orange highlight
-  - Shows unlock progress (e.g., "Unlocked: 6/9")
-  - Blue "View All" button prominent
-
-- **Chart** (optional update)
-  - Enhanced tooltip positioning
-  - Better hover interaction
-
-### Removed/Replaced:
-- Consider if Rest Time is still needed (less important than achievements)
-
-## Screenshot Details
-
-### 1. Work Time (keep from v1.5)
-- Main timer interface
-- Shows keyboard shortcuts
-- Clean, simple design
-- **File**: `work-time-en.png`, `work-time-zh.png`
-
-### 2. Achievements (NEW - MOST IMPORTANT)
-- **Tab view**: Must show both "Badges" and "Statistics" tabs
-- **Badges tab**:
-  - Grid layout with 9 achievement cards
-  - Color for unlocked, grayscale for locked
-  - Show unlock dates on unlocked achievements
-  - Display current streak at top
-- **Statistics tab**:
-  - Visual charts (7 days / 30 days / all time)
-  - Period selector
-  - Summary statistics at top
-- **Screenshot approach**: Capture Badges tab OR split-screen showing both
-- **File**: `achievements-en.png`, `achievements-zh.png`
-
-### 3. Settings (UPDATED)
-- **Top section**: Achievements with orange "Unlocked: 6/9"
-- Blue "View All" button
-- Scroll to show achievement section clearly
-- Other settings sections visible below
-- **File**: `settings-en.png`, `settings-zh.png`
-
-### 4. Chart (optional update)
-- In-app 7-day chart
-- Enhanced tooltips (if visible in screenshot)
-- **File**: `chart-en.png`, `chart-zh.png`
-
-### 5. PDF Export (keep from v1.5)
-- Professional PDF reports
-- Shows charts in reports
-- **File**: `pdf-export-en.png`, `pdf-export-zh.png`
-
-## Screenshot Dimensions
-
-**macOS App Store Requirements**:
-- Primary: 1280 x 800 pixels (16:10)
-- Alternative: 1440 x 900 pixels
-- Format: PNG or JPEG
-- Color space: RGB
-
-## Capture Instructions
-
-### Before Starting:
-1. Build v1.6 and have some test data:
-   - At least 30 days of history
-   - 6-8 achievements unlocked
-   - Active streak showing
-2. Switch system language (English or Chinese)
-3. Open app and achievement window
-
-### Achievement Window Screenshot:
-1. Click "View All" in Settings to open Achievement window
-2. Size window appropriately (500x600 default)
-3. **Option A - Badges Tab**:
-   - Stay on Badges tab
-   - Ensure 6+ achievements are unlocked (colorful)
-   - 2-3 remain locked (grayscale)
-   - Current streak visible at top
-4. **Option B - Statistics Tab** (alternative):
-   - Switch to Statistics tab
-   - Show chart with data
-   - Period selector visible
-5. Use Cmd+Shift+4 + Space to capture clean window
-
-### Settings Screenshot:
-1. Open Settings window
-2. Ensure Achievements section is at top and fully visible
-3. Should show "Unlocked: X/9" in orange
-4. "View All" button in blue
-5. Scroll position shows achievement section + some settings below
-6. Capture with Cmd+Shift+4 + Space
-
-### Using HTML Templates:
-1. Open HTML template in browser
-2. Follow on-screen instructions
-3. Capture app screenshot as instructed
-4. Save with specified filename
-5. Refresh HTML to verify screenshot appears
-6. Hide instructions
-7. Capture final composed screenshot
-
-## Upload Order to App Store Connect
-
-1. Work Time - Familiar main interface
-2. **Achievements** - Lead with the new feature ⭐
-3. Settings - Show where to access achievements
-4. Chart - Supporting productivity tracking
-5. PDF Export - Professional reporting feature
-
-## Files to Create
-
-### Templates Needed:
-- [ ] `achievements-en.html` - English achievement showcase
-- [ ] `achievements-zh.html` - Chinese achievement showcase
-- [ ] `settings-en.html` - Updated with achievements section
-- [ ] `settings-zh.html` - Updated with achievements section
-- [ ] `work-time-en.html` - Copy from v1.5
-- [ ] `work-time-zh.html` - Copy from v1.5
-- [ ] `chart-en.html` - Copy from v1.5 (or update)
-- [ ] `chart-zh.html` - Copy from v1.5 (or update)
-- [ ] `pdf-export-en.html` - Copy from v1.5
-- [ ] `pdf-export-zh.html` - Copy from v1.5
-
-## Important Notes
-
-- **Achievement window is the star** - spend most effort here
-- Show real data, not empty state
-- Ensure achievements are visually appealing (unlocked in color)
-- Statistics tab should show actual chart data
-- Keep consistent styling with v1.5 templates
-- Test both English and Chinese before finalizing
-
-## Marketing Emphasis
-
-The Achievement screenshot should clearly show:
-1. Multiple unlocked achievements (proof of gamification)
-2. Clear progress tracking (motivational)
-3. Professional UI design
-4. Both session-based and streak-based achievements
-5. Dual-tab interface (more features)
-
-This is what will drive downloads for v1.6!
+**Created**: 2026-04-11
+**Status**: Preparation
 
 ---
 
-**Status**: Planning phase
-**Priority**: High - required for v1.6 App Store submission
-**Timeline**: Create before App Store review submission
+## Required Screenshots (5 total)
+
+### Priority Order:
+1. **Achievements** ⭐ - Core new feature, dual-tab showcase
+2. **Work Time** - Main interface
+3. **Settings** - Updated with achievements at top
+4. **Chart** - In-app productivity visualization
+5. **PDF Export** - Professional reports
+
+---
+
+## Screenshot Specifications
+
+### Technical Requirements:
+- **Resolution**: 1280 x 800 pixels
+- **Format**: PNG
+- **Color Space**: RGB
+- **File Size**: < 5MB per image
+- **Naming**: Sequential (1-achievements.png, 2-worktime.png, etc.)
+
+### Content Requirements:
+- Clean UI, no glitches
+- Representative data (30+ days history)
+- 6-8 achievements unlocked
+- Active streak showing (7+ days ideal)
+- Readable text at preview size
+
+---
+
+## Preparation Steps
+
+### 1. Test Data Setup
+- [ ] Run app with 30+ days of session history
+- [ ] Unlock 6-8 achievements
+- [ ] Build active streak (7+ days)
+- [ ] Generate statistics data
+
+### 2. Create HTML Templates
+- [ ] Copy from v1.3 and modify:
+  - [ ] work-time-screenshot.html
+  - [ ] chart-screenshot.html
+  - [ ] pdf-export-screenshot.html (NEW)
+- [ ] Create NEW templates:
+  - [ ] achievements-screenshot.html (dual-tab design)
+  - [ ] settings-screenshot.html (achievements at top)
+
+### 3. Capture English Screenshots
+- [ ] 1-achievements.png - Badges tab with unlocked/locked badges
+- [ ] 2-worktime.png - Main timer interface
+- [ ] 3-settings.png - Settings with achievements section
+- [ ] 4-chart.png - Statistics chart (7/30/all time)
+- [ ] 5-pdf-export.png - PDF report preview
+
+### 4. Capture Chinese Screenshots
+- [ ] 1-achievements-zh.png
+- [ ] 2-worktime-zh.png
+- [ ] 3-settings-zh.png
+- [ ] 4-chart-zh.png
+- [ ] 5-pdf-export-zh.png
+
+### 5. Quality Verification
+- [ ] All 1280x800 PNG
+- [ ] No UI bugs visible
+- [ ] Text readable
+- [ ] Consistent styling
+- [ ] Dual-tab design clear in achievements screenshot
+
+---
+
+## Screenshot Details
+
+### 1. Achievements Screenshot (PRIORITY)
+**Goal**: Showcase v1.6's core feature - achievement system
+
+**Must Show**:
+- Dual-tab window (Badges + Statistics tabs)
+- Badges tab active by default
+- 6-8 unlocked achievements (colorful)
+- 1-3 locked achievements (grayscale)
+- Current streak display at top
+- Clean grid layout (2 columns)
+- Professional polish
+
+**Data Needed**:
+- Session achievements: First Focus, Getting Started, Dedicated, Centurion
+- Streak achievements: Week Warrior (7 days), maybe Monthly Master (30 days)
+- Locked: Legend, Immortal, Hundred Days
+
+**Tips**:
+- Take screenshot when badges tab is active
+- Ensure good mix of unlocked/locked for visual appeal
+- Current streak should be impressive (7-14 days ideal)
+
+### 2. Work Time Screenshot
+**Goal**: Show main timer interface during work session
+
+**Must Show**:
+- Timer counting down
+- Work mode indicator
+- Session counter
+- Clean menu bar integration
+- Animation state
+
+**Reuse from v1.3**: Yes, just verify UI still matches
+
+### 3. Settings Screenshot
+**Goal**: Show customization options with achievements at top
+
+**Must Show**:
+- Achievements section at TOP
+- Unlock progress (e.g., "Unlocked: 6/9")
+- "View All" button prominent
+- Other settings sections below
+- Clean layout
+
+**Changes from v1.3**:
+- Achievements moved to top position
+- Orange highlight on unlock count
+- Blue "View All" button
+- Window height increased
+
+### 4. Chart Screenshot
+**Goal**: Show productivity visualization
+
+**Must Show**:
+- Bar chart with 30+ days of data
+- Time range options (7 days / 30 days / all time)
+- Data trends visible
+- Clean, readable labels
+
+**Reuse from v1.3**: Yes, can reuse chart template
+
+### 5. PDF Export Screenshot
+**Goal**: Show professional report generation
+
+**Must Show**:
+- PDF preview of report
+- Charts included in PDF
+- Summary statistics
+- Daily breakdown table
+- Professional formatting
+
+**New for v1.6**: Highlight PDF export feature prominently
+
+---
+
+## File Naming Convention
+
+### English:
+```
+1-achievements.png
+2-worktime.png
+3-settings.png
+4-chart.png
+5-pdf-export.png
+```
+
+### Chinese:
+```
+1-achievements-zh.png
+2-worktime-zh.png
+3-settings-zh.png
+4-chart-zh.png
+5-pdf-export-zh.png
+```
+
+### Templates - English (5):
+```
+achievements-screenshot.html
+work-time-screenshot.html
+settings-screenshot.html
+chart-screenshot.html
+pdf-export-screenshot.html
+```
+
+### Templates - Chinese (5):
+```
+achievements-screenshot-zh.html
+work-time-screenshot-zh.html
+settings-screenshot-zh.html
+chart-screenshot-zh.html
+pdf-export-screenshot-zh.html
+```
+
+**Total: 10 HTML templates (5 EN + 5 ZH)**
+
+---
+
+## Timeline
+
+1. **Today**: Create templates, prepare test data
+2. **Tomorrow**: Capture all screenshots (EN + ZH)
+3. **Day 3**: Quality check, upload to App Store Connect
+
+---
+
+## References
+
+- App Store Screenshot Guidelines: https://developer.apple.com/app-store/product-page/
+- v1.3 Screenshots: `../1.3/`
+- Release Checklist: `../../v1.6-Release-Checklist.md`
+
+---
+
+**Last Updated**: 2026-04-11
