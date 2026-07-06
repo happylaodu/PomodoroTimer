@@ -6,33 +6,29 @@ class SettingsWindowController: NSObject {
     private var window: NSWindow?
     var onShow: (() -> Void)?
     weak var timer: PomodoroTimer?
-    private var hasShownOnce = false
 
     func show() {
         onShow?()
 
-        if let existingWindow = window {
-            existingWindow.makeKeyAndOrderFront(nil)
-            NSApp.activate(ignoringOtherApps: true)
-            return
+        // Always destroy and recreate. Reusing an NSHostingController across
+        // shows does not re-render controlActiveState reliably when the window
+        // is re-shown from an inactive app, so Toggles stay grayed.
+        if let oldWindow = window {
+            oldWindow.close()
+            window = nil
         }
 
-        // Only use hide/unhide trick on first show to fix Toggle rendering
-        if !hasShownOnce {
-            hasShownOnce = true
-
-            // Force app deactivation and reactivation cycle before showing window
+        if !NSApp.isActive {
+            // SwiftUI mounts Toggles in disabled color if the hosting window
+            // never becomes key. Force a full hide/activate cycle so the new
+            // window transitions to key/main after mount.
             NSApp.hide(nil)
-
-            // Wait briefly for hide to complete, then create and show window
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) { [weak self] in
                 NSApp.unhide(nil)
                 NSApp.activate(ignoringOtherApps: true)
                 self?.createAndShowWindow()
             }
         } else {
-            // Subsequent shows: just create and show normally
-            NSApp.activate(ignoringOtherApps: true)
             createAndShowWindow()
         }
     }
