@@ -2,7 +2,7 @@
 //  AboutWindowController.swift
 //  PomodoroTimer
 //
-//  Created by Steven Du on 2026-03-23.
+//  Created by happylaodu on 2026-03-23.
 //
 
 import SwiftUI

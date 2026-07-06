@@ -33,6 +33,6 @@ If you find this app helpful:
 
 ---
 
-**Author**: [Steven Du](https://github.com/happylaodu)
+**Author**: [happylaodu](https://github.com/happylaodu)
 
 **License**: MIT

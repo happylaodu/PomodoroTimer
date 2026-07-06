@@ -229,7 +229,7 @@ If you find this app helpful:
 
 ## 🍅 Author
 
-**Steven Du** — [GitHub](https://github.com/happylaodu)
+**happylaodu** — [GitHub](https://github.com/happylaodu)
 
 Built with ❤️ for the Pomodoro Technique community.
 

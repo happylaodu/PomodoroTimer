@@ -2,7 +2,7 @@
 //  ReviewRequestManager.swift
 //  PomodoroTimer
 //
-//  Created by Steven Du on 2026-03-25.
+//  Created by happylaodu on 2026-03-25.
 //
 
 import Foundation

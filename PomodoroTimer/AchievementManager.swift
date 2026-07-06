@@ -2,7 +2,7 @@
 //  AchievementManager.swift
 //  PomodoroTimer
 //
-//  Created by Steven Du on 2026-03-11.
+//  Created by happylaodu on 2026-03-11.
 //
 
 import Foundation

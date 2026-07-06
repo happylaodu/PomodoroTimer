@@ -2,7 +2,7 @@
 //  SettingsView.swift
 //  PomodoroTimer
 //
-//  Created by Steven Du on 2026-01-03.
+//  Created by happylaodu on 2026-01-03.
 //
 
 import SwiftUI

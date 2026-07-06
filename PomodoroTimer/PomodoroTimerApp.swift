@@ -2,7 +2,7 @@
 //  PomodoroTimerApp.swift
 //  PomodoroTimer
 //
-//  Created by Steven Du on 2025-07-11.
+//  Created by happylaodu on 2025-07-11.
 //
 
 import SwiftUI

@@ -2,7 +2,7 @@
 //  KeyboardShortcutManager.swift
 //  PomodoroTimer
 //
-//  Created by Steven Du on 2026-02-07.
+//  Created by happylaodu on 2026-02-07.
 //
 
 import Cocoa
